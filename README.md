@@ -13,7 +13,7 @@ hugo server --port 1314 --baseURL http://localhost:1314/kief-site/
 
 Open <http://localhost:1314/kief-site/>. To build static files, run `hugo --minify`.
 
-The configured production base URL follows Joe's GitHub Pages naming convention: `https://ryan258.github.io/kief-site/`. It is a build target only; a repository, Pages site, or deployment has not been created.
+The production site is deployed to GitHub Pages via GitHub Actions: <https://ryan258.github.io/kief-site/>. Continuous deployment runs on pushes to `main`.
 
 ## Included
 

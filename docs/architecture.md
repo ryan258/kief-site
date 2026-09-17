@@ -20,6 +20,9 @@ The companion is designed as an ultra-reliable, zero-latency tabletop tool optim
 
 ```
 kief-site/
+├── .github/
+│   └── workflows/
+│       └── deploy.yml             # GitHub Actions continuous deployment to GitHub Pages
 ├── .gitignore                     # Ignores /public/, /resources/, .hugo_build.lock, .DS_Store
 ├── README.md                      # Quickstart, local run, and high-level guide
 ├── VERIFICATION.md                # Audit log and manual testing receipts
@@ -163,3 +166,14 @@ python3 scripts/check_links.py /tmp/kief-site-check
 * **State Unit Tests:** Verify counter bounding, restoration exhaustion, deep serialization roundtrips, and rejection of invalid/out-of-level payloads.
 * **Hugo Build:** Verifies Goldmark Markdown rendering, template partial execution, and asset minification across 185 pages.
 * **Link Checker:** Parses all generated HTML documents, verifies every internal href and asset src, asserts that anchor fragments exist within destination page IDs, and ensures no URLs escape the `/kief-site/` base prefix.
+
+### Continuous Deployment (`.github/workflows/deploy.yml`)
+
+The repository deploys to GitHub Pages on every push to `main` using GitHub Actions with `build_type: workflow`:
+1. Checks out the repository with full git history.
+2. Configures Node.js 20, Python 3, and Hugo Extended (latest).
+3. Executes `actions/configure-pages@v5` to dynamically inject the production base URL.
+4. Compiles the production bundle via `hugo --gc --minify`.
+5. Executes the automated test gate: runs `tests/state.test.cjs` and validates all links and anchors via `scripts/check_links.py ./public`.
+6. Packages and deploys the artifact to GitHub Pages (`actions/deploy-pages@v4`).
+

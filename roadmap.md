@@ -43,6 +43,7 @@ This document outlines the development lifecycle, delivered capabilities, and fu
 - [x] Pure state unit test suite (`tests/state.test.cjs`) verified with Node.js's built-in test runner.
 - [x] Static build and subpath link/anchor audit script (`scripts/check_links.py`) ensuring zero broken links or base-path escapes across all 185 generated pages.
 - [x] Automated upstream content importer (`scripts/sync_content.py`) with SHA-256 fingerprint verification (`data/sources.json`).
+- [x] GitHub Pages continuous deployment workflow (`.github/workflows/deploy.yml`) with automated Hugo build, state test, and link verification gates.
 
 ---
 
