@@ -28,3 +28,14 @@ These checks do not establish full screen-reader compatibility, all-device cover
 - Chrome, local server: play card → spell card stacked (2 open, page scroll locked); spell card backlinks show 21 plays for Web; reopening an already-stacked card collapsed the stack; dashboard situation link updates (caster → K-4); reaction-list spell link opens a card. With real mouse clicks, Esc closed only the top card and focus returned to the triggering link. No console errors.
 - Scripted (non-user) clicks let Chrome close the whole stack on one Esc; real clicks behaved correctly.
 - Not checked: phone width (the window resize did not take effect), screen readers, and browser back-button behavior (back leaves the page rather than closing a card).
+
+## GitHub Pages deployment — 2026-09-17
+
+- Configured GitHub Pages deployment via GitHub Actions (`.github/workflows/deploy.yml`) on `ryan258/kief-site`.
+- Verified CI pipeline: Hugo Extended production build (`--gc --minify`), 4/4 passing state machine tests (`tests/state.test.cjs`), and zero link/anchor audit errors across 184 HTML pages (`scripts/check_links.py ./public`).
+- Artifact upload and deployment completed cleanly (GitHub Actions run `35232512094`).
+- Live production endpoints verified returning HTTP 200:
+  - Root HUD: <https://ryan258.github.io/kief-site/>
+  - Tactical Plays: <https://ryan258.github.io/kief-site/plays/>
+  - Spellbook: <https://ryan258.github.io/kief-site/spellbook/>
+
