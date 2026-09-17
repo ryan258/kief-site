@@ -2,8 +2,22 @@
 {{ $self := printf `href="[^"]*/%s/"` .File.ContentBaseName }}
 {{ $refs := slice }}
 {{ range (where site.RegularPages "Section" "plays").ByWeight }}{{ if and (ne . $) (findRE $self .Content 1) }}{{ $refs = $refs | append . }}{{ end }}{{ end }}
+{{ $spells := slice }}
+{{ range hugo.Data.spells }}{{ if findRE (printf "<em>%s</em>" (replace (replace .name "’" "(?:’|&rsquo;|')") " " "\\s+")) $.Content 1 }}{{ $spells = $spells | append . }}{{ end }}{{ end }}
+{{/* Every play shares four h3 sections; split them into dashboard panels. */}}
+{{ $body := partial "autolink.html" .Content | string }}
+{{ $part := dict }}
+{{ range $id := slice "when-to-use-it" "mechanics" "at-the-table" "the-rule-underneath" }}{{ with findRE (printf `<h3 id="%s">[\s\S]*?(?:<h3 |$)` $id) $body 1 }}{{ $part = merge $part (dict $id (index . 0 | replaceRE `<h3 $` "")) }}{{ end }}{{ end }}
 <div class="page-heading"><p class="eyebrow">{{ .Params.play_id }} <span class="separator">/</span> {{ .Params.actor | upper }} <span class="separator">/</span> {{ .Params.group | upper }}</p><h1>{{ .Title }}</h1></div>
-<article class="prose panel">{{ partial "autolink.html" .Content }}
-{{ with $refs }}<div class="card-links"><span class="eyebrow">REFERENCED BY</span>{{ range . }}<a href="{{ .RelPermalink }}" title="{{ .Title }}">{{ .Params.play_id }}</a>{{ end }}</div>{{ end }}
-<p class="play-nav"><a href="{{ "plays/" | relURL }}#{{ .Params.play_id | lower }}">← All plays</a>{{ with .PrevInSection }} · <a href="{{ .RelPermalink }}">{{ .Params.play_id }}: {{ .Title }} →</a>{{ end }}</p></article>
+<div class="play-wrap"><article class="play-dash">
+<div class="play-lead prose">{{ replaceRE `<h3 [\s\S]*$` "" $body | safeHTML }}</div>
+<div class="play-main panel prose">{{ index $part "when-to-use-it" | safeHTML }}{{ index $part "mechanics" | safeHTML }}</div>
+<aside class="play-side">
+<section class="panel prose play-script">{{ index $part "at-the-table" | safeHTML }}</section>
+{{ with $spells }}<section class="panel"><span class="eyebrow">SPELLS IN THIS PLAY</span>{{ range . }}<a class="spell-mini" href="{{ printf "spellbook/#spell-%s" (anchorize .name) | relURL }}"><span class="spell-mini-top"><strong>{{ .name }}</strong><span class="eyebrow">{{ if eq (int .level) 0 }}CANTRIP{{ else }}LEVEL {{ .level }}{{ end }}{{ if .concentration }} · CONC.{{ end }}</span></span><span class="spell-mini-stats">{{ .casting }} · {{ .range }} · {{ .duration }}</span></a>{{ end }}</section>{{ end }}
+<details class="panel prose fold">{{ index $part "the-rule-underneath" | replaceRE `(<h3[^>]*>.*?</h3>)` "<summary>$1</summary>" | safeHTML }}</details>
+<section class="panel">{{ with $refs }}<div class="card-links"><span class="eyebrow">REFERENCED BY</span>{{ range . }}<a href="{{ .RelPermalink }}" title="{{ .Title }}">{{ .Params.play_id }}</a>{{ end }}</div>{{ end }}
+<p class="play-nav"><a href="{{ "plays/" | relURL }}#{{ .Params.play_id | lower }}">← All plays</a>{{ with .PrevInSection }} · <a href="{{ .RelPermalink }}">{{ .Params.play_id }}: {{ .Title }} →</a>{{ end }}</p></section>
+</aside>
+</article></div>
 {{ end }}

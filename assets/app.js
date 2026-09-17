@@ -58,6 +58,8 @@
     card.querySelector('[data-no-card]').href = url.href;
     const body = card.querySelector('.card-body');
     body.append(...(url.hash ? [source] : [...source.children]).map(node => node.cloneNode(true)));
+    // A spell card opened on purpose shows everything; folded sections stay folded on play cards.
+    if (url.hash) body.querySelectorAll('details').forEach(node => { node.open = true; });
     body.querySelectorAll('[id]').forEach(node => node.removeAttribute('id'));
     body.querySelectorAll('[data-card]').forEach(node => node.removeAttribute('data-card'));
     body.querySelectorAll('a[href]').forEach(link => link.setAttribute('href', new URL(link.getAttribute('href'), url).href));

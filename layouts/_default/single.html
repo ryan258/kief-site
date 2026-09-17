@@ -1,4 +1,13 @@
 {{ define "main" }}
 <div class="page-heading"><p class="eyebrow">THE LEAF & LEDGER / REFERENCE</p><h1>{{ .Title }}</h1></div>
-<article class="prose panel">{{ partial "autolink.html" .Content }}</article>
+{{ $body := partial "autolink.html" .Content | string }}
+{{ $parts := split $body "<h2" }}
+{{ if ge (len $parts) 4 }}
+{{/* Long references become a dashboard: status note, section chips, then one panel per h2 packed into as many columns as fit. */}}
+<div class="toc"><span class="eyebrow">ON THIS PAGE</span>{{ .TableOfContents }}</div>
+<div class="prose ref-lead">{{ index $parts 0 | safeHTML }}</div>
+<div class="ref-dash">{{ range after 1 $parts }}<section class="panel prose">{{ print "<h2" . | safeHTML }}</section>{{ end }}</div>
+{{ else }}
+<article class="prose panel">{{ $body | safeHTML }}</article>
+{{ end }}
 {{ end }}

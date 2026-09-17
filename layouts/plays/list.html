@@ -5,7 +5,7 @@
 <div class="filter-bar"><label>Find a play<input type="search" data-search placeholder="Try control, Fly, or Help…"></label><label>Who’s up?<select data-filter><option value="">Everyone</option><option>Kief</option><option>Mr. Big</option></select></label><span data-count role="status">{{ len $plays }} plays</span></div>
 <div class="card-grid">
 {{ range $plays }}
-<article class="panel directory-card" id="{{ .Params.play_id | lower }}" data-card data-filter-value="{{ .Params.actor }}" data-search-text="{{ .Title }} {{ .Params.summary }} {{ .Params.group }} {{ .Params.play_id }} {{ .Plain }}"><div class="card-top"><span class="eyebrow">{{ .Params.play_id }} · {{ .Params.group | upper }}</span><span class="tag">{{ .Params.actor }}</span></div><h2>{{ .Title }}</h2><p>{{ .Params.summary }}</p><a class="text-link" href="{{ .RelPermalink }}">Open play <span aria-hidden="true">↗</span></a></article>
+<article class="panel directory-card" id="{{ .Params.play_id | lower }}" data-card data-filter-value="{{ .Params.actor }}" data-search-text="{{ .Title }} {{ .Params.summary }} {{ .Params.group }} {{ .Params.play_id }} {{ .Plain }}"><div class="card-top"><span class="eyebrow">{{ .Params.play_id }} · {{ .Params.group | upper }}</span><span class="tag">{{ .Params.actor }}</span></div><h2><a class="card-link" href="{{ .RelPermalink }}">{{ .Title }}</a></h2><p>{{ .Params.summary }}</p><span class="text-link" aria-hidden="true">Open play ↗</span></article>
 {{ end }}
 </div><p data-empty hidden>No plays match. Try a different word or choose Everyone.</p>
 </section>
