@@ -1,0 +1,8 @@
+baseURL = 'https://ryan258.github.io/kief-site/'
+locale = 'en-us'
+title = 'Kief Firelight · Field Notes'
+disableKinds = ['taxonomy', 'term', 'RSS']
+[markup.goldmark.renderer]
+unsafe = false
+[params]
+description = 'A tabletop companion for Kief Firelight, level 5 Draconic Sorcerer, and Mr. Big.'
