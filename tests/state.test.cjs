@@ -215,3 +215,32 @@ test('cast: override does not claim slot spent when empty, and rejects invalid c
   assert.throws(() => model.cast(fresh, 'Fireball', { metamagic: 'Twinned', override: true }), /Unknown Metamagic/);
 });
 
+test('validateBackup: accepts valid states and exported envelopes, rejects malformed payloads', () => {
+  const fresh = model.fresh();
+  const direct = model.validateBackup(fresh);
+  assert.equal(direct.hp, 47);
+  assert.equal(direct.sp, 5);
+
+  const directJson = model.validateBackup(JSON.stringify(fresh));
+  assert.equal(directJson.hp, 47);
+
+  const envelope = {
+    exportedAt: '2026-09-17T12:00:00.000Z',
+    state: { ...fresh, hp: 32, concentration: 'Fly' },
+    stored: '{}',
+    recoveryData: {}
+  };
+  const fromEnvelope = model.validateBackup(envelope);
+  assert.equal(fromEnvelope.hp, 32);
+  assert.equal(fromEnvelope.concentration, 'Fly');
+
+  const fromEnvelopeJson = model.validateBackup(JSON.stringify(envelope));
+  assert.equal(fromEnvelopeJson.hp, 32);
+
+  assert.throws(() => model.validateBackup('not json'), /Invalid JSON/);
+  assert.throws(() => model.validateBackup([]), /Unrecognized backup format/);
+  assert.throws(() => model.validateBackup(null), /Unrecognized backup format/);
+  assert.throws(() => model.validateBackup({ version: 2 }), /Unrecognized session data/);
+  assert.throws(() => model.validateBackup({ ...fresh, hp: 999 }), /Invalid hp/);
+});
+

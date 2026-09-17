@@ -285,7 +285,24 @@
     storage.setItem(backupKey, raw); // Failure must prevent a replacement save.
     return backupKey;
   }
-  const api = { key, limits, concentrations, spells, fresh, normalize, adjust, restore, damage, guidance, backupUnreadable, previewCast, cast, startTurn, endTurn };
+  function validateBackup(input) {
+    let parsed = input;
+    if (typeof input === 'string') {
+      try {
+        parsed = JSON.parse(input);
+      } catch (err) {
+        throw new Error('Invalid JSON: unable to parse backup text.');
+      }
+    }
+    if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) {
+      throw new Error('Unrecognized backup format: expected an object.');
+    }
+    if (parsed.state && typeof parsed.state === 'object' && !Array.isArray(parsed.state)) {
+      return normalize(parsed.state);
+    }
+    return normalize(parsed);
+  }
+  const api = { key, limits, concentrations, spells, fresh, normalize, adjust, restore, damage, guidance, backupUnreadable, validateBackup, previewCast, cast, startTurn, endTurn };
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
   else root.KiefState = api;
 })(globalThis);
