@@ -11,8 +11,6 @@ html:has(.card-modal[open]){overflow:hidden}
 .card-modal::backdrop{background:#060e0acc}.card-modal:not([data-depth="0"])::backdrop{background:#060e0a55}
 .card-bar{position:sticky;top:0;z-index:20;display:flex;justify-content:flex-end;align-items:center;gap:10px;padding:14px 24px;background:transparent;border-bottom:0;margin-bottom:-60px;pointer-events:none}
 .card-bar>*{pointer-events:auto}
-.card-bar a{background:#14221a;border:1px solid #2d4538;border-radius:8px;padding:7px 14px;color:var(--text);font-size:12px;display:inline-flex;align-items:center;gap:6px;min-height:38px!important}
-.card-bar a:hover{background:#1c3226;border-color:var(--sage);color:var(--text)}
 .card-bar button{background:#14221a;border:1px solid #2d4538;border-radius:8px;color:var(--text);font-size:20px;width:38px;height:38px;min-width:38px!important;min-height:38px!important;display:flex;align-items:center;justify-content:center;padding:0}
 .card-bar button:hover{background:#1c3226;border-color:var(--sage)}
 .card-body{padding:26px 32px 36px;container-type:inline-size}.card-body .page-heading{margin:0 0 18px}.card-body .page-heading h1{font-size:clamp(30px,3.2vw,44px);margin:0}.card-body>.directory-card{border:0;padding:0;background:none;max-width:none}.card-body>.directory-card h2{margin:8px 0 12px;font-size:clamp(30px,3.2vw,44px)}
@@ -407,7 +405,7 @@ html:has(.card-modal[open]){overflow:hidden}
 .play-dash .panel>h3:first-child{margin-top:0}.play-side .card-links{margin-top:0}.play-side .play-nav{margin:16px 0 0;font-size:13px}
 .play-dash>.fold,.play-side>.fold{margin-top:0;border-top:1px solid var(--border)}.play-side>.fold>summary{padding:0}.play-side>.fold[open]>summary{margin-bottom:12px}
 .spell-mini{display:block;border-top:1px solid var(--border);padding:12px 0 0;margin-top:12px}.spell-mini:hover strong{color:var(--sage)}.spell-mini-top{display:flex;justify-content:space-between;align-items:baseline;gap:10px}.spell-mini-top strong{font:400 19px var(--serif)}.spell-mini-top .eyebrow{white-space:nowrap}.spell-mini-stats{display:block;font-size:12px;line-height:1.5;color:var(--muted);margin-top:4px}
-@container (min-width:860px){.play-dash{grid-template-columns:minmax(0,1.3fr) minmax(300px,1fr);align-items:start}.play-lead{grid-column:1/-1}}
+@container (min-width:860px){.play-dash{grid-template-columns:minmax(0,1.3fr) minmax(300px,1fr);align-items:start}.play-lead{grid-column:1/-1}.play-refs-panel{grid-column:1/-1}}
 .fold{border-top:1px solid var(--border);margin-top:18px}.fold>summary{cursor:pointer;list-style:none;padding:12px 0;color:var(--sage);font-size:12px}.fold>summary::-webkit-details-marker{display:none}
 .fold>summary::after{content:' +';color:var(--sage);font-size:20px}.fold[open]>summary::after{content:' −'}.fold>summary h3{display:inline;margin:0}
 .spell-card .spell-job{margin:0 0 14px}
@@ -504,13 +502,11 @@ html:has(.card-modal[open]){overflow:hidden}
 .spell-play-card .spell-play-title{font-family:var(--serif);font-size:14px;font-weight:400;margin:0 0 6px;color:#efe9d9;line-height:1.35}
 .spell-play-card .spell-play-summary{font-size:12px!important;line-height:1.55!important;color:var(--muted)!important;margin:0 0 8px!important;display:block}
 .spell-play-card .spell-play-cta{font-size:11px;color:var(--sage);font-weight:500;display:inline-flex;align-items:center;gap:4px;margin-top:auto}
-.play-refs-wrap{margin-bottom:18px}
-.play-refs-wrap .eyebrow{display:block;margin-bottom:10px}
-.play-refs-list{display:flex;flex-direction:column;gap:12px;max-height:360px;overflow-y:auto;padding-right:6px;scrollbar-width:thin;scrollbar-color:rgba(60,95,75,.6) rgba(10,18,14,.4)}
-.play-refs-list::-webkit-scrollbar{width:6px}
-.play-refs-list::-webkit-scrollbar-track{background:rgba(10,18,14,.4);border-radius:3px}
-.play-refs-list::-webkit-scrollbar-thumb{background:rgba(60,95,75,.6);border-radius:3px}
-.play-refs-list::-webkit-scrollbar-thumb:hover{background:var(--sage)}
+.play-refs-panel{grid-column:1 / -1}
+.play-refs-panel .panel-heading{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.play-refs-panel .panel-icon{font-size:18px;line-height:1}
+.play-refs-panel .panel-heading h3{font-family:var(--sans);font-size:16px;font-weight:600;color:#efe9d9;margin:0;letter-spacing:-.01em}
+.play-refs-panel .panel-heading small{display:block;font-size:11px;color:#8fa588;margin-top:2px;font-weight:normal}
 
 .spell-modal-footer{display:flex;justify-content:space-between;align-items:center;padding-top:20px;margin-top:24px;border-top:1px solid rgba(31,51,39,0.7);font-size:12px;color:#788874}
 .spell-footer-ref{display:flex;align-items:center;gap:8px}
@@ -536,9 +532,9 @@ html:has(.card-modal[open]){overflow:hidden}
 .card-link:focus-visible{outline:0}.directory-card:has(.card-link:focus-visible){outline:2px solid var(--orange);outline-offset:4px}
 /* Tap targets: this app has one user, who has MS. Everything tappable is at least 44px.
    Inline text links get invisible vertical padding instead, so paragraphs don't reflow. */
-button,summary,select,input:not([type=checkbox]):not([type=radio]),.toggle,.sidebar nav a,.toc a,.card-links a,.combat-bar a,.play-nav a,.card-bar a,footer>a,.setup-link,.spell-mini,.text-link{min-height:44px!important}
+button,summary,select,input:not([type=checkbox]):not([type=radio]),.toggle,.sidebar nav a,.toc a,.card-links a,.combat-bar a,.play-nav a,footer>a,.setup-link,.spell-mini,.text-link{min-height:44px!important}
 button{min-width:44px!important}
-.toc a,.card-links a,.play-nav a,.card-bar a,footer>a,.text-link{display:inline-flex;align-items:center}
+.toc a,.card-links a,.play-nav a,footer>a,.text-link{display:inline-flex;align-items:center}
 .card-links a{justify-content:center;min-width:44px;font-size:13px;padding:4px 10px}.toc a{font-size:13px;padding:4px 12px}
 .fold>summary{display:flex;align-items:center;gap:6px}.play-nav{display:flex;flex-wrap:wrap;align-items:center;gap:4px 14px}
 .prose a,.directory-card p a,dd a,.move-links a{padding-block:10px}

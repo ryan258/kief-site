@@ -16,27 +16,32 @@
 <section class="panel prose play-script">{{ index $part "at-the-table" | safeHTML }}</section>
 {{ with $spells }}<section class="panel"><span class="eyebrow">SPELLS IN THIS PLAY</span>{{ range . }}<a class="spell-mini" href="{{ printf "spellbook/#spell-%s" (anchorize .name) | relURL }}"><span class="spell-mini-top"><strong>{{ .name }}</strong><span class="eyebrow">{{ if eq (int .level) 0 }}CANTRIP{{ else }}LEVEL {{ .level }}{{ end }}{{ if .concentration }} · CONC.{{ end }}</span></span><span class="spell-mini-stats">{{ .casting }} · {{ .range }} · {{ .duration }}</span></a>{{ end }}</section>{{ end }}
 <details class="panel prose fold">{{ index $part "the-rule-underneath" | replaceRE `(<h3[^>]*>.*?</h3>)` "<summary>$1</summary>" | safeHTML }}</details>
-<section class="panel">
-{{ with $refs }}
-<div class="play-refs-wrap">
-<span class="eyebrow">REFERENCED BY</span>
-<div class="spell-plays-list play-refs-list">
-{{ range . }}
-<a class="spell-play-card" href="{{ .RelPermalink }}">
-<div class="spell-play-card-top">
-<span class="spell-play-id">{{ .Params.play_id }}</span>
-<span class="spell-play-group">{{ .Params.group | upper }}</span>
-<span class="tag spell-play-actor {{ if eq .Params.actor "Mr. Big" }}tag-familiar{{ end }}">{{ .Params.actor }}</span>
-</div>
-<h4 class="spell-play-title">{{ .Title }}</h4>
-<p class="spell-play-summary">{{ .Params.summary }}</p>
-<span class="spell-play-cta" aria-hidden="true">Open play ↗</span>
-</a>
-{{ end }}
-</div>
-</div>
-{{ end }}
-<p class="play-nav"><a href="{{ "plays/" | relURL }}#{{ .Params.play_id | lower }}">← All plays</a>{{ with .PrevInSection }} · <a href="{{ .RelPermalink }}">{{ .Params.play_id }}: {{ .Title }} →</a>{{ end }}</p></section>
+<section class="panel"><p class="play-nav"><a href="{{ "plays/" | relURL }}#{{ .Params.play_id | lower }}">← All plays</a>{{ with .PrevInSection }} · <a href="{{ .RelPermalink }}">{{ .Params.play_id }}: {{ .Title }} →</a>{{ end }}</p></section>
 </aside>
+{{ with $refs }}
+<section class="panel play-refs-panel">
+  <div class="panel-heading">
+    <span class="panel-icon">⚔️</span>
+    <div>
+      <h3>Referenced By ({{ len . }})</h3>
+      <small>Other tactical plays that link to or combo with this play.</small>
+    </div>
+  </div>
+  <div class="spell-plays-list">
+    {{ range . }}
+    <a class="spell-play-card" href="{{ .RelPermalink }}">
+      <div class="spell-play-card-top">
+        <span class="spell-play-id">{{ .Params.play_id }}</span>
+        <span class="spell-play-group">{{ .Params.group | upper }}</span>
+        <span class="tag spell-play-actor {{ if eq .Params.actor "Mr. Big" }}tag-familiar{{ end }}">{{ .Params.actor }}</span>
+      </div>
+      <h4 class="spell-play-title">{{ .Title }}</h4>
+      <p class="spell-play-summary">{{ .Params.summary }}</p>
+      <span class="spell-play-cta" aria-hidden="true">Open play ↗</span>
+    </a>
+    {{ end }}
+  </div>
+</section>
+{{ end }}
 </article></div>
 {{ end }}

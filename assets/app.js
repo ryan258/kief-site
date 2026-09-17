@@ -59,8 +59,7 @@
     card.dataset.key = key;
     card.dataset.depth = cards.length;
     card.style.setProperty('--depth', Math.min(cards.length, 6));
-    card.innerHTML = '<div class="card-bar"><a class="text-link" data-no-card>Full page <span aria-hidden="true">↗</span></a><button type="button" aria-label="Close card">×</button></div><div class="card-body"></div>';
-    card.querySelector('[data-no-card]').href = url.href;
+    card.innerHTML = '<div class="card-bar"><button type="button" aria-label="Close card">×</button></div><div class="card-body"></div>';
     const body = card.querySelector('.card-body');
     body.append(...(url.hash ? [source] : [...source.children]).map(node => node.cloneNode(true)));
     // A spell card opened on purpose shows everything; folded sections stay folded on play cards.

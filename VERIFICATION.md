@@ -4,7 +4,7 @@
 
 This entry records verification of the expanded modal dialog layout, designer D&D 5.5e spellbook card presentation, bespoke 25-spell WebP artwork library, faint card covers, and main page background covers:
 
-- **Expanded 20px-Margin Modal Dialogs**: In `assets/style.scss`, `.card-modal` sizes to `width: calc(100vw - 40px - var(--depth)*16px)` and `height: calc(100dvh - 40px - var(--depth)*16px)` on desktop (12px on mobile), leaving exactly 20px margins on all sides. Topbar replaced with floating top-right window controls (`Full page ↗` pill + `×` close button). Nested card links unwrap cleanly inside `.card-body` to prevent click traps.
+- **Expanded 20px-Margin Modal Dialogs**: In `assets/style.scss`, `.card-modal` sizes to `width: calc(100vw - 40px - var(--depth)*16px)` and `height: calc(100dvh - 40px - var(--depth)*16px)` on desktop (12px on mobile), leaving exactly 20px margins on all sides. Topbar replaced with a floating top-right `×` close button. Nested card links unwrap cleanly inside `.card-body` to prevent click traps.
 - **Designer D&D 5.5e Spellbook Modal Cards**: In `layouts/spellbook/list.html`, implemented the full designer layout (`.spell-modal-layout`) with spell glyph, badge row (Level, School, Reaction/Action, Role, Concentration), right-hand italic flavor quote with golden diamond divider (`--- ◇ ---`), left-hand description and note callouts with 4 Quick Use action tiles (Add/Cast, Copy Text, Share Link, Favorite), right-hand At a Glance specs table, Effect/Scaling card, Target card, cross-linked tactical plays, and D&D 5.5e reference footer.
 - **Unique 25-Spell WebP Artwork & Faint Directory Covers**:
   - Generated and installed 25 bespoke 1376×768 WebPs under `static/spells/<slug>.webp` (~50–160 KB each, ~2.4 MB total).
