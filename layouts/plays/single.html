@@ -1,0 +1,9 @@
+{{ define "main" }}
+{{ $self := printf `href="[^"]*/%s/"` .File.ContentBaseName }}
+{{ $refs := slice }}
+{{ range (where site.RegularPages "Section" "plays").ByWeight }}{{ if and (ne . $) (findRE $self .Content 1) }}{{ $refs = $refs | append . }}{{ end }}{{ end }}
+<div class="page-heading"><p class="eyebrow">{{ .Params.play_id }} <span class="separator">/</span> {{ .Params.actor | upper }} <span class="separator">/</span> {{ .Params.group | upper }}</p><h1>{{ .Title }}</h1></div>
+<article class="prose panel">{{ partial "autolink.html" .Content }}
+{{ with $refs }}<div class="card-links"><span class="eyebrow">REFERENCED BY</span>{{ range . }}<a href="{{ .RelPermalink }}" title="{{ .Title }}">{{ .Params.play_id }}</a>{{ end }}</div>{{ end }}
+<p class="play-nav"><a href="{{ "plays/" | relURL }}#{{ .Params.play_id | lower }}">← All plays</a>{{ with .PrevInSection }} · <a href="{{ .RelPermalink }}">{{ .Params.play_id }}: {{ .Title }} →</a>{{ end }}</p></article>
+{{ end }}
