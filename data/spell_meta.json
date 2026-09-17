@@ -1,0 +1,184 @@
+{
+  "Feather Fall": {
+    "school": "Abjuration",
+    "role": "Safety & Mobility",
+    "quote": "“A soft landing can change everything.”",
+    "description": "You or a creature you can see within 60 feet falls at a gentle rate, taking no falling damage until the spell ends.",
+    "icon": "🪶"
+  },
+  "Fireball": {
+    "school": "Evocation",
+    "role": "Area Destruction",
+    "quote": "“Bit oversteeped, he says.”",
+    "description": "A bright streak flashes from your pointing finger to a point in range, then blossoms with a low roar into an explosion of flame.",
+    "icon": "🔥"
+  },
+  "Shield": {
+    "school": "Abjuration",
+    "role": "Emergency Ward",
+    "quote": "“Five points between a hit and a story.”",
+    "description": "An invisible barrier of magical force appears and protects you against an incoming attack or Magic Missile.",
+    "icon": "🛡️"
+  },
+  "Counterspell": {
+    "school": "Abjuration",
+    "role": "Spell Interruption",
+    "quote": "“Not today. Not while I'm standing here.”",
+    "description": "You attempt to interrupt a creature in the process of casting a spell within 60 feet.",
+    "icon": "⚡"
+  },
+  "Hypnotic Pattern": {
+    "school": "Illusion",
+    "role": "Crowd Control",
+    "quote": "“Watch the lights. Just watch the lights.”",
+    "description": "You create a twisting pattern of colors that weaves through the air inside a 30-foot cube, incapacitating those who look.",
+    "icon": "🌀"
+  },
+  "Misty Step": {
+    "school": "Conjuration",
+    "role": "Rapid Relocation",
+    "quote": "“Silver mist, and a better point of view.”",
+    "description": "Briefly surrounded by silvery mist, you teleport up to 30 feet to an unoccupied space you can see.",
+    "icon": "🌫️"
+  },
+  "Web": {
+    "school": "Conjuration",
+    "role": "Battlefield Restraint",
+    "quote": "“Anchor them first. Let the dice wait.”",
+    "description": "You conjure a mass of thick, sticky webbing at a point within range, grasping and restraining foes.",
+    "icon": "🕸️"
+  },
+  "Invisibility": {
+    "school": "Illusion",
+    "role": "Stealth & Infiltration",
+    "quote": "“Walk soft, stay close, and don't make me explain this twice.”",
+    "description": "A creature you touch becomes invisible until the spell ends or they make an attack or cast a spell.",
+    "icon": "👁️‍🗨️"
+  },
+  "Fly": {
+    "school": "Transmutation",
+    "role": "Aerial Mobility",
+    "quote": "“The stairs were always more of a suggestion.”",
+    "description": "You touch a willing creature, giving it a flying speed of 60 feet until the spell ends.",
+    "icon": "🦅"
+  },
+  "Fear": {
+    "school": "Illusion",
+    "role": "Mass Disengagement",
+    "quote": "“Give them a direction to run: away.”",
+    "description": "You project a phantasmal image of a creature's worst fears in a 30-foot cone, forcing them to flee.",
+    "icon": "😱"
+  },
+  "Dragon’s Breath": {
+    "school": "Transmutation",
+    "role": "Exhalation Weapon",
+    "quote": "“Breathe deep and let them taste the spark.”",
+    "description": "You touch one willing creature and imbue it with the power to spew magical elemental energy from its mouth.",
+    "icon": "🐲"
+  },
+  "Alter Self": {
+    "school": "Transmutation",
+    "role": "Form Adaptation",
+    "quote": "“Change the shape to fit the lock.”",
+    "description": "You assume a different form, adapting your body for aquatic survival, disguise, or natural weapons.",
+    "icon": "🧬"
+  },
+  "Command": {
+    "school": "Enchantment",
+    "role": "Tactical Disruption",
+    "quote": "“One word is plenty if you say it right.”",
+    "description": "You speak a one-word command to a creature you can see within range, compelling compliance on its turn.",
+    "icon": "📜"
+  },
+  "Chromatic Orb": {
+    "school": "Evocation",
+    "role": "Elemental Flex",
+    "quote": "“A diamond's worth whatever element saves your neck.”",
+    "description": "You hurl a 4-inch sphere of energy at a creature, choosing acid, cold, fire, lightning, poison, or thunder.",
+    "icon": "🔮"
+  },
+  "Detect Magic": {
+    "school": "Divination",
+    "role": "Magical Awareness",
+    "quote": "“Read the room before you step into the fire.”",
+    "description": "For the duration, you sense the presence of magic within 30 feet of you and learn its school.",
+    "icon": "✨"
+  },
+  "Speak with Animals": {
+    "school": "Divination",
+    "role": "Scout Intelligence",
+    "quote": "“Animals know what animals perceive. Ask directly.”",
+    "description": "You gain the ability to comprehend and verbally communicate with beasts for the duration.",
+    "icon": "🐾"
+  },
+  "Find Familiar": {
+    "school": "Conjuration",
+    "role": "Bonded Familiar",
+    "quote": "“He’s a cow. He’s always been a cow.”",
+    "description": "You gain the service of a familiar, a spirit that takes an animal form you choose, bound to your service.",
+    "icon": "🐮"
+  },
+  "Fire Bolt": {
+    "school": "Evocation",
+    "role": "Ranged Damage",
+    "quote": "“Simple. Reliable. Ignites flammable objects.”",
+    "description": "You hurl a mote of fire at a creature or object within range to inflict swift damage.",
+    "icon": "☄️"
+  },
+  "Ray of Frost": {
+    "school": "Evocation",
+    "role": "Cold & Slow",
+    "quote": "“Take their feet out from under them.”",
+    "description": "A frigid beam of blue-white light streaks toward a creature within range, reducing its Speed.",
+    "icon": "❄️"
+  },
+  "Mind Sliver": {
+    "school": "Enchantment",
+    "role": "Save Disruption",
+    "quote": "“Crack the shell before the hammer falls.”",
+    "description": "You drive a disorienting spike of psychic energy into the mind of one creature, weakening its next save.",
+    "icon": "🧠"
+  },
+  "Shocking Grasp": {
+    "school": "Evocation",
+    "role": "Melee Disengage",
+    "quote": "“Touch them and leave. No opportunity attack.”",
+    "description": "Lightning springs from your hand to shock a creature and prevent it from taking reactions.",
+    "icon": "⚡"
+  },
+  "Light": {
+    "school": "Evocation",
+    "role": "Utility & Vision",
+    "quote": "“Never spend a torch when a pebble will do.”",
+    "description": "You touch one object, causing it to shed bright light in a 20-foot radius and dim light for an additional 20 feet.",
+    "icon": "💡"
+  },
+  "Mage Hand": {
+    "school": "Conjuration",
+    "role": "Remote Reach",
+    "quote": "“Never touch a lever you can pull from thirty feet away.”",
+    "description": "A spectral, floating hand appears at a point you choose within range, manipulating distant objects.",
+    "icon": "🖐️"
+  },
+  "Minor Illusion": {
+    "school": "Illusion",
+    "role": "Cover & Sound",
+    "quote": "“A sound where they look; a crate where they don't.”",
+    "description": "You create a sound or an image of an object within range that lasts for the duration.",
+    "icon": "🎭"
+  },
+  "Prestidigitation": {
+    "school": "Transmutation",
+    "role": "Minor Wonder",
+    "quote": "“Warm tea, clean robes, and a spark for the pipe.”",
+    "description": "This spell is a minor magical trick that novice spellcasters use for practice and everyday utility.",
+    "icon": "🪄"
+  },
+  "Mending": {
+    "school": "Transmutation",
+    "role": "Field Repair",
+    "quote": "“Everything breaks. Most things can be convinced to stay whole.”",
+    "description": "This spell repairs a single break or tear in an object you touch, restoring broken items.",
+    "icon": "🧵"
+  }
+}

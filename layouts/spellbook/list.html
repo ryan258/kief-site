@@ -8,7 +8,125 @@
 {{ $pattern := printf "<em>%s</em>" (replace (replace .name "’" "(?:’|&rsquo;|')") " " "\\s+") }}
 {{ $uses := slice }}
 {{ range $plays }}{{ if findRE $pattern .Content 1 }}{{ $uses = $uses | append . }}{{ end }}{{ end }}
-<article class="panel directory-card" id="spell-{{ anchorize .name }}" data-card data-filter-value="{{ .level }}" data-search-text="{{ .name }} {{ .source }} {{ .job }} {{ .effect }} {{ .caution }} {{ .components }} {{ .resolution }} {{ if .concentration }}concentration{{ end }}"><div class="card-top"><span class="eyebrow">{{ if eq (int .level) 0 }}CANTRIP{{ else }}LEVEL {{ .level }}{{ end }}</span>{{ if .concentration }}<span class="tag sage">Concentration</span>{{ end }}</div><h2>{{ .name }}</h2><p>{{ .job }}</p><dl class="spell-glance"><div><dt>Cast</dt><dd>{{ .casting }}</dd></div><div><dt>Range</dt><dd>{{ .range }}</dd></div><div><dt>Duration</dt><dd>{{ .duration }}</dd></div></dl><p class="spell-caution"><strong>Remember:</strong> {{ .caution }}</p><details class="fold"><summary>Full details</summary><dl class="spell-details"><div><dt>Target</dt><dd>{{ .target }}</dd></div><div><dt>Components</dt><dd>{{ .components }}</dd></div><div><dt>Roll</dt><dd>{{ .resolution }}</dd></div></dl><p><strong>Effect:</strong> {{ .effect }}</p><p><strong>Scaling:</strong> {{ .higher }}</p><p><a href="{{ .rules_url }}">Published 2024 spell reference ↗</a> · checked {{ .checked }} · <a href="{{ "rulings/" | relURL }}">Table rulings</a></p><div class="source-label">{{ .source }}</div>{{ with $uses }}<div class="card-links"><span class="eyebrow">IN {{ len . }} {{ cond (eq (len .) 1) "PLAY" "PLAYS" }}</span>{{ range . }}<a href="{{ .RelPermalink }}" title="{{ .Title }}">{{ .Params.play_id }}</a>{{ end }}</div>{{ end }}</details></article>
+{{ $meta := index hugo.Data.spell_meta .name }}
+<article class="panel directory-card spell-card" id="spell-{{ anchorize .name }}" data-card data-filter-value="{{ .level }}" data-spell-bg="{{ printf "spells/%s.webp" (anchorize .name) | relURL }}" style="--spell-bg: url('{{ printf "spells/%s.webp" (anchorize .name) | relURL }}');" data-search-text="{{ .name }} {{ .source }} {{ .job }} {{ .effect }} {{ .caution }} {{ .components }} {{ .resolution }} {{ if .concentration }}concentration{{ end }}">
+  <div class="card-top">
+    <span class="eyebrow">{{ if eq (int .level) 0 }}CANTRIP{{ else }}LEVEL {{ .level }}{{ end }}</span>
+    {{ if .concentration }}<span class="tag sage">Concentration</span>{{ end }}
+  </div>
+  <h2><a class="card-link" href="{{ printf "spellbook/#spell-%s" (anchorize .name) | relURL }}">{{ .name }}</a></h2>
+  <p class="spell-job">{{ .job }}</p>
+
+  <div class="spell-card-preview">
+    <dl class="spell-glance">
+      <div><dt>Cast</dt><dd>{{ .casting }}</dd></div>
+      <div><dt>Range</dt><dd>{{ .range }}</dd></div>
+      <div><dt>Duration</dt><dd>{{ .duration }}</dd></div>
+    </dl>
+    <p class="spell-caution"><strong>Remember:</strong> {{ .caution }}</p>
+    <span class="text-link" aria-hidden="true">Open spell ↗</span>
+  </div>
+
+  <div class="spell-modal-layout" data-spell-bg="{{ printf "spells/%s.webp" (anchorize .name) | relURL }}">
+    <header class="spell-hero">
+      <div class="spell-hero-info">
+        <div class="spell-hero-eyebrow"><span class="spell-glyph">{{ with $meta }}{{ .icon }}{{ else }}✨{{ end }}</span> • SPELLS</div>
+        <h1 class="spell-modal-title">{{ .name }}</h1>
+        <p class="spell-hero-pitch">{{ .job }}</p>
+        <div class="spell-badges">
+          <span class="spell-badge level">{{ if eq (int .level) 0 }}Cantrip{{ else }}{{ .level }}{{ if eq (int .level) 1 }}st{{ else if eq (int .level) 2 }}nd{{ else }}rd{{ end }} Level{{ end }}</span>
+          {{ with $meta }}<span class="spell-badge school">{{ .school }}</span>{{ end }}
+          <span class="spell-badge action {{ if findRE "Reaction" .casting 1 }}reaction{{ else if findRE "Bonus" .casting 1 }}bonus{{ else }}action{{ end }}">{{ if findRE "Reaction" .casting 1 }}Reaction{{ else if findRE "Bonus" .casting 1 }}Bonus Action{{ else }}Action{{ end }}</span>
+          {{ with $meta }}<span class="spell-badge role">{{ .role }}</span>{{ end }}
+          {{ if .concentration }}<span class="spell-badge concentration">Concentration</span>{{ end }}
+        </div>
+      </div>
+      <div class="spell-hero-art">
+        {{ with $meta }}
+        <blockquote class="spell-quote">{{ .quote }}</blockquote>
+        <div class="spell-quote-divider"><span>◇</span></div>
+        {{ end }}
+      </div>
+    </header>
+
+    <div class="spell-modal-grid">
+      <div class="spell-grid-left">
+        <section class="panel spell-card-desc">
+          <div class="panel-heading"><span class="panel-icon">📖</span><h3>Spell Description</h3></div>
+          <p class="spell-desc-text">{{ with $meta }}{{ .description }}{{ else }}{{ .effect }}{{ end }}</p>
+          <div class="spell-note-box">
+            <div class="spell-note-header"><span class="note-icon">ⓘ</span><strong>Note</strong></div>
+            <p>{{ .caution }}</p>
+          </div>
+        </section>
+
+        <section class="panel spell-card-tools">
+          <div class="panel-heading">
+            <span class="panel-icon">🪄</span>
+            <div>
+              <h3>Quick Use</h3>
+              <small>Common tools and references for this spell.</small>
+            </div>
+          </div>
+          <div class="quick-use-grid">
+            <button type="button" class="quick-tile action-cast" data-cast-name="{{ .name }}">
+              <span class="tile-icon">📖</span>
+              <span class="tile-label">Add to Spellbook</span>
+            </button>
+            <button type="button" class="quick-tile action-copy" data-copy-text="{{ .name }} ({{ if eq (int .level) 0 }}Cantrip{{ else }}Level {{ .level }}{{ end }}): {{ .job }} | Cast: {{ .casting }} | Range: {{ .range }} | Duration: {{ .duration }} | {{ .effect }}">
+              <span class="tile-icon">📄</span>
+              <span class="tile-label">Copy Text</span>
+            </button>
+            <button type="button" class="quick-tile action-share" data-spell-anchor="#spell-{{ anchorize .name }}">
+              <span class="tile-icon">🔗</span>
+              <span class="tile-label">Share Link</span>
+            </button>
+            <button type="button" class="quick-tile action-fav" data-fav-name="{{ .name }}">
+              <span class="tile-icon">⭐</span>
+              <span class="tile-label">Favorite</span>
+            </button>
+          </div>
+        </section>
+      </div>
+
+      <div class="spell-grid-right">
+        <section class="panel spell-card-glance">
+          <div class="panel-heading"><span class="panel-icon">📋</span><h3>At a Glance</h3></div>
+          <div class="glance-table">
+            <div class="glance-row"><span class="glance-label"><span class="spec-icon">⚡</span>Cast</span><span class="glance-val">{{ .casting }}</span></div>
+            <div class="glance-row"><span class="glance-label"><span class="spec-icon">🎯</span>Range</span><span class="glance-val">{{ .range }}</span></div>
+            <div class="glance-row"><span class="glance-label"><span class="spec-icon">⏳</span>Duration</span><span class="glance-val">{{ .duration }}</span></div>
+            <div class="glance-row"><span class="glance-label"><span class="spec-icon">📖</span>Components</span><span class="glance-val">{{ .components }}</span></div>
+            <div class="glance-row"><span class="glance-label"><span class="spec-icon">🎲</span>Roll</span><span class="glance-val">{{ .resolution }}</span></div>
+          </div>
+        </section>
+
+        <section class="panel spell-card-effect">
+          <div class="panel-heading"><span class="panel-icon">🛡️</span><h3>Effect</h3></div>
+          <p>{{ .effect }}</p>
+          <p class="spell-scaling"><strong>Scaling:</strong> {{ .higher }}</p>
+        </section>
+
+        <section class="panel spell-card-target">
+          <div class="panel-heading"><span class="panel-icon">👥</span><h3>Target</h3></div>
+          <p>{{ .target }}</p>
+        </section>
+
+        {{ with $uses }}
+        <section class="panel spell-card-plays" id="in-plays">
+          <div class="panel-heading"><span class="panel-icon">⚔️</span><h3>In {{ len . }} {{ cond (eq (len .) 1) "Play" "Plays" }}</h3></div>
+          <div class="card-links">{{ range . }}<a href="{{ .RelPermalink }}" title="{{ .Title }}">{{ .Params.play_id }}</a>{{ end }}</div>
+        </section>
+        {{ end }}
+      </div>
+    </div>
+
+    <footer class="spell-modal-footer">
+      <div class="spell-footer-ref"><span class="d20-icon">🎲</span><span>D&D 5.5e Spell Reference</span></div>
+      <a class="spell-footer-link" href="{{ .rules_url }}" target="_blank" rel="noopener">View full rules <span aria-hidden="true">↗</span></a>
+    </footer>
+  </div>
+</article>
 {{ end }}
 </div><p data-empty hidden>No spells match. Try a different word or choose All levels.</p>
 </section>

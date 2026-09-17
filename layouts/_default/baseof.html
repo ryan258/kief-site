@@ -19,8 +19,15 @@
 <script src="{{ $state.RelPermalink }}" defer></script>
 {{ $js := resources.Get "app.js" | minify | fingerprint }}
 <script src="{{ $js.RelPermalink }}" defer></script>
-</head>
-<body>
+{{ $pageKey := "default" }}
+{{ if .IsHome }}
+  {{ $pageKey = "dashboard" }}
+{{ else if .Section }}
+  {{ $pageKey = .Section }}
+{{ else if .File }}
+  {{ $pageKey = .File.BaseFileName }}
+{{ end }}
+<body class="page-{{ $pageKey }}" data-page="{{ $pageKey }}">
 <a class="skip-link" href="#main">Skip to content</a>
 <div class="shell">
 <aside class="sidebar">

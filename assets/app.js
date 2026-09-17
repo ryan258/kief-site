@@ -51,6 +51,11 @@
     if (!source) { location.href = url.href; return; }
     const card = document.createElement('dialog');
     card.className = 'card-modal';
+    if (source && ((source.classList && source.classList.contains('spell-card')) || source.querySelector('.spell-modal-layout'))) {
+      card.classList.add('spell-card-modal');
+      const rawBg = source.style.getPropertyValue('--spell-bg') || source.dataset.spellBg || (source.querySelector && source.querySelector('[data-spell-bg]')?.dataset.spellBg);
+      if (rawBg) card.style.setProperty('--spell-bg', rawBg.startsWith('url(') ? rawBg : `url('${rawBg}')`);
+    }
     card.dataset.key = key;
     card.dataset.depth = cards.length;
     card.style.setProperty('--depth', Math.min(cards.length, 6));
@@ -67,17 +72,53 @@
     if (title) {
       title.id = `card-title-${++cardSequence}`;
       card.setAttribute('aria-labelledby', title.id);
+      const link = title.querySelector('a.card-link');
+      if (link) title.textContent = link.textContent.trim();
       const spellName = title.textContent.trim();
       if (model.spells && model.spells[spellName] && typeof openCast === 'function') {
         const castBtn = document.createElement('button');
         castBtn.type = 'button';
-        castBtn.className = 'button primary';
-        castBtn.style.cssText = 'margin-top: 16px; font-size: 11px;';
+        castBtn.className = 'button primary cast-action-btn';
+        castBtn.style.cssText = 'margin-left: auto; font-size: 11px;';
         castBtn.textContent = `Cast ${spellName} ✧`;
         castBtn.addEventListener('click', () => { card.close(); openCast(spellName); });
-        body.append(castBtn);
+        const top = body.querySelector('.card-top');
+        if (top) top.append(castBtn); else body.append(castBtn);
       }
     }
+    body.querySelectorAll('.action-cast').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const spellName = btn.dataset.castName;
+        card.close();
+        if (typeof openCast === 'function') openCast(spellName);
+      });
+    });
+    body.querySelectorAll('.action-copy').forEach(btn => {
+      btn.addEventListener('click', () => {
+        if (navigator.clipboard) {
+          navigator.clipboard.writeText(btn.dataset.copyText).then(() => notify('Copied spell text to clipboard')).catch(() => notify('Failed to copy'));
+        }
+      });
+    });
+    body.querySelectorAll('.action-share').forEach(btn => {
+      btn.addEventListener('click', () => {
+        if (navigator.clipboard) {
+          const shareUrl = new URL(btn.dataset.spellAnchor, location.href).href;
+          navigator.clipboard.writeText(shareUrl).then(() => notify('Copied spell link to clipboard')).catch(() => notify('Failed to copy link'));
+        }
+      });
+    });
+    body.querySelectorAll('.action-fav').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const target = body.querySelector('#in-plays');
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        } else {
+          notify('Saved ' + btn.dataset.favName + ' to favorites');
+        }
+      });
+    });
+    body.querySelectorAll('.text-link:not([data-no-card])').forEach(el => el.remove());
     card.querySelector('.card-bar button').addEventListener('click', () => card.close());
     card.addEventListener('click', event => { if (event.target === card) card.close(); });
     card.addEventListener('close', () => {
