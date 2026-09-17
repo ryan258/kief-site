@@ -42,7 +42,7 @@ jobs:
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v3
         with:
-          hugo-version: "latest"
+          hugo-version: "0.166.0"
           extended: true
 
       - name: Setup Pages
@@ -60,7 +60,10 @@ jobs:
             --baseURL "${{ steps.pages.outputs.base_url }}/"
 
       - name: Run State Tests
-        run: node --test tests/state.test.cjs
+        run: node --test tests/state.test.cjs tests/app.test.cjs
+
+      - name: Verify Import Contract
+        run: PYTHONDONTWRITEBYTECODE=1 python3 tests/sync_test.py
 
       - name: Verify Links & Assets
         run: python3 scripts/check_links.py ./public

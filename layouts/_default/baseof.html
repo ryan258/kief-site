@@ -4,7 +4,7 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{{ if not .IsHome }}{{ .Title }} · {{ end }}{{ site.Title }}</title>
 <meta name="description" content="{{ site.Params.description }}">
-{{ $css := resources.Get "style.css" | minify | fingerprint }}
+{{ $css := resources.Get "style.scss" | toCSS (dict "targetPath" "style.css") | minify | fingerprint }}
 <link rel="stylesheet" href="{{ $css.RelPermalink }}">
 {{ $state := resources.Get "state.js" | fingerprint }}
 <script src="{{ $state.RelPermalink }}" defer></script>
@@ -25,12 +25,12 @@
 </nav>
 <div class="rail-note"><span class="mini-star" aria-hidden="true">✧</span><p>Apparently relaxed.<br><em>Actually prepared.</em></p><small>Forest Gnome<br>Draconic Sorcerer · Level 5</small></div>
 <a class="setup-link" href="{{ "setup/" | relURL }}">Before session one <span aria-hidden="true">↗</span></a>
-<div class="edition">D&D 2024 · LOCAL BUILD<br>RECORD: 16 SEP 2026</div>
+<div class="edition">D&D 2024 · LOCAL BUILD<br>RULES CHECK: 17 SEP 2026</div>
 </aside>
 <div class="workspace">
 <header class="topbar"><span>FIELD NOTES <span class="slash">/</span> {{ if .IsHome }}DASHBOARD{{ else }}{{ .Title | upper }}{{ end }}</span><span class="local-indicator"><i></i> Personal tabletop companion</span></header>
 <main id="main" tabindex="-1">{{ block "main" . }}{{ end }}</main>
-<footer>Built for a good turn, and getting everyone home. <a href="{{ "checks/" | relURL }}">Campaign checks</a><br><small>Current local build. D&D Beyond sync, starting gear, and familiar setup remain pending. DM rulings govern play.</small></footer>
+<footer>Built for a good turn, and getting everyone home. <a href="{{ "checks/" | relURL }}">Campaign checks</a> <a href="{{ "rulings/" | relURL }}">Table rulings</a><br><small>Current local build. D&D Beyond sync, starting gear, and familiar setup remain pending. DM rulings govern play.</small></footer>
 </div>
 </div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
