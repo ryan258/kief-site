@@ -22,3 +22,8 @@ Updated 2026-09-16. This file tracks the new campaign. Prior audits and their ev
 - Party composition. The spell choices emphasize broad teammate utility; more specific optimization can follow once roles are known.
 
 Sources and setup actions are linked in the [character record](/character/) and [D&D Beyond checklist](/setup/).
+
+
+## Shared rules reference
+
+See [Table rulings](/rulings/) for the 2026-09-17 corrections, official sources, familiar cargo and signal rules, and interpretations still awaiting DM approval. Character choices and campaign readiness are unchanged.

@@ -58,7 +58,7 @@ The glow-moss discovery and shop explosion remain. Whether the moss awakened his
 
 - **Innate Sorcery:** Bonus Action; lasts 1 minute. Its save-DC increase and spell-attack advantage apply to Sorcerer spells. Two uses per Long Rest.
 - **Font of Magic:** maximum 5 SP. Convert a spell slot to SP equal to its level without an action, never exceeding the maximum. Creating a slot takes a Bonus Action: first = 2 SP, second = 3 SP, third = 5 SP. At level 5, third is the highest slot you can create.
-- **Careful Spell (1 SP):** protect up to three creatures with automatic successful saves; if success normally halves damage, they take none. Best clear uses here are Fireball and Hypnotic Pattern. Keep allies out of Web; do not treat Careful as a lasting safe passage through its repeated saves and difficult terrain.
+- **Careful Spell (1 SP):** protect up to three creatures with automatic successful saves; if success normally halves damage, they take none. Best clear uses here are Fireball and Hypnotic Pattern. Keep allies out of Web; its delayed/repeated-save interaction is pending a recorded DM ruling, and it never removes difficult terrain.
 - **Subtle Spell (1 SP):** remove components except consumed or priced materials. Useful for quiet utility and component-free Counterspell; visible spell effects can still expose what happened.
 - **One Metamagic option per spell** with this pair at level 5. No Sorcery Incarnate, SP-funded Innate Sorcery activation, Elemental Affinity bonus damage, or fire resistance yet.
 - **Draconic Resilience:** +5 total maximum HP and the unarmored AC above.
@@ -110,7 +110,7 @@ Fly is the ally-mobility tool already supplied by the subclass. Fear provides an
 
 Same companion: a miniature toy cow, mechanically a **Cat-form Fey familiar**, subject to the new DM accepting the cosmetic cow appearance. He never moos; he never needs to. Use the [current Cat stat block](https://www.dndbeyond.com/monsters/4775808-cat): AC 12, HP 2, Speed 40 feet, Climb 40 feet, Perception +3, Stealth +4, Darkvision 60 feet, Passive Perception 13, and Jumper. Find Familiar changes the creature type to Fey. The old local record's Climb 30 feet and Keen Smell mixed in legacy details; those are not this selected block. Cow appearance adds no attacks, size, or carrying capacity.
 
-He can scout and communicate telepathically within 100 feet. Kief can use a Bonus Action to see and hear through him until the start of Kief's next turn. He has his own initiative and cannot attack. Help, Dodge, and other legal actions remain available; a combat Help attempt puts a fragile familiar near the enemy. Delivering a touch spell takes Mr. Big's Reaction and requires him to be within 100 feet of Kief and in reach of the recipient.
+He can scout and communicate telepathically within 100 feet. Kief can use a Bonus Action to see and hear through him until the start of Kief's next turn. The 2024 sense-sharing text does not remove Kief's own senses. Mr. Big leaves worn/carried items in his space when dismissed to the pocket dimension or reduced to 0 HP. He has his own initiative and cannot attack. Help, Dodge, and other legal actions remain available; a combat Help attempt puts a fragile familiar near the enemy. Delivering a touch spell takes Mr. Big's Reaction and requires him to be within 100 feet of Kief and in reach of the recipient.
 
 First-session summoning status is not established. Find Familiar needs 1 hour, or 70 minutes as a ritual, and consumes at least 10 GP of incense each time, even with the free feat casting. Plan to summon him before adventuring if time and components permit.
 
@@ -129,3 +129,8 @@ Kief prevents damage and creates opportunities; he has no healing spell. Never i
 ## Rules references
 
 Checked for this rebuild: [2024 Sorcerer and Draconic Sorcery](https://www.dndbeyond.com/sources/dnd/br-2024/character-classes#Sorcerer), [casting rules](https://www.dndbeyond.com/sources/dnd/br-2024/spells), [spell descriptions](https://www.dndbeyond.com/sources/dnd/br-2024/spell-descriptions), [2024 Counterspell](https://www.dndbeyond.com/spells/2619072-counterspell), [2024 Find Familiar](https://www.dndbeyond.com/spells/2618877-find-familiar), and [2024 Mind Sliver](https://roll20.net/compendium/dnd5e/Spells:Mind%20Sliver?expansion=32231). DM rulings govern the table. This rebuild does not verify the live D&D Beyond sheet or the campaign's starting allowances.
+
+
+## Shared rules reference
+
+See [Table rulings](/rulings/) for the 2026-09-17 corrections, official sources, familiar cargo and signal rules, and interpretations still awaiting DM approval. Character choices and campaign readiness are unchanged.

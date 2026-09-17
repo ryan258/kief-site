@@ -1,7 +1,7 @@
 {{- /* Link the first italic mention of each spell (as Goldmark renders them) to their spellbook card. */ -}}
 {{- $html := string . -}}
 {{- range hugo.Data.spells -}}
-{{- $pattern := printf "<em>(%s)</em>" (replace .name "’" "(?:’|&rsquo;|')") -}}
+{{- $pattern := printf "<em>(%s)</em>" (replace (replace .name "’" "(?:’|&rsquo;|')") " " "\\s+") -}}
 {{- $href := printf "spellbook/#spell-%s" (anchorize .name) | relURL -}}
 {{- $html = replaceRE $pattern (printf `<a class="spell-link" href="%s"><em>${1}</em></a>` $href) $html 1 -}}
 {{- end -}}

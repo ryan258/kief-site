@@ -40,7 +40,7 @@ Innate Sorcery: Bonus Action, twice per Long Rest, 1 minute. Sorcerer save DC be
 - Spend at most **one spell slot to cast a spell on a turn**. Misty Step plus a cantrip is fine. Innate Sorcery plus an Action spell is fine. A Reaction spell on somebody else's turn is normally fine; a Reaction on your own turn still shares that turn's limit.
 - Only **one Reaction** until the start of your next turn: Shield, Feather Fall, and Counterspell compete.
 - Counterspell: see a creature within 60 feet casting with Verbal, Somatic, or Material components; it makes a Constitution save. Failure cancels the spell and wastes its casting action, but does not consume its spell slot. No automatic success against low-level spells.
-- Careful costs 1 SP, protects up to three creatures. Use it for the immediate saves of Pattern or Fireball. It does not remove Web's difficult terrain or grant allies continuing immunity to its saves.
+- Careful costs 1 SP, protects up to three creatures. Use it for the immediate saves of Pattern or Fireball. It does not remove Web's terrain. The delayed/repeated-save interaction is pending a recorded DM ruling; keep allies outside.
 - Subtle costs 1 SP; consumed/priced materials remain required. No Careful + Subtle combination at level 5.
 - Invisibility ends for a target after it attacks, deals damage, or casts a spell. It does not silence footsteps or guarantee successful stealth.
 - Hypnotic Pattern is broken for an affected creature by damage or an action spent shaking it awake. Don't scatter damage across disabled enemies.
@@ -53,3 +53,8 @@ Use Detect Magic and Speak with Animals as rituals when time allows. Light does 
 Long Rest: restore HP to 47, slots to 4/3/2, SP to 5, Hit Dice to 5d6, Innate Sorcery to 2, Speak with Animals to 3 free casts, Find Familiar to 1 free cast; reset Sorcerous Restoration. Starting gear is still pending.
 
 > “Everybody breathe. Except you, Mr. Big. You're doing beautifully.”
+
+
+## Shared rules reference
+
+See [Table rulings](/rulings/) for the 2026-09-17 corrections, official sources, familiar cargo and signal rules, and interpretations still awaiting DM approval. Character choices and campaign readiness are unchanged.

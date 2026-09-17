@@ -33,3 +33,8 @@ Long Rest: HP 47; Hit Dice 5d6; slots 4/3/2; SP 5; Innate Sorcery 2 uses; Speak 
 Short Rest: spend Hit Dice for d6+4 healing as needed. Once per Long Rest, recover up to 2 spent SP. No spell-list swaps from resting.
 
 Track actual inventory, components, and consumables during play. On a character change, sync the live sheet and local record, then add a dated changelog entry.
+
+
+## Shared rules reference
+
+See [Table rulings](/rulings/) for the 2026-09-17 corrections, official sources, familiar cargo and signal rules, and interpretations still awaiting DM approval. Character choices and campaign readiness are unchanged.

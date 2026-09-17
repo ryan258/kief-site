@@ -21,10 +21,15 @@ Twelve current plays. Full former 72-play guide preserved in [the level 7 archiv
 
 ## The rules underneath
 
-Concentration is one ongoing spell at a time. Two third-level slots means the party cannot receive every big play in one fight. Pattern ends on a creature when it takes damage or someone uses an action to shake it awake; mark targets and focus the remaining threats. Careful does not give continuing safe passage through Web. No elemental damage bonus at level 5.
+Concentration is one ongoing spell at a time. Two third-level slots means the party cannot receive every big play in one fight. Pattern ends on a creature when it takes damage or someone uses an action to shake it awake; mark targets and focus the remaining threats. Careful does not remove Web terrain; its delayed/repeated-save interaction awaits the ruling recorded in [Table rulings](/rulings/). Keep allies outside. No elemental damage bonus at level 5.
 
 Mind Sliver needs its own failed save before the penalty applies, and the next save consumes that benefit. Don't promise your ally a guaranteed success. An attack cantrip is useful; maintaining a successful control spell while taking cover can be more useful.
 
 Misty Step is the personal exit: Bonus Action, visible space within 30 feet, no passenger. After spending a slot on it, use a cantrip or a non-slot action on that turn. He cannot Dimension Door anybody out yet.
 
 Subtle Spell costs 1 SP and removes components other than priced/consumed materials. Use for quiet utility when justified; it doesn't make spell effects invisible or erase social consequences. It cannot be combined with Careful on this level 5 build.
+
+
+## Shared rules reference
+
+See [Table rulings](/rulings/) for the 2026-09-17 corrections, official sources, familiar cargo and signal rules, and interpretations still awaiting DM approval. Character choices and campaign readiness are unchanged.

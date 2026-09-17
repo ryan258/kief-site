@@ -22,8 +22,9 @@ He looks like a toy. Let him be a toy.
 2. Placement sells it: among bric-a-brac, not alone in an empty corridor.
 3. If handled, stay still. He is a warm, breathing cat under the cow look;
    picking him up may end the illusion.
-4. Fails against *Detect Magic* (he's a magical creature) and against
-   animals that notice cats. In warded rooms, pocket him
+4. Close inspection, animals, or a relevant magical detection effect may
+   expose him. Detect Magic does not identify Fey; ask the DM what ongoing
+   magic it detects here. In warded rooms, consider pocketing him
    ([play 86](../mb-86/)).
 5. Listening through him costs Kief a Bonus Action each round.
 
@@ -43,3 +44,5 @@ Perception notices with senses; Investigation examines closely (the 2024
 Study action). A perfectly still thing defeats the casual cues of movement
 and sound, so the DM may require a closer look to find it. Plausibility is
 a DM call before it is a roll.
+
+See [shared table rulings](/rulings/) for the current rules decisions and unresolved interactions.

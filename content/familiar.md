@@ -22,3 +22,10 @@ Mr. Big cannot attack. His cow appearance grants no bovine attacks, hauling abil
 He rolls his own initiative, so coordinate Help and touch delivery with actual timing. Summoning takes an hour, or 70 minutes as a ritual, and consumes 10+ GP incense; a free feat cast still consumes it. Confirm components before session one. Neither familiar survival nor resummoning should depend on unconfirmed old inventory.
 
 > Mr. Big blinks once. Kief nods. “He's concerned about your process.”
+
+
+## Shared rules reference
+
+See [Table rulings](/rulings/) for the 2026-09-17 corrections, official sources, familiar cargo and signal rules, and interpretations still awaiting DM approval. Character choices and campaign readiness are unchanged.
+
+Shared senses do not impose the legacy blind/deaf restriction. Pocket dismissal and 0 HP leave worn/carried items behind. Signals: sit = hold; circle = fall back; stare = look here; lie down = danger/freeze; return = abort. Kief verbally relays a clear exit.

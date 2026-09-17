@@ -16,6 +16,7 @@ SOURCES = {
     'dnd-beyond-todos.md': ('setup', 'Before session one'),
     'findings.md': ('checks', 'Campaign checks'),
     'update-plan.md': ('growth', 'The road to level six'),
+    'rules-arbitration.md': ('rulings', 'Table rulings and open decisions'),
 }
 
 def table(text, heading):
@@ -26,10 +27,15 @@ def table(text, heading):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--source', type=Path, default=SITE.parent / 'kief')
+    parser.add_argument('--check', action='store_true', help='Report drift without writing files')
     args = parser.parse_args()
     records = {name: (args.source / name).read_text() for name in SOURCES}
     char = records['kief-firelight-character.md']
-    if 'Sorcerer 5' not in char or '**47 / 5d6**' not in char:
+    expected = ('Sorcerer 5', '**47 / 5d6**', '**15** unarmored; **20**',
+                '**DC 14 / +6**', '**DC 15 / advantage**', '**5 SP / 4 first, 3 second, 2 third**',
+                '| Constitution | 18 | +4 | +7 |', '| Initiative / speed | +2 / 30 feet |',
+                '| Innate Sorcery | 2 uses per Long Rest |', 'up to **2 spent SP**')
+    if any(value not in char for value in expected):
         raise SystemExit('Build changed: review dashboard numbers before importing.')
     generated = {}
     for filename, (route, title) in SOURCES.items():
@@ -57,11 +63,30 @@ def main():
     ]
     for name, level, conc, source, job in extras:
         spells.append(dict(name=name, level=level, concentration=conc, source=source, job=job))
-    generated[SITE / 'data' / 'spells.json'] = json.dumps(spells, indent=2) + '\n'
-    if len(spells) != 25:
-        raise SystemExit('Source structure changed; expected 25 spells.')
+    reference_text = (args.source / 'spell-reference.json').read_text()
+    references = json.loads(reference_text)
+    by_name = {item['name']: item for item in references}
+    if len(by_name) != 25 or len(references) != 25 or set(by_name) != {s['name'] for s in spells}:
+        raise SystemExit('Spell reference must match the 25 character spells exactly.')
+    required = ('casting', 'range', 'target', 'components', 'duration', 'resolution', 'effect', 'higher', 'caution', 'rules_url', 'checked')
+    for spell in spells:
+        detail = by_name[spell['name']]
+        if any(not isinstance(detail.get(key), str) or not detail[key].strip() for key in required):
+            raise SystemExit(f'Incomplete spell reference: {spell["name"]}')
+        if not detail['rules_url'].startswith('https://'):
+            raise SystemExit('Rules references must use HTTPS.')
+        spell.update({key: detail[key] for key in required})
+    generated[SITE / 'data' / 'spells.json'] = json.dumps(spells, indent=2, ensure_ascii=False) + '\n'
+    generated[SITE / 'docs' / 'rules-arbitration.md'] = records['rules-arbitration.md']
     manifest = {name: hashlib.sha256(text.encode()).hexdigest() for name, text in records.items()}
+    manifest['spell-reference.json'] = hashlib.sha256(reference_text.encode()).hexdigest()
     generated[SITE / 'data' / 'sources.json'] = json.dumps(manifest, indent=2) + '\n'
+    if args.check:
+        drift = [str(path.relative_to(SITE)) for path, text in generated.items() if not path.exists() or path.read_text() != text]
+        if drift:
+            raise SystemExit('Source drift: ' + ', '.join(drift))
+        print(f'In sync: {len(records)} records, 25 spell references, and source fingerprints.')
+        return
     for destination, text in generated.items():
         destination.write_text(text)
     print(f'Imported {len(records)} current records and {len(spells)} spells.')

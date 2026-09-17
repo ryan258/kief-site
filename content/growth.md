@@ -26,3 +26,8 @@ Sorcery Incarnate, fourth-level slots, and the Draconic Arcane Eye / Charm Monst
 ## Level 8
 
 Default ASI recommendation: +2 Charisma, 16 to 18. This improves DC, spell attack, Draconic AC, Persuasion, and Careful's protected-creature count. Revisit only if play establishes a more pressing need.
+
+
+## Shared rules reference
+
+See [Table rulings](/rulings/) for the 2026-09-17 corrections, official sources, familiar cargo and signal rules, and interpretations still awaiting DM approval. Character choices and campaign readiness are unchanged.

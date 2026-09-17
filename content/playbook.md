@@ -53,3 +53,8 @@ Share information immediately. Ask before putting an ally on a flight plan. Keep
 Careful keeps control and emergency damage usable around friends. Subtle keeps the quiet, improbable problem-solving personality and helps with component restrictions. The original Constitution 18 / Charisma 16 remains: sturdy concentration, somewhat lower save DC than a fresh maximum-Charisma build. The utility preparations replace redundant damage/control options, while subclass spells supply Fly and Fear for free.
 
 This is a versatile teammate, not a healer or an answer to every obstacle. Revisit the spell list after seeing what the other characters actually cover.
+
+
+## Shared rules reference
+
+See [Table rulings](/rulings/) for the 2026-09-17 corrections, official sources, familiar cargo and signal rules, and interpretations still awaiting DM approval. Character choices and campaign readiness are unchanged.

@@ -1,4 +1,6 @@
-# 2024 D&D (5.5e) Rules Arbitration Guide
++++
+title = "Table rulings and open decisions"
++++
 
 Current level-5 reference, checked 2026-09-17 against the linked 2024 rules. Published rules and pending interpretations are separated below. DM approval, equipment, and live-sheet synchronization remain pending. This file is canonical: the companion imports it as Table rulings and mirrors it into its engineering documentation. Detailed spell summaries live alongside it in `spell-reference.json`.
 
