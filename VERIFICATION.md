@@ -1,5 +1,26 @@
 # Verification history
 
+## Full-viewport modal windows, D&D 5.5e designer spellbook cards, and atmospheric background artwork — 2026-09-17 (local)
+
+This entry records verification of the expanded modal dialog layout, designer D&D 5.5e spellbook card presentation, bespoke 25-spell WebP artwork library, faint card covers, and main page background covers:
+
+- **Expanded 20px-Margin Modal Dialogs**: In `assets/style.scss`, `.card-modal` sizes to `width: calc(100vw - 40px - var(--depth)*16px)` and `height: calc(100dvh - 40px - var(--depth)*16px)` on desktop (12px on mobile), leaving exactly 20px margins on all sides. Topbar replaced with floating top-right window controls (`Full page ↗` pill + `×` close button). Nested card links unwrap cleanly inside `.card-body` to prevent click traps.
+- **Designer D&D 5.5e Spellbook Modal Cards**: In `layouts/spellbook/list.html`, implemented the full designer layout (`.spell-modal-layout`) with spell glyph, badge row (Level, School, Reaction/Action, Role, Concentration), right-hand italic flavor quote with golden diamond divider (`--- ◇ ---`), left-hand description and note callouts with 4 Quick Use action tiles (Add/Cast, Copy Text, Share Link, Favorite), right-hand At a Glance specs table, Effect/Scaling card, Target card, cross-linked tactical plays, and D&D 5.5e reference footer.
+- **Unique 25-Spell WebP Artwork & Faint Directory Covers**:
+  - Generated and installed 25 bespoke 1376×768 WebPs under `static/spells/<slug>.webp` (~50–160 KB each, ~2.4 MB total).
+  - In `assets/app.js`, dynamically reads `data-spell-bg` and injects `--spell-bg` on open.
+  - In `assets/style.scss`, `.card-grid .spell-card` displays a subtle, atmospheric background cover via `radial-gradient(..., var(--spell-bg))` that brightens on hover while keeping 100% text contrast.
+- **Main Page Atmospheric Background Covers**:
+  - Created 6 dedicated high-resolution WebP landscapes under `static/pages/<page>.webp` (~49–96 KB) for Dashboard, Spellbook, Plays, Familiar, Rules, and Character.
+  - In `layouts/_default/baseof.html`, detects `$pageKey` and emits `<body class="page-{{ $pageKey }}" data-page="{{ $pageKey }}">`.
+  - In `assets/style.scss`, applies background artwork to `body.page-<name> .workspace` beneath deep radial vignettes with frosted topbar glassmorphism.
+- **Automated gates: 35 targeted tests passed quietly**:
+  - 13 pure state tests in `tests/state.test.cjs`.
+  - 20 DOM controller tests in `tests/app.test.cjs`.
+  - 2 storage engine tests in `tests/storage.test.cjs`.
+  - 3 importer contract tests in `tests/sync_test.py`.
+- **Static build & links**: Hugo build succeeded in 161ms without warnings (186 pages, 38 static files); link and asset audit verified clean across 185 generated HTML pages (`scripts/check_links.py public`).
+
 ## Scannable reading layouts, play/spell dashboards, and motor accessibility tap targets — 2026-09-17 (local)
 
 This entry records verification of scannable reading dashboards, glance-first spell cards, reference dashboards, and motor accessibility touch targets:
