@@ -4,8 +4,17 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{{ if not .IsHome }}{{ .Title }} · {{ end }}{{ site.Title }}</title>
 <meta name="description" content="{{ site.Params.description }}">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="theme-color" content="#111a16">
+<link rel="icon" href="{{ "icon.svg" | relURL }}" type="image/svg+xml">
+<link rel="apple-touch-icon" href="{{ "icon-180.png" | relURL }}">
+<meta name="apple-mobile-web-app-title" content="Kief Firelight">
+<link rel="manifest" href="{{ "manifest.webmanifest" | relURL }}">
 {{ $css := resources.Get "style.scss" | toCSS (dict "targetPath" "style.css") | minify | fingerprint }}
 <link rel="stylesheet" href="{{ $css.RelPermalink }}">
+{{ $storage := resources.Get "storage.js" | fingerprint }}
+<script src="{{ $storage.RelPermalink }}" defer></script>
 {{ $state := resources.Get "state.js" | fingerprint }}
 <script src="{{ $state.RelPermalink }}" defer></script>
 {{ $js := resources.Get "app.js" | minify | fingerprint }}
@@ -34,4 +43,9 @@
 </div>
 </div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
+{{ $assets := slice ("" | relURL) $css.RelPermalink $storage.RelPermalink $state.RelPermalink $js.RelPermalink ("manifest.webmanifest" | relURL) ("icon.svg" | relURL) ("icon-192.png" | relURL) }}
+{{ $sw := resources.Get "sw.js" | resources.ExecuteAsTemplate "sw.js" (dict "assets" $assets "version" (delimit $assets "," | md5)) }}
+<script>
+if ('serviceWorker' in navigator) addEventListener('load', () => navigator.serviceWorker.register('{{ $sw.RelPermalink }}').catch(() => {}));
+</script>
 </body></html>
