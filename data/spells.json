@@ -1,0 +1,177 @@
+[
+  {
+    "name": "Fire Bolt",
+    "source": "Sorcerer",
+    "level": 0,
+    "concentration": false,
+    "job": "2d10 fire; ranged damage, +6 to hit"
+  },
+  {
+    "name": "Ray of Frost",
+    "source": "Sorcerer",
+    "level": 0,
+    "concentration": false,
+    "job": "2d8 cold; hit reduces target Speed by 10 feet until Kief's next turn"
+  },
+  {
+    "name": "Mind Sliver",
+    "source": "Sorcerer",
+    "level": 0,
+    "concentration": false,
+    "job": "Intelligence save; 2d6 psychic and -1d4 on the next save before the end of Kief's next turn"
+  },
+  {
+    "name": "Light",
+    "source": "Sorcerer",
+    "level": 0,
+    "concentration": false,
+    "job": "Illumination for teammates without Darkvision; no concentration"
+  },
+  {
+    "name": "Prestidigitation",
+    "source": "Sorcerer",
+    "level": 0,
+    "concentration": false,
+    "job": "Tea temperature, clean clothes, small harmless flourishes"
+  },
+  {
+    "name": "Minor Illusion",
+    "source": "Forest Gnome",
+    "level": 0,
+    "concentration": false,
+    "job": "Sound or static object image for distractions and explanations"
+  },
+  {
+    "name": "Mage Hand",
+    "source": "Magic Initiate",
+    "level": 0,
+    "concentration": false,
+    "job": "Remote handling, within the spell's limits; not an attack or trap detector"
+  },
+  {
+    "name": "Mending",
+    "source": "Magic Initiate",
+    "level": 0,
+    "concentration": false,
+    "job": "Repair small breaks; takes a minute and doesn't restore magical functions"
+  },
+  {
+    "name": "Shield",
+    "source": "Sorcerer preparation",
+    "level": 1,
+    "concentration": false,
+    "job": "Stay upright and preserve the control spell already helping everyone"
+  },
+  {
+    "name": "Feather Fall",
+    "source": "Sorcerer preparation",
+    "level": 1,
+    "concentration": false,
+    "job": "Catch up to five falling creatures within 60 feet using a Reaction"
+  },
+  {
+    "name": "Detect Magic",
+    "source": "Sorcerer preparation",
+    "level": 1,
+    "concentration": true,
+    "job": "Ritual investigation when time permits; detects magic, not every trap"
+  },
+  {
+    "name": "Misty Step",
+    "source": "Sorcerer preparation",
+    "level": 2,
+    "concentration": false,
+    "job": "Bonus Action escape to a visible space within 30 feet; self only"
+  },
+  {
+    "name": "Web",
+    "source": "Sorcerer preparation",
+    "level": 2,
+    "concentration": true,
+    "job": "Restrain enemies and create opportunities for allies' attacks"
+  },
+  {
+    "name": "Invisibility",
+    "source": "Sorcerer preparation",
+    "level": 2,
+    "concentration": true,
+    "job": "Help the party scout or approach quietly"
+  },
+  {
+    "name": "Counterspell",
+    "source": "Sorcerer preparation",
+    "level": 3,
+    "concentration": false,
+    "job": "Attempt to interrupt a dangerous enemy spell"
+  },
+  {
+    "name": "Hypnotic Pattern",
+    "source": "Sorcerer preparation",
+    "level": 3,
+    "concentration": true,
+    "job": "Remove a group from the immediate fight; use Careful around allies"
+  },
+  {
+    "name": "Fireball",
+    "source": "Sorcerer preparation",
+    "level": 3,
+    "concentration": false,
+    "job": "End a dangerous cluster quickly; use Careful around allies"
+  },
+  {
+    "name": "Chromatic Orb",
+    "level": 1,
+    "concentration": false,
+    "source": "Draconic Sorcery",
+    "job": "Requires a 50+ GP diamond. Ownership is pending the campaign gear allowance."
+  },
+  {
+    "name": "Command",
+    "level": 1,
+    "concentration": false,
+    "source": "Draconic Sorcery",
+    "job": "Interrupt a dangerous foe with a one-word command."
+  },
+  {
+    "name": "Alter Self",
+    "level": 2,
+    "concentration": true,
+    "source": "Draconic Sorcery",
+    "job": "Adapt your appearance or body to the obstacle."
+  },
+  {
+    "name": "Dragon\u2019s Breath",
+    "level": 2,
+    "concentration": true,
+    "source": "Draconic Sorcery",
+    "job": "An alternative use of concentration; agree on the plan with the recipient."
+  },
+  {
+    "name": "Fear",
+    "level": 3,
+    "concentration": true,
+    "source": "Draconic Sorcery",
+    "job": "Another control option when the situation suits fear."
+  },
+  {
+    "name": "Fly",
+    "level": 3,
+    "concentration": true,
+    "source": "Draconic Sorcery",
+    "job": "Help an ally cross an obstacle; agree on a safe landing."
+  },
+  {
+    "name": "Speak with Animals",
+    "level": 1,
+    "concentration": false,
+    "source": "Forest Gnome",
+    "job": "Three free casts per Long Rest, or slots/ritual. Animals know what animals perceive."
+  },
+  {
+    "name": "Find Familiar",
+    "level": 1,
+    "concentration": false,
+    "source": "Magic Initiate",
+    "job": "One free cast per Long Rest, or slots/ritual. Still consumes 10+ GP incense; 1 hour, or 70 minutes as a ritual."
+  }
+]
