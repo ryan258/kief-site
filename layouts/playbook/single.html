@@ -1,0 +1,224 @@
+{{ define "main" }}
+<div class="playbook-hero">
+  <div class="playbook-hero-main">
+    <p class="eyebrow">THE LEAF & LEDGER / REFERENCE</p>
+    <h1>The teammate playbook</h1>
+    <p class="playbook-tagline">Build a better table. Play braver together.</p>
+    <nav class="playbook-nav" aria-label="Playbook sections">
+      <a class="playbook-pill is-active" href="#the-normal-fight">The normal fight</a>
+      <a class="playbook-pill" href="#make-the-team-shine">Make the team shine</a>
+      <a class="playbook-pill" href="#reaction-discipline">Reaction discipline</a>
+      <a class="playbook-pill" href="#resource-rhythm">Resource rhythm</a>
+      <a class="playbook-pill" href="#roleplay-without-slowing-the-table">Roleplay without slowing the table</a>
+      <a class="playbook-pill" href="#build-tradeoffs">Build tradeoffs</a>
+      <a class="playbook-pill" href="#shared-rules-reference">Shared rules reference</a>
+    </nav>
+    <p class="playbook-lead">
+      Current local build; see <a class="text-link inline-accent" href="{{ "character/" | relURL }}">the character record</a>. Kief is starting a new campaign. His job is to make everybody else&rsquo;s turn better and make sure the party gets home.
+    </p>
+  </div>
+  <aside class="playbook-hero-quote" aria-label="Playbook ethos">
+    <blockquote>&ldquo;A stronger party<br>lifts everyone higher.&rdquo;</blockquote>
+    <div class="gold-diamond" aria-hidden="true">&mdash; &#x25C7; &mdash;</div>
+  </aside>
+</div>
+
+<div class="playbook-grid">
+  <!-- Card 1: The normal fight -->
+  <article class="playbook-card panel" id="the-normal-fight">
+    <header class="playbook-card-header">
+      <div class="card-icon-badge" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="m14.5 17.5 4 4 2-2-4-4"/>
+          <path d="m15.5 12.5 3 3"/>
+          <path d="M7 2 2 7l10 10 5-5L7 2Z"/>
+          <path d="m9.5 6.5 4 4"/>
+          <path d="m5 19-3 3"/>
+          <path d="m2 19 3 3"/>
+          <path d="m6.5 14.5-4 4"/>
+        </svg>
+      </div>
+      <div>
+        <h2>The normal fight</h2>
+        <p class="card-subheading">PLAY THE BASICS WELL</p>
+      </div>
+    </header>
+    <ol class="playbook-steps">
+      <li>
+        <span class="step-num" aria-hidden="true">1</span>
+        <span>Identify the problem: a crowd, a choke point, a caster, or an ally in trouble.</span>
+      </li>
+      <li>
+        <span class="step-num" aria-hidden="true">2</span>
+        <span>In an important fight, activate Innate Sorcery with your Bonus Action. Cast <a class="spell-link" href="{{ "spellbook/#spell-web" | relURL }}"><em>Web</em></a> or <a class="spell-link" href="{{ "spellbook/#spell-hypnotic-pattern" | relURL }}"><em>Hypnotic Pattern</em></a> with your Action if control fits the situation. These can happen on the same turn.</span>
+      </li>
+      <li>
+        <span class="step-num" aria-hidden="true">3</span>
+        <span>Tell the party what changed: &ldquo;Those three are out. Hit the one on the left.&rdquo;</span>
+      </li>
+      <li>
+        <span class="step-num" aria-hidden="true">4</span>
+        <span>Preserve concentration from cover. <a class="spell-link" href="{{ "spellbook/#spell-mind-sliver" | relURL }}"><em>Mind Sliver</em></a> supports an ally&rsquo;s next saving-throw effect; <a class="spell-link" href="{{ "spellbook/#spell-ray-of-frost" | relURL }}"><em>Ray of Frost</em></a> slows pursuit. Dodge is a good turn when your existing spell is doing the work.</span>
+      </li>
+      <li>
+        <span class="step-num" aria-hidden="true">5</span>
+        <span>Spend another big slot only when it solves a new problem. You have just two third-level slots.</span>
+      </li>
+    </ol>
+    <div class="playbook-callout">
+      <div class="callout-header">
+        <span class="callout-icon" aria-hidden="true">🌿</span>
+        <span class="callout-label">KEY REMINDER</span>
+      </div>
+      <p><a class="spell-link" href="{{ "spellbook/#spell-hypnotic-pattern" | relURL }}"><em>Hypnotic Pattern</em></a> has a charm limitation; switch plans against immune creatures. <a class="spell-link" href="{{ "spellbook/#spell-web" | relURL }}"><em>Web</em></a> is useful control at a cheaper slot, but allies also face its terrain and saves. Fire can destroy the webbing; don&rsquo;t sabotage your own battlefield control casually. <a class="spell-link" href="{{ "spellbook/#spell-fireball" | relURL }}"><em>Fireball</em></a> is the damage fallback, with Careful if allies need protection.</p>
+    </div>
+  </article>
+
+  <!-- Card 2: Make the team shine -->
+  <article class="playbook-card panel" id="make-the-team-shine">
+    <header class="playbook-card-header">
+      <div class="card-icon-badge" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+          <circle cx="9" cy="7" r="4"/>
+          <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+          <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+        </svg>
+      </div>
+      <div>
+        <h2>Make the team shine</h2>
+        <p class="card-subheading">ENABLE EVERYONE</p>
+      </div>
+    </header>
+    <div class="team-sections">
+      <p><strong>For the martial:</strong> <a class="spell-link" href="{{ "spellbook/#spell-web" | relURL }}"><em>Web</em></a> can restrain targets, giving attacks against them advantage. <a class="spell-link" href="{{ "spellbook/#spell-command" | relURL }}"><em>Command</em></a> can interrupt a dangerous foe. Mr. Big may Help when the benefit justifies exposing him.</p>
+      <p><strong>For the caster:</strong> <a class="spell-link" href="{{ "spellbook/#spell-mind-sliver" | relURL }}"><em>Mind Sliver</em></a> can penalize the target&rsquo;s next save by 1d4 if the initial Intelligence save fails. Coordinate timing; another save can consume that penalty first. <a class="spell-link" href="{{ "spellbook/#spell-counterspell" | relURL }}"><em>Counterspell</em></a> may stop the enemy&rsquo;s most dangerous cast.</p>
+      <p><strong>For the scout:</strong> Cast <a class="spell-link" href="{{ "spellbook/#spell-invisibility" | relURL }}"><em>Invisibility</em></a> on them and let them lead. Stay somewhere safe enough to maintain concentration. Agree on a return signal; invisibility does not remove noise or tracks.</p>
+      <p><strong>For the explorer:</strong> <a class="spell-link" href="{{ "spellbook/#spell-light" | relURL }}"><em>Light</em></a>, <a class="spell-link" href="{{ "spellbook/#spell-mage-hand" | relURL }}"><em>Mage Hand</em></a>, <a class="spell-link" href="{{ "spellbook/#spell-mending" | relURL }}"><em>Mending</em></a>, <a class="spell-link" href="{{ "spellbook/#spell-detect-magic" | relURL }}"><em>Detect Magic</em></a>, <a class="spell-link" href="{{ "spellbook/#spell-speak-with-animals" | relURL }}"><em>Speak with Animals</em></a>, and Mr. Big cover many mundane problems without burning the day&rsquo;s big slots. <a class="spell-link" href="{{ "spellbook/#spell-fly" | relURL }}"><em>Fly</em></a> solves a specific obstacle; rope can keep solving it after the spell ends.</p>
+      <p><strong>For the wounded:</strong> Help them get out of danger. <a class="spell-link" href="{{ "spellbook/#spell-feather-fall" | relURL }}"><em>Feather Fall</em></a> is fall protection, not general damage prevention. There is no healing spell on this build; obtain mundane first aid or potions if the campaign budget allows.</p>
+    </div>
+  </article>
+
+  <!-- Card 3: Reaction discipline -->
+  <article class="playbook-card panel" id="reaction-discipline">
+    <header class="playbook-card-header">
+      <div class="card-icon-badge" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        </svg>
+      </div>
+      <div>
+        <h2>Reaction discipline</h2>
+        <p class="card-subheading">PROTECT WHAT MATTERS</p>
+      </div>
+    </header>
+    <div class="card-body-text">
+      <p><a class="spell-link" href="{{ "spellbook/#spell-shield" | relURL }}"><em>Shield</em></a> protects you; <a class="spell-link" href="{{ "spellbook/#spell-feather-fall" | relURL }}"><em>Feather Fall</em></a> protects falling allies; <a class="spell-link" href="{{ "spellbook/#spell-counterspell" | relURL }}"><em>Counterspell</em></a> contests a spell. Once one is used, the others are unavailable until your next turn begins.</p>
+      <p>If an enemy caster is the main threat, keep line of sight, stay within 60 feet when feasible, and leave a third-level slot available. Don&rsquo;t spend every slot on an opening spectacle.</p>
+    </div>
+    <div class="playbook-callout practice-callout">
+      <div class="callout-header">
+        <span class="callout-icon" aria-hidden="true">✴</span>
+        <span class="callout-label">PRACTICE NOTE</span>
+      </div>
+      <p>Think ahead about likely triggers and communicate your plan. A held reaction is most valuable when the table knows what you&rsquo;re watching for.</p>
+    </div>
+  </article>
+
+  <!-- Card 4: Resource rhythm -->
+  <article class="playbook-card panel" id="resource-rhythm">
+    <header class="playbook-card-header">
+      <div class="card-icon-badge" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"/>
+          <line x1="16" y1="8" x2="2" y2="22"/>
+          <line x1="17.5" y1="15" x2="9" y2="15"/>
+        </svg>
+      </div>
+      <div>
+        <h2>Resource rhythm</h2>
+        <p class="card-subheading">PLAY THE LONG GAME</p>
+      </div>
+    </header>
+    <div class="card-body-text">
+      <p>Start with 5 SP. Careful and Subtle each cost 1. Don&rsquo;t convert your last defensive first-level slot reflexively. Turning all 5 SP into a third-level slot is possible, but spends the entire Metamagic reserve. A Short Rest can return up to 2 spent SP once per Long Rest; ask for it when the group also benefits.</p>
+      <p>Concentration is the real bottleneck. <a class="spell-link" href="{{ "spellbook/#spell-fly" | relURL }}"><em>Fly</em></a> on the fighter ends <a class="spell-link" href="{{ "spellbook/#spell-web" | relURL }}"><em>Web</em></a>. <a class="spell-link" href="{{ "spellbook/#spell-invisibility" | relURL }}"><em>Invisibility</em></a> ends <a class="spell-link" href="{{ "spellbook/#spell-hypnotic-pattern" | relURL }}"><em>Hypnotic Pattern</em></a>. Say the tradeoff aloud before making it, especially if an ally is airborne.</p>
+    </div>
+  </article>
+
+  <!-- Card 5: Roleplay without slowing the table -->
+  <article class="playbook-card panel" id="roleplay-without-slowing-the-table">
+    <header class="playbook-card-header">
+      <div class="card-icon-badge" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
+          <line x1="9" y1="9" x2="9.01" y2="9"/>
+          <line x1="15" y1="9" x2="15.01" y2="9"/>
+        </svg>
+      </div>
+      <div>
+        <h2>Roleplay without slowing the table</h2>
+        <p class="card-subheading">BE CLEAR AND CONCISE</p>
+      </div>
+    </header>
+    <div class="card-body-text">
+      <p>Describe the result in plain mechanics, then add one Kief sentence. Make the combat decision promptly; drawl afterward.</p>
+      <ul class="roleplay-quotes">
+        <li>&ldquo;<a class="spell-link" href="{{ "spellbook/#spell-mind-sliver" | relURL }}"><em>Mind Sliver</em></a> on the captain; if it lands, his next save gets &minus;1d4. Mate, your thoughts have got knots in them.&rdquo;</li>
+        <li>&ldquo;<a class="spell-link" href="{{ "spellbook/#spell-feather-fall" | relURL }}"><em>Feather Fall</em></a> on the falling party members. Easy. The ground can wait.&rdquo;</li>
+        <li>&ldquo;<a class="spell-link" href="{{ "spellbook/#spell-invisibility" | relURL }}"><em>Invisibility</em></a> on our scout. You&rsquo;re going to have to trust that I&rsquo;m making eye contact.&rdquo;</li>
+        <li>&ldquo;Careful Pattern; these three allies are protected. Everyone else, take a little moment.&rdquo;</li>
+        <li>&ldquo;Mr. Big scouts the next room. Management would like to inspect the premises.&rdquo;</li>
+      </ul>
+      <p>Share information immediately. Ask before putting an ally on a flight plan. Keep the blends mysterious, but keep your turns clean. The cow&rsquo;s opinion is flavor, not a veto over the rest of the party.</p>
+    </div>
+  </article>
+
+  <!-- Card 6: Build tradeoffs -->
+  <article class="playbook-card panel" id="build-tradeoffs">
+    <header class="playbook-card-header">
+      <div class="card-icon-badge" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="m21 16-9 5-9-5V8l9-5 9 5v8Z"/>
+          <path d="M3.27 6.96 12 12.01l8.73-5.05"/>
+          <path d="M12 22.08V12"/>
+        </svg>
+      </div>
+      <div>
+        <h2>Build tradeoffs</h2>
+        <p class="card-subheading">KNOW YOUR LIMITS</p>
+      </div>
+    </header>
+    <div class="card-body-text">
+      <p>Careful keeps control and emergency damage usable around friends. Subtle keeps the quiet, improbable problem-solving personality and helps with component restrictions.</p>
+      <p>The original Constitution 18 / Charisma 16 remains: sturdy concentration, somewhat lower save DC than a fresh maximum-Charisma build. The utility preparations replace redundant damage/control options, while subclass spells supply <a class="spell-link" href="{{ "spellbook/#spell-fly" | relURL }}"><em>Fly</em></a> and <a class="spell-link" href="{{ "spellbook/#spell-fear" | relURL }}"><em>Fear</em></a> for free.</p>
+      <p>This is a versatile teammate, not a healer or an answer to every obstacle. Revisit the spell list after seeing what the other characters actually cover.</p>
+    </div>
+  </article>
+
+  <!-- Card 7: Shared rules reference (Full-Width) -->
+  <article class="playbook-card panel full-width-card" id="shared-rules-reference">
+    <div class="full-card-content">
+      <header class="playbook-card-header">
+        <div class="card-icon-badge" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+          </svg>
+        </div>
+        <div>
+          <h2>Shared rules reference</h2>
+          <p class="card-subheading">OFFICIAL SOURCES, QUICK ACCESS</p>
+        </div>
+      </header>
+      <p class="full-card-body">
+        See <a class="text-link inline-accent" href="{{ "rulings/" | relURL }}">Table rulings</a> for the 2026-09-17 corrections, official sources, familiar cargo and signal rules, and interpretations still awaiting DM approval. Character choices and campaign readiness are unchanged.
+      </p>
+    </div>
+    <div class="full-card-art" aria-hidden="true">
+      <img src="{{ "playbook-lantern.webp" | relURL }}" alt="" width="240" height="125">
+    </div>
+  </article>
+</div>
+{{ end }}

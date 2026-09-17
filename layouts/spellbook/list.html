@@ -60,6 +60,30 @@
           </div>
         </section>
 
+        <section class="panel spell-card-glance">
+          <div class="panel-heading"><span class="panel-icon">📋</span><h3>At a Glance</h3></div>
+          <div class="glance-table">
+            <div class="glance-row"><span class="glance-label"><span class="spec-icon">⚡</span>Cast</span><span class="glance-val">{{ .casting }}</span></div>
+            <div class="glance-row"><span class="glance-label"><span class="spec-icon">🎯</span>Range</span><span class="glance-val">{{ .range }}</span></div>
+            <div class="glance-row"><span class="glance-label"><span class="spec-icon">⏳</span>Duration</span><span class="glance-val">{{ .duration }}</span></div>
+            <div class="glance-row"><span class="glance-label"><span class="spec-icon">📖</span>Components</span><span class="glance-val">{{ .components }}</span></div>
+            <div class="glance-row"><span class="glance-label"><span class="spec-icon">🎲</span>Roll</span><span class="glance-val">{{ .resolution }}</span></div>
+          </div>
+        </section>
+      </div>
+
+      <div class="spell-grid-right">
+        <section class="panel spell-card-effect">
+          <div class="panel-heading"><span class="panel-icon">🛡️</span><h3>Effect</h3></div>
+          <p>{{ .effect }}</p>
+          <p class="spell-scaling"><strong>Scaling:</strong> {{ .higher }}</p>
+        </section>
+
+        <section class="panel spell-card-target">
+          <div class="panel-heading"><span class="panel-icon">👥</span><h3>Target</h3></div>
+          <p>{{ .target }}</p>
+        </section>
+
         <section class="panel spell-card-tools">
           <div class="panel-heading">
             <span class="panel-icon">🪄</span>
@@ -89,36 +113,31 @@
         </section>
       </div>
 
-      <div class="spell-grid-right">
-        <section class="panel spell-card-glance">
-          <div class="panel-heading"><span class="panel-icon">📋</span><h3>At a Glance</h3></div>
-          <div class="glance-table">
-            <div class="glance-row"><span class="glance-label"><span class="spec-icon">⚡</span>Cast</span><span class="glance-val">{{ .casting }}</span></div>
-            <div class="glance-row"><span class="glance-label"><span class="spec-icon">🎯</span>Range</span><span class="glance-val">{{ .range }}</span></div>
-            <div class="glance-row"><span class="glance-label"><span class="spec-icon">⏳</span>Duration</span><span class="glance-val">{{ .duration }}</span></div>
-            <div class="glance-row"><span class="glance-label"><span class="spec-icon">📖</span>Components</span><span class="glance-val">{{ .components }}</span></div>
-            <div class="glance-row"><span class="glance-label"><span class="spec-icon">🎲</span>Roll</span><span class="glance-val">{{ .resolution }}</span></div>
+      {{ with $uses }}
+      <section class="panel spell-card-plays" id="in-plays">
+        <div class="panel-heading">
+          <span class="panel-icon">⚔️</span>
+          <div>
+            <h3>In {{ len . }} {{ cond (eq (len .) 1) "Play" "Plays" }}</h3>
+            <small>Tactical plays featuring this spell.</small>
           </div>
-        </section>
-
-        <section class="panel spell-card-effect">
-          <div class="panel-heading"><span class="panel-icon">🛡️</span><h3>Effect</h3></div>
-          <p>{{ .effect }}</p>
-          <p class="spell-scaling"><strong>Scaling:</strong> {{ .higher }}</p>
-        </section>
-
-        <section class="panel spell-card-target">
-          <div class="panel-heading"><span class="panel-icon">👥</span><h3>Target</h3></div>
-          <p>{{ .target }}</p>
-        </section>
-
-        {{ with $uses }}
-        <section class="panel spell-card-plays" id="in-plays">
-          <div class="panel-heading"><span class="panel-icon">⚔️</span><h3>In {{ len . }} {{ cond (eq (len .) 1) "Play" "Plays" }}</h3></div>
-          <div class="card-links">{{ range . }}<a href="{{ .RelPermalink }}" title="{{ .Title }}">{{ .Params.play_id }}</a>{{ end }}</div>
-        </section>
-        {{ end }}
-      </div>
+        </div>
+        <div class="spell-plays-list">
+          {{ range . }}
+          <a class="spell-play-card" href="{{ .RelPermalink }}">
+            <div class="spell-play-card-top">
+              <span class="spell-play-id">{{ .Params.play_id }}</span>
+              <span class="spell-play-group">{{ .Params.group | upper }}</span>
+              <span class="tag spell-play-actor {{ if eq .Params.actor "Mr. Big" }}tag-familiar{{ end }}">{{ .Params.actor }}</span>
+            </div>
+            <h4 class="spell-play-title">{{ .Title }}</h4>
+            <p class="spell-play-summary">{{ .Params.summary }}</p>
+            <span class="spell-play-cta" aria-hidden="true">Open play ↗</span>
+          </a>
+          {{ end }}
+        </div>
+      </section>
+      {{ end }}
     </div>
 
     <footer class="spell-modal-footer">

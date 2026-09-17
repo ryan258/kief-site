@@ -39,14 +39,28 @@
 <a href="{{ .url | relURL }}" {{ if eq $current (.url | relURL) }}aria-current="page"{{ end }}><span aria-hidden="true">{{ .icon }}</span>{{ .name }}</a>
 {{ end }}
 </nav>
-<div class="rail-note"><span class="mini-star" aria-hidden="true">✧</span><p>Apparently relaxed.<br><em>Actually prepared.</em></p><small>Forest Gnome<br>Draconic Sorcerer · Level 5</small></div>
-<a class="setup-link" href="{{ "setup/" | relURL }}">Before session one <span aria-hidden="true">↗</span></a>
+<div class="rail-note">
+<div class="sidebar-avatar-wrap">
+<img class="sidebar-avatar" src="{{ "kief-portrait.webp" | relURL }}" alt="Kief Firelight" width="98" height="68">
+</div>
+<p>Apparently relaxed.<br><em>Actually prepared.</em></p><small>Forest Gnome<br>Draconic Sorcerer · Level 5</small></div>
+<a class="setup-link" href="{{ "setup/" | relURL }}">
+<span class="setup-link-text">Before session one <span class="setup-arrow" aria-hidden="true">›</span></span>
+<div class="setup-progress-row">
+<div class="setup-progress-bar"><div class="setup-progress-fill" style="width: 50%;"></div></div>
+<span class="setup-progress-count">3 / 6</span>
+</div>
+</a>
 <div class="edition">D&D 2024 · LOCAL BUILD<br>RULES CHECK: 17 SEP 2026</div>
+<div class="sidebar-footer-quote">
+<p>&ldquo;Better players<br>make brighter worlds.&rdquo;</p>
+<div class="gold-diamond" aria-hidden="true">&mdash; &#x25C7; &mdash;</div>
+</div>
 </aside>
 <div class="workspace">
-<header class="topbar"><span>FIELD NOTES <span class="slash">/</span> {{ if .IsHome }}DASHBOARD{{ else }}{{ .Title | upper }}{{ end }}</span><span class="local-indicator"><i></i> Personal tabletop companion</span></header>
+<header class="topbar"><span><a class="topbar-home" href="{{ "" | relURL }}" aria-label="Dashboard">⌂</a> <span class="slash">/</span> FIELD NOTES <span class="slash">/</span> {{ if .IsHome }}DASHBOARD{{ else }}{{ .Title | upper }}{{ end }}</span><span class="local-indicator"><i></i> Personal tabletop companion</span></header>
 <main id="main" tabindex="-1">{{ block "main" . }}{{ end }}</main>
-<footer>Built for a good turn, and getting everyone home. <a href="{{ "checks/" | relURL }}">Campaign checks</a> <a href="{{ "rulings/" | relURL }}">Table rulings</a><br><small>Current local build. D&D Beyond sync, starting gear, and familiar setup remain pending. DM rulings govern play.</small></footer>
+<footer><div class="footer-wrap"><span>Built for a good turn, and getting everyone home. <a href="{{ "checks/" | relURL }}">Campaign checks</a> <a href="{{ "rulings/" | relURL }}">Table rulings</a> <a href="{{ "character/" | relURL }}">Character record</a></span><small class="footer-meta">Current local build. D&D Beyond sync pending. DM rulings govern play.</small></div></footer>
 </div>
 </div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
