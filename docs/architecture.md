@@ -53,6 +53,13 @@ The play directory searches titles, summaries, groups, IDs, and rendered body te
 
 The dashboard has sticky HP/concentration/Reaction shortcuts. Mobile presents resources before recommendations, compresses the decorative hero, and enlarges frequently used controls. Shortcuts navigate to controls; they do not spend resources.
 
+## Reading layouts and tabletop accessibility
+
+- **Play Dashboards:** `layouts/plays/single.html` parses each play's four canonical H3 sections (`when-to-use-it`, `mechanics`, `at-the-table`, `the-rule-underneath`) into a container-queried dashboard (`.play-wrap`, `.play-dash`). At `>= 860px`, the pitch displays full width (`.play-lead`), action mechanics occupy the primary panel (`.play-main`), and table dialogue (`.play-script`), detected spell mini-cards (`.spell-mini`), foldable underlying rules (`<details class="fold">`), and cross-references occupy the sidebar (`.play-side`). In modal dialogs or narrow viewports, the layout collapses gracefully into a clean single column.
+- **Glance-First Spell Cards:** `layouts/spellbook/list.html` splits spell cards into an immediate at-a-glance block (`.spell-glance`: Cast, Range, Duration, and critical Cautions) and a collapsible `<details class="fold">` containing full details (Target, Components, Roll, Effect, Scaling, 2024 source reference, and backlinked plays). In `assets/app.js`, opening a spell card directly via URL hash automatically expands folded details, ensuring deliberate modal lookups reveal full mechanical text immediately.
+- **Reference Dashboards & TOC:** `layouts/_default/single.html` automatically transforms reference documents with 4+ `<h2>` sections into a dashboard grid (`.ref-dash`) with an "ON THIS PAGE" chip navigation bar (`.toc`) generated from Hugo's Table of Contents.
+- **Motor Accessibility & 44px Tap Targets:** Calibrated for tabletop stability and motor impairments (including Multiple Sclerosis), all interactive elements (`button`, `summary`, `select`, `input`, `.toggle`, navigation links, chips, `.setup-link`, `.spell-mini`, `.text-link`, `.card-links a`) enforce a strict `min-height: 44px` (and `min-width: 44px` for buttons). Play directory cards stretch `.card-link::after` over the entire card area so the whole panel serves as an easy-to-hit tap target. Inline prose links utilize `padding-block: 10px` to expand touch targets without reflowing body text.
+
 ## Verification and delivery
 
 Focused Node tests exercise the state model and tracker event wiring using a small DOM adapter. Python importer contract tests use temporary fixtures from checked-in data, so CI does not require the sibling repository. Browser checks remain necessary for dialogs, layout, focus, and downloads.

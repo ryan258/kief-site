@@ -12,6 +12,8 @@ Implemented locally on 2026-09-17; see `VERIFICATION.md` for the checks actually
 - Sticky combat shortcuts, resource-first mobile layout, full-body play search, multiline spell autolinks, and resource/concentration warnings.
 - **Interactive Cast Workflow:** choose spell, slot level, Metamagic, and free-cast/ritual sources; live preview of slot/SP/resource costs, concentration replacement, and Reaction consumption; atomic execution with single-click Undo and table override bypass.
 - **Turn State Economy:** live tracking of Action, Bonus Action, Reaction, and slot spent. Context switching between Kief's turn and off-turn with cross-reload persistence (`kiefSlotSpent`); 2024 one-slot-per-turn limit enforcement; manual correction pills.
+- **Scannable Reading Dashboards:** container-queried play dashboards (`.play-dash`) parsing lead pitch, mechanics, table dialogue, spell mini-cards, and collapsible rules; glance-first spell cards with folded mechanics; and reference dashboards (`.ref-dash`) with on-page TOC chips (`.toc`).
+- **Motor Accessibility & 44px Touch Targets:** strict 44px minimum tap targets across all interactive controls (buttons, inputs, toggles, chips, summaries), stretched full-card tap targets on directory cards, and non-reflowing link padding, specifically designed for tabletop stability and players with MS.
 - SCSS asset pipeline via Hugo Pipes (`toCSS` + `minify` + `fingerprint`).
 - Targeted pure state, DOM controller, and importer contract tests, Hugo version pinning, and static link checks.
 
@@ -30,7 +32,7 @@ Acceptance: cast, undo, reload, and correct a representative turn without duplic
 - Extra slots created through Font of Magic, explicit conversion costs, and a rest workflow covering actual Hit Dice decisions.
 - Familiar HP, initiative, Reaction, presence/summoning status, senses, delivery range, and role assignments.
 - Backup import with schema validation, preview, rollback, and migrations; recovery-copy management; stronger multi-tab conflict handling.
-- Accessible compact combat mode, larger touch controls across all screens, keyboard/focus acceptance, screen-reader checks, and real phone/tablet testing.
+- Screen-reader audits, keyboard focus acceptance, and broad real phone/tablet testing (44px touch targets delivered).
 - Installable offline support with visible cache/version status and safe updates during an active session. A normal cached page is not reliable offline availability.
 - Print stylesheet and a compact two-sided rules/character sheet; printable spell and play cards.
 

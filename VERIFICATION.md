@@ -1,5 +1,21 @@
 # Verification history
 
+## Scannable reading layouts, play/spell dashboards, and motor accessibility tap targets — 2026-09-17 (local)
+
+This entry records verification of scannable reading dashboards, glance-first spell cards, reference dashboards, and motor accessibility touch targets:
+
+- **Play Dashboards**: `layouts/plays/single.html` parses each play's 4 canonical H3 sections (`when-to-use-it`, `mechanics`, `at-the-table`, `the-rule-underneath`) into a container-queried dashboard (`.play-wrap`, `.play-dash`). Splits out `.play-lead` across the top, `.play-main` for when-to-use and mechanics, and `.play-side` for script dialogue, auto-detected `SPELLS IN THIS PLAY` mini-cards (`.spell-mini`) with casting/range/duration stats, collapsible `the-rule-underneath` fold, and cross-references. Verified on all 172 play pages.
+- **Glance-First Spellbook**: `layouts/spellbook/list.html` formats spell cards with an immediate `.spell-glance` grid (Cast, Range, Duration) and critical cautions up front, tucking target, components, roll, effect, scaling, and source links into `<details class="fold">`. In `assets/app.js`, opening a spell via hash automatically unfolds details so modal views show full spell text immediately.
+- **Reference Dashboards & TOC**: `layouts/_default/single.html` automatically detects long reference documents (4+ `<h2>` sections) and transforms them into a dashboard grid (`.ref-dash`) with an "ON THIS PAGE" chip navigation bar (`.toc`) driven by Hugo's goldmark Table of Contents.
+- **Motor Accessibility & 44px Tap Targets**: In `assets/style.scss`, enforced a strict 44px minimum touch target height across all interactive elements (`button`, `summary`, `select`, `input`, `.toggle`, navigation links, chips, `.setup-link`, `.spell-mini`, `.text-link`, `.card-links a`), with 44px min-width on buttons, stretched full-card tap targets on play directory cards (`.card-link::after`), and non-reflowing inline link padding (`padding-block: 10px`), specifically accommodating players with motor impairments/MS.
+- **Automated gates: 35 targeted tests passed quietly**:
+  - 13 pure state tests in `tests/state.test.cjs`.
+  - 20 DOM controller tests in `tests/app.test.cjs`.
+  - 2 storage engine tests in `tests/storage.test.cjs`.
+  - 3 importer contract tests in `tests/sync_test.py`.
+- **Synchronization**: `python3 scripts/sync_content.py --check` in-sync across all 9 records, 25 spell references, and source fingerprints.
+- **Static build & links**: Hugo production-shaped build (`--gc --minify`) succeeded in 205ms without warnings (186 pages); link and asset audit verified across 185 generated HTML pages (`scripts/check_links.py ./public`).
+
 ## Local state persistence & iPad tabletop reliability — 2026-09-17 (local)
 
 This entry records verification of local state persistence, review findings resolution, and iPad tabletop resilience:
