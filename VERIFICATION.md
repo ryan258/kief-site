@@ -1,5 +1,26 @@
 # Verification history
 
+## Local state persistence & iPad tabletop reliability — 2026-09-17 (local)
+
+This entry records verification of local state persistence, review findings resolution, and iPad tabletop resilience:
+
+- **Review Fixes (2026-09-17 review resolution)**:
+  - **[P1] Undo throws with storage engine loaded**: Exported `clearUndo` in `assets/storage.js` (calling `saveUndo(null)`). Injected `storageEngine` into `tests/app.test.cjs` harness by default so controller tests exercise the live storage API. Verified undo clears storage durably and restores saved session counters.
+  - **[P1] Delayed startup recovery overwriting user edits**: Added `stateRevision` monotonic counter in `assets/app.js`. If user makes any change (`change()`, input, rest, import) while asynchronous `loadMirror()` is pending, the delayed mirror resolution detects `stateRevision !== startupRev` and discards the stale read, preserving user edits.
+  - **[P1] Offline first-visit caching & async fallback bug**: In `assets/sw.js` (rendered by Hugo to `/sw.js`), precached the dashboard and all fingerprinted assets during worker `install`. Fixed `caches.match('./') || caches.match('/')` truthy Promise bug by properly awaiting the fallback chain.
+  - **[P1] Service worker origin cache isolation**: Restricted cache activation deletion strictly to caches starting with `kief-site-`, preventing deletion of sibling apps on the shared GitHub Pages origin.
+  - **[P2] Archival failure stops import and snapshot restoration**: In `importConfirm` and snapshot card restoration, checked `invalidStored` and called `model.backupUnreadable(localStorage)`. If unreadable preservation or current save archival fails (e.g. storage quota), the action halts immediately, reports error to the user, and leaves existing state untouched.
+  - **[P2] Storage and wake-lock indicators distinguish actual states**:
+    - Storage badge (`#storage-status`): distinguishes `Persistent 🔒` (granted non-evictable), `Mirrored ⚡` (IndexedDB confirmed working), `Local only 💾` (IndexedDB unavailable), and `Storage warning ⚠️` (write failure on either store).
+    - Table mode (`#wake-lock-btn`): distinguishes confirmed ON (only when `wakeLock` successfully acquired), unavailable (when API is missing), and failed (when request rejects), notifying appropriately without falsely claiming screen will stay awake.
+  - **Refined persistence claims**: Documented in `docs/architecture.md` that WebKit eviction deletes an origin's data as a whole. Dual-storage mirroring protects against single-store corruption or locks, but persistent storage permission and external file exports remain the defenses against origin-wide clearing.
+- **Automated gates: 34 targeted tests passed quietly**:
+  - 13 pure state tests in `tests/state.test.cjs`.
+  - 16 DOM controller tests in `tests/app.test.cjs` (including undo with storage engine, startup race guard, archival failure blocks, import validation, and wake-lock unavailable handling).
+  - 2 storage engine tests in `tests/storage.test.cjs` (exercising fallback and connected in-memory IndexedDB mock verifying mirroring, undo, and snapshot pruning at 10 items).
+  - 3 importer contract tests in `tests/sync_test.py`.
+- **Static build & links**: Hugo build succeeded in 172ms without warnings (186 pages); link and asset audit verified across 185 generated HTML pages (`scripts/check_links.py ./public`).
+
 ## Review bug fixes: turn context reload, hidden override clearing, and Subtle label — 2026-09-17 (local)
 
 This entry records verification of three P2 fixes addressing review findings in the staged/unstaged changes:

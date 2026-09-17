@@ -1,6 +1,6 @@
 # Companion architecture
 
-The companion is a Hugo static site with vanilla JavaScript and SCSS (processed via Hugo Pipes `toCSS`). It has no external runtime dependencies, backend, account system, or cloud synchronization. The current product is a level-5 character reference and manual session tracker; it is not a complete rules engine. First-load navigation and uncached card fetches require a network connection. There is no offline service worker.
+The companion is a Hugo static site with vanilla JavaScript and SCSS (processed via Hugo Pipes `toCSS`). It has no external runtime dependencies, backend, account system, or cloud synchronization. The current product is a level-5 character reference and manual session tracker; it is not a complete rules engine. An offline service worker and Web App Manifest (`static/manifest.webmanifest`) cache the static shell for uninterrupted tabletop play when offline or between iPad WebKit process purges. `assets/sw.js` is rendered by Hugo with the build's fingerprinted asset list, precaches it on install, and names its cache from those URLs, so each deploy replaces the previous cache.
 
 ## Authority and data flow
 
@@ -12,7 +12,7 @@ The companion is a Hugo static site with vanilla JavaScript and SCSS (processed 
                                                        docs/rules-arbitration.md
 content/plays/{kief,mr-big}/*.md ─ site-authored tactics ─┐
 layouts/ + assets/ + imported data ─────────────────────┴─ Hugo → static site
-browser localStorage ↔ validated session state ↔ dashboard controls
+browser localStorage + IndexedDB mirror ↔ validated session state ↔ dashboard controls
 ```
 
 Nine current Markdown records and one spell-reference JSON file are fingerprinted. Rules arbitration is also mirrored byte-for-byte into this directory. Edit shared character/rules material in `../kief`, then import; do not fix only the generated copies. Historical level-7 records, exports, and gear are excluded.
@@ -23,7 +23,7 @@ The dashboard limits and labels remain explicit in `assets/state.js` and `layout
 
 ## Runtime state
 
-`assets/state.js` exports the same API to browsers and Node tests. The persisted key remains `kief-firelight.level5.session.v1`; existing valid saves remain compatible. State includes HP 0–47, SP 0–5, daily uses, Hit Dice, fixed 4/3/2 slot booleans, concentration, Innate effect, Reaction, restoration-used flag, turn context (`turnActive`), Action/Bonus Action readiness (`actionReady`, `bonusActionReady`), turn slot spending (`slotSpentThisTurn`), turn slot persistence (`kiefSlotSpent`), and a save timestamp.
+`assets/state.js` exports the same pure API to browsers and Node tests. The persisted key remains `kief-firelight.level5.session.v1`; existing valid saves remain compatible. State includes HP 0–47, SP 0–5, daily uses, Hit Dice, fixed 4/3/2 slot booleans, concentration, Innate effect, Reaction, restoration-used flag, turn context (`turnActive`), Action/Bonus Action readiness (`actionReady`, `bonusActionReady`), turn slot spending (`slotSpentThisTurn`), turn slot persistence (`kiefSlotSpent`), and a save timestamp.
 
 - `fresh`, `normalize`, `adjust`, and `restore` create, validate, or adjust bounded state without DOM access.
 - `startTurn` and `endTurn` advance turns, restoring Action, Bonus Action, Reaction, and clearing on-turn slot limits while preserving Kief's slot expenditure state.
@@ -31,10 +31,17 @@ The dashboard limits and labels remain explicit in `assets/state.js` and `layout
 - `guidance` warns about unavailable third-level slots, Careful SP, spent Reactions, ally-mobility slots, concentration replacement, and 0 HP. It does not select targets or enforce casting legality.
 - `previewCast` and `cast` calculate and execute atomic casting transactions: validating slots, Metamagic SP, free uses, concentration replacement, Reaction consumption, and the 2024 one-slot-per-turn rule across all turns. Table overrides allow explicit bypass of resource constraints while strictly separating non-bypassable structural validation. Override consent is automatically cleared when casting choices change or controls become hidden, and open previews refresh on cross-tab storage events with renewed consent required when restrictions are introduced.
 - `backupUnreadable` is the small storage adapter: it preserves exact unreadable bytes under a unique recovery key before an explicitly approved replacement. A failed backup blocks replacement.
+- `validateBackup` parses and validates both raw state objects and complete export backup envelopes, guaranteeing schema compatibility before restoration.
 
-`assets/app.js` owns DOM events, persistence, and one-step in-memory Undo. A normal edit snapshots the preceding state. Rest Undo writes the previous counters durably; it never reinstates a stale “do not save” flag after recovery. Reload and external storage events invalidate Undo. Valid same-origin saves update other tabs; removed or malformed external saves put the current tab into visibly temporary tracking.
+`assets/storage.js` provides zero-dependency storage mirroring, persistent storage requests, and snapshot management:
+- Mirrored persistence: every change commits synchronously to `localStorage` and asynchronously to IndexedDB (`kief-companion-v1`, `session` store). If `localStorage` is unreadable or empty on startup (and no edits have occurred since load), the app rescues and restores state from IndexedDB. This protects against single-store corruption, transient storage locks, or isolated clearing, but WebKit eviction normally deletes an origin's data as a whole. Mirroring is not an independent defense against whole-origin eviction.
+- WebKit eviction defense: requests non-evictable storage classification via `navigator.storage.persist()`. When granted, persistent storage prevents browser-driven eviction under device storage pressure.
+- Rolling snapshots: captures up to 10 recent historical states (validated with `normalize` and rendered as text before display, since same-origin pages can write the store) with timestamps and descriptions in IndexedDB (`snapshots` store) for 1-click recovery from accidental table resets or mistaps.
+- Persistent undo: writes undo state durably to storage so one-step undo survives page reloads.
 
-Recover save preserves unreadable data and saves the visible counters without a rest. Export tracking shows copyable JSON and a download link containing current counters, the active raw save, and available recovery copies. Import/automatic restoration from a downloaded backup is not yet implemented. A storage failure leaves visible counters usable and displays a warning; an export can still carry the in-memory state. Recovery copies remain browser-local until exported and are lost if browser storage is cleared.
+`assets/app.js` owns DOM events, persistence, Table Mode (Screen Wake Lock), lifecycle flushes, and dialogs. A normal edit snapshots preceding state. Rest Undo writes previous counters durably; it never reinstates a stale “do not save” flag after recovery. Reload and external storage events update the view. Valid same-origin saves update other tabs; removed or malformed external saves put the current tab into visibly temporary tracking.
+
+Every change saves synchronously, so lifecycle guards on `visibilitychange` (hidden) and `pagehide` only commit an HP edit still focused in its input; they never re-save unchanged state or add snapshots. When the page becomes visible again it resyncs from `localStorage` through the same path as cross-tab `storage` events, which also invalidates in-memory Undo. Table mode (`navigator.wakeLock`) keeps the iPad screen awake when supported and confirmed, and reports unavailable/failed when unsupported or denied. Recover save preserves unreadable data and saves visible counters without a rest. Export tracking produces a downloadable or copyable JSON backup; an export kept outside the browser remains the ultimate recovery mechanism if an entire origin's storage is cleared. Import tracking parses JSON files or pasted text, validates counters, displays a preview, and requires successful archival of existing counters before applying. An archival failure blocks replacement.
 
 ## Reference cards and discovery
 
