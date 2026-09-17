@@ -1,6 +1,7 @@
 'use strict';
 (() => {
   const model = window.KiefState;
+  const storage = (typeof window !== 'undefined' && window.KiefStorage) || null;
   const $ = selector => document.querySelector(selector);
   const $$ = selector => [...document.querySelectorAll(selector)];
   let toastTimer;
@@ -152,11 +153,40 @@
   let saveWarning = false;
   let undoState = null;
   const time = value => new Date(value).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  let storageLoaded = false;
+  let stateRevision = 0;
+  let isPersisted = false;
+  let idbAvailable = false;
+  let idbMirrorFailing = false;
+
+  function updateStorageBadge() {
+    const badge = $('#storage-status');
+    if (!badge) return;
+    if (saveWarning || idbMirrorFailing) {
+      badge.textContent = 'Storage warning ⚠️';
+      badge.title = 'Storage operation failed; changes may not be safely mirrored';
+      badge.classList.add('warning');
+    } else if (isPersisted) {
+      badge.textContent = 'Persistent 🔒';
+      badge.title = 'Non-evictable storage granted by browser';
+      badge.classList.remove('warning');
+    } else if (idbAvailable) {
+      badge.textContent = 'Mirrored ⚡';
+      badge.title = 'Saved in localStorage and mirrored in IndexedDB';
+      badge.classList.remove('warning');
+    } else {
+      badge.textContent = 'Local only 💾';
+      badge.title = 'Saved in localStorage only (IndexedDB unavailable)';
+      badge.classList.remove('warning');
+    }
+  }
+
   try {
     const raw = localStorage.getItem(model.key);
     if (raw !== null) {
       state = model.normalize(JSON.parse(raw));
       saveNotice = state.savedAt ? `Loaded browser save · ${new Date(state.savedAt).toLocaleString()}` : 'Loaded browser save';
+      storageLoaded = true;
     }
   } catch (error) {
     saveWarning = true;
@@ -164,6 +194,58 @@
     invalidStored = error.name !== 'SecurityError';
     saveNotice = invalidStored ? 'Saved data could not be read. Tracking is temporary. Use Recover save to preserve the old data and save these counters.' : 'Browser storage unavailable · tracking only in this open page';
   }
+
+  // Dual-storage resilience: If localStorage was empty/cleared, rescue from IndexedDB mirror
+  const startupRev = stateRevision;
+  if (storage) {
+    if (typeof storage.isAvailable === 'function') {
+      storage.isAvailable().then(avail => {
+        idbAvailable = Boolean(avail);
+        updateStorageBadge();
+      }).catch(() => {
+        idbAvailable = false;
+        updateStorageBadge();
+      });
+    }
+
+    if (!storageLoaded && !invalidStored) {
+      storage.loadMirror().then(mirrored => {
+        // Revision guard: If user edited or imported or changed state while mirror read was pending, do NOT overwrite
+        if (stateRevision !== startupRev || localStorage.getItem(model.key) !== null) {
+          return;
+        }
+        if (mirrored) {
+          try {
+            state = model.normalize(mirrored);
+            saveNotice = state.savedAt ? `Restored from IndexedDB backup · ${time(state.savedAt)}` : 'Restored from IndexedDB backup';
+            saveWarning = false;
+            try { localStorage.setItem(model.key, JSON.stringify(state)); } catch {}
+            render();
+            notify('Session restored from resilient IndexedDB backup.');
+          } catch {}
+        }
+      }).catch(() => {});
+    }
+
+    storage.loadUndo().then(savedUndo => {
+      if (stateRevision !== startupRev || undoState !== null) return;
+      if (savedUndo) {
+        try {
+          undoState = model.normalize(savedUndo);
+          if ($('#undo-change')) $('#undo-change').disabled = false;
+        } catch {}
+      }
+    }).catch(() => {});
+
+    storage.requestPersistence().then(persisted => {
+      isPersisted = Boolean(persisted);
+      updateStorageBadge();
+    }).catch(() => {
+      isPersisted = false;
+      updateStorageBadge();
+    });
+  }
+  updateStorageBadge();
   function render() {
     $('#hp-input').value = state.hp;
     $('#hp-fill').style.width = `${state.hp / model.limits.hp * 100}%`;
@@ -212,7 +294,8 @@
     setPill('#turn-reaction', state.reactionReady);
     setPill('#turn-slot', !state.slotSpentThisTurn);
   }
-  function save() {
+  function save(summary) {
+    stateRevision++;
     if (!invalidStored) {
       const timestamp = new Date().toISOString();
       try {
@@ -224,20 +307,38 @@
         saveNotice = 'Could not save · changes exist only in this open page';
         saveWarning = true;
       }
+      if (storage) {
+        storage.saveMirror(state).then(ok => {
+          if (ok === false) {
+            idbMirrorFailing = true;
+            updateStorageBadge();
+          } else {
+            idbMirrorFailing = false;
+            idbAvailable = true;
+            updateStorageBadge();
+          }
+        }).catch(() => {
+          idbMirrorFailing = true;
+          updateStorageBadge();
+        });
+        storage.saveUndo(undoState).catch(() => {});
+        storage.addSnapshot(state, summary || 'Tracker change').catch(() => {});
+      }
     }
+    updateStorageBadge();
     render();
   }
-  function change(next) {
+  function change(next, summary) {
     undoState = structuredClone(state);
     if ($('#toast button')) $('#toast').textContent = '';
     state = next.hp === 0 ? { ...next, concentration: '' } : next;
-    $('#damage-result').textContent = ''; save();
+    $('#damage-result').textContent = ''; save(summary);
   }
   function undo() {
     if (!undoState) return;
     state = undoState; undoState = null;
     $('#damage-result').textContent = '';
-    save(); notify('Last tracker change undone.');
+    save('Undone change'); notify('Last tracker change undone.');
   }
   $('#undo-change').addEventListener('click', undo);
   $('#apply-damage').addEventListener('click', () => {
@@ -287,6 +388,7 @@
     if (input === '' || !Number.isInteger(value) || value < 0 || value > model.limits.hp) {
       notify('Enter a whole number from 0 to 47.'); render(); return;
     }
+    if (value === state.hp) return;
     change({ ...state, hp: value, concentration: value === 0 ? '' : state.concentration });
   });
   $$('[data-slot]').forEach(button => button.addEventListener('click', () => {
@@ -528,16 +630,18 @@
 
   // Browser tabs on this same origin follow the latest valid saved session.
   addEventListener('storage', event => {
-    if (event.key !== model.key) return;
+    if (event.key === model.key) syncFromStorage(event.newValue);
+  });
+  function syncFromStorage(newValue) {
     $('#damage-result').textContent = '';
     undoState = null;
     if ($('#toast button')) $('#toast').textContent = '';
     try {
-      if (event.newValue === null) {
+      if (newValue === null) {
         invalidStored = true; saveWarning = true;
         saveNotice = 'Browser save removed elsewhere · tracking temporarily; Long Rest starts a new save.';
       } else {
-        state = model.normalize(JSON.parse(event.newValue)); invalidStored = false; saveWarning = false;
+        state = model.normalize(JSON.parse(newValue)); invalidStored = false; saveWarning = false;
         saveNotice = 'Updated from another tab on this browser';
       }
     } catch {
@@ -546,6 +650,221 @@
     }
     render();
     refreshOpenCast?.();
+  }
+
+  // Screen Wake Lock for iPad tabletop use
+  let wakeLock = null;
+  let wakeLockActive = false;
+  const wakeBtn = $('#wake-lock-btn');
+
+  function setWakeUi(on) {
+    if (!wakeBtn) return;
+    wakeBtn.classList.toggle('active', on);
+    wakeBtn.innerHTML = `<span class="wake-dot"></span>Table mode${on ? ': ON' : ''}`;
+  }
+
+  async function acquireWakeLock(silent = false) {
+    if (typeof navigator === 'undefined' || !('wakeLock' in navigator)) {
+      wakeLockActive = false;
+      setWakeUi(false);
+      notify('Table mode unavailable: Screen Wake Lock is not supported on this browser.');
+      return;
+    }
+    try {
+      wakeLock = await navigator.wakeLock.request('screen');
+      wakeLockActive = true;
+      setWakeUi(true);
+      if (!silent) notify('Table mode active: Screen will stay awake on the table.');
+      wakeLock.addEventListener('release', () => {
+        wakeLock = null;
+        if (!wakeLockActive) setWakeUi(false);
+      });
+    } catch {
+      wakeLock = null;
+      wakeLockActive = false;
+      setWakeUi(false);
+      notify('Table mode failed: Could not acquire screen wake lock.');
+    }
+  }
+
+  async function releaseWakeLock() {
+    wakeLockActive = false;
+    if (wakeLock) {
+      try { await wakeLock.release(); } catch {}
+      wakeLock = null;
+    }
+    setWakeUi(false);
+    notify('Table mode deactivated. Screen will follow standard sleep settings.');
+  }
+
+  wakeBtn?.addEventListener('click', () => {
+    if (wakeLockActive || wakeLock) releaseWakeLock();
+    else acquireWakeLock();
   });
+
+  // iPad lifecycle: every change already saves synchronously, so only commit an HP edit still sitting in the input.
+  function flushPending() {
+    const hpInput = $('#hp-input');
+    if (document.activeElement !== hpInput) return;
+    const val = Number(hpInput.value);
+    if (hpInput.value !== '' && Number.isInteger(val) && val >= 0 && val <= model.limits.hp && val !== state.hp) {
+      change({ ...state, hp: val, concentration: val === 0 ? '' : state.concentration }, 'HP edit on blur');
+    }
+  }
+
+  // Suspended iOS tabs can miss storage events; catch up through the same path when shown again.
+  function resyncIfStale() {
+    let raw;
+    try { raw = localStorage.getItem(model.key); } catch { return; }
+    if (raw === null) return;
+    try {
+      if (JSON.parse(raw).savedAt === state.savedAt) return;
+    } catch {
+      if (invalidStored) return;
+    }
+    syncFromStorage(raw);
+  }
+
+  addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'hidden') {
+      flushPending();
+    } else if (document.visibilityState === 'visible') {
+      resyncIfStale();
+      if (wakeLockActive && !wakeLock) acquireWakeLock(true);
+    }
+  });
+  addEventListener('pagehide', flushPending);
+
+  // Import / restore backup
+  const importDialog = $('#import-dialog');
+  const importFile = $('#import-file');
+  const importText = $('#import-text');
+  const importPreview = $('#import-preview');
+  const importError = $('#import-error');
+  const importConfirm = $('#import-confirm');
+  const importCancel = $('#import-cancel');
+  let parsedImportState = null;
+
+  const slotSummary = s => [1, 2, 3].map(level => `${s.slots[level].filter(Boolean).length}/${s.slots[level].length}`).join(', ');
+
+  // Archive the active save (or preserve unreadable bytes) before replacing state; a failed archive blocks the replacement.
+  function replaceState(next, label, archiveTag) {
+    try {
+      if (invalidStored) model.backupUnreadable(localStorage);
+      else {
+        const raw = localStorage.getItem(model.key);
+        if (raw !== null) localStorage.setItem(`${model.key}.recovery.${archiveTag}.${new Date().toISOString()}`, raw);
+      }
+    } catch {
+      notify('Could not archive current save, so nothing was replaced. Export tracking first.');
+      return false;
+    }
+    undoState = structuredClone(state);
+    state = next;
+    invalidStored = false;
+    save(label);
+    return true;
+  }
+
+  function checkImport(content) {
+    try {
+      parsedImportState = model.validateBackup(content);
+      if (importError) importError.hidden = true;
+      if (importPreview) {
+        importPreview.hidden = false;
+        const s = parsedImportState;
+        importPreview.innerHTML = `<strong>Valid backup found:</strong><br>HP: <strong>${s.hp}/${model.limits.hp}</strong> · SP: <strong>${s.sp}/${model.limits.sp}</strong> · Slots (1/2/3): <strong>${slotSummary(s)}</strong><br>Concentration: <strong>${s.concentration || 'None'}</strong> · Turn: <strong>${s.turnActive ? 'Kief' : 'Off-turn'}</strong>`;
+      }
+      if (importConfirm) importConfirm.disabled = false;
+    } catch (err) {
+      parsedImportState = null;
+      if (importPreview) importPreview.hidden = true;
+      if (importError) {
+        importError.hidden = false;
+        importError.textContent = err.message || 'Invalid backup format.';
+      }
+      if (importConfirm) importConfirm.disabled = true;
+    }
+  }
+
+  $('#import-save')?.addEventListener('click', () => {
+    parsedImportState = null;
+    if (importFile) importFile.value = '';
+    if (importText) importText.value = '';
+    if (importPreview) importPreview.hidden = true;
+    if (importError) importError.hidden = true;
+    if (importConfirm) importConfirm.disabled = true;
+    importDialog?.showModal();
+  });
+
+  importFile?.addEventListener('change', event => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = e => {
+      const content = e.target.result;
+      if (importText) importText.value = content;
+      checkImport(content);
+    };
+    reader.readAsText(file);
+  });
+
+  importText?.addEventListener('input', () => {
+    const val = importText.value.trim();
+    if (!val) {
+      parsedImportState = null;
+      if (importPreview) importPreview.hidden = true;
+      if (importError) importError.hidden = true;
+      if (importConfirm) importConfirm.disabled = true;
+      return;
+    }
+    checkImport(val);
+  });
+
+  importCancel?.addEventListener('click', () => importDialog?.close());
+
+  importConfirm?.addEventListener('click', () => {
+    if (!parsedImportState || !replaceState(parsedImportState, 'Imported session backup', 'pre-import')) return;
+    importDialog?.close();
+    notify('Backup restored successfully. Previous state archived in recovery storage.', () => undo());
+  });
+
+  // Session history & rolling snapshots
+  const snapshotsDialog = $('#snapshots-dialog');
+  const snapshotsList = $('#snapshots-list');
+
+  $('#snapshots-btn')?.addEventListener('click', async () => {
+    if (!storage || !snapshotsList) {
+      notify('Session snapshot history requires IndexedDB support.');
+      return;
+    }
+    // Same-origin pages (shared GitHub Pages host) can write this store: validate before display, render as text.
+    const list = (await storage.getSnapshots()).flatMap(item => {
+      try { return [{ ...item, state: model.normalize(item.state) }]; } catch { return []; }
+    });
+    snapshotsList.innerHTML = '';
+    if (list.length === 0) {
+      snapshotsList.innerHTML = `<div class="snapshots-empty">${idbAvailable ? 'No rolling snapshots recorded yet. Snapshots are automatically captured during table actions.' : 'Snapshot history is unavailable because IndexedDB could not be opened.'}</div>`;
+    }
+    for (const item of list) {
+      const s = item.state;
+      const when = new Date(item.timestamp);
+      const timeStr = when.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+      const card = document.createElement('div');
+      card.className = 'snapshot-card';
+      card.innerHTML = '<div class="snapshot-info"><div class="snapshot-time"></div><div class="snapshot-summary"></div><div class="snapshot-details"></div></div><button type="button" class="button">Restore</button>';
+      card.querySelector('.snapshot-time').textContent = `${timeStr} · ${when.toLocaleDateString()}`;
+      card.querySelector('.snapshot-summary').textContent = String(item.summary || 'Tracker state');
+      card.querySelector('.snapshot-details').textContent = `${s.hp}/${model.limits.hp} HP · ${s.sp}/${model.limits.sp} SP · Slots: ${slotSummary(s)}${s.concentration ? ` · Conc: ${s.concentration}` : ''}`;
+      card.querySelector('button').addEventListener('click', () => {
+        if (!replaceState(s, 'Restored snapshot', 'pre-snapshot')) return;
+        snapshotsDialog?.close();
+        notify(`Restored snapshot from ${timeStr}. Previous state archived in recovery storage.`, () => undo());
+      });
+      snapshotsList.append(card);
+    }
+    snapshotsDialog?.showModal();
+  });
+
   render();
 })();

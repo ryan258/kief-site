@@ -3,8 +3,9 @@ const assert = require('node:assert/strict');
 const vm = require('node:vm');
 const fs = require('node:fs');
 const model = require('../assets/state.js');
+const storageEngine = require('../assets/storage.js');
 // Small DOM adapter for tracker event paths, not a browser/layout substitute.
-function harness(raw, failWrites = false) {
+function harness(raw, failWrites = false, customStorage = storageEngine) {
   const nodes = new Map(), events = new Map(), stored = new Map();
   if (raw !== undefined) stored.set(model.key, raw);
   const initialText = {
@@ -29,7 +30,9 @@ function harness(raw, failWrites = false) {
               if (classes.has(cls)) classes.delete(cls); else classes.add(cls);
             } else if (force) classes.add(cls); else classes.delete(cls);
           },
-          contains: cls => classes.has(cls)
+          contains: cls => classes.has(cls),
+          add: cls => classes.add(cls),
+          remove: cls => classes.delete(cls)
         },
         listeners: {},
         addEventListener(type, fn) { this.listeners[type] = fn; },
@@ -43,13 +46,13 @@ function harness(raw, failWrites = false) {
     return nodes.get(id);
   }
   const storage = { get length() { return stored.size; }, key: index => [...stored.keys()][index], getItem: key => stored.get(key) ?? null, setItem(key, value) { if (failWrites) throw new Error('Quota'); stored.set(key, value); } };
-  const context = { document: { querySelector: id => id === '[data-directory]' || id === '#toast button' ? null : node(id), querySelectorAll: () => [], addEventListener() {}, createElement: () => node('created') }, window: { KiefState: model }, Blob, URL: { createObjectURL: () => 'blob:test', revokeObjectURL() {} }, localStorage: storage, structuredClone, clearTimeout() {}, setTimeout() {}, addEventListener: (type, fn) => events.set(type, fn), console };
+  const context = { document: { querySelector: id => id === '[data-directory]' || id === '#toast button' ? null : node(id), querySelectorAll: () => [], addEventListener() {}, createElement: () => node('created') }, window: { KiefState: model, KiefStorage: customStorage }, Blob, URL: { createObjectURL: () => 'blob:test', revokeObjectURL() {} }, localStorage: storage, structuredClone, clearTimeout() {}, setTimeout() {}, addEventListener: (type, fn) => events.set(type, fn), console };
   vm.runInNewContext(fs.readFileSync(require.resolve('../assets/app.js'), 'utf8'), context);
   const fire = (id, type, value) => {
     const element = node(id); if (value !== undefined) element.value = value;
     if (element.listeners[type]) element.listeners[type]({ target: element, preventDefault() {} });
   };
-  return { node, stored, fire, events };
+  return { node, stored, fire, events, context };
 }
 test('unreadable save: temporary edits, confirmed reset, and undo persist the visible pre-rest counters', () => {
   const h = harness('{broken');
@@ -322,3 +325,167 @@ test('regression: hidden override clears consent on choice change and syncs on s
   assert.match(h.node('#toast').textContent, /0 HP/);
 });
 
+test('import workflow: validates backup payload, displays preview, restores state, and archives old state', () => {
+  const h = harness(JSON.stringify(model.fresh()));
+  assert.equal(h.node('#hp-input').value, 47);
+
+  // Open import dialog
+  h.fire('#import-save', 'click');
+  assert.equal(h.node('#import-dialog').open, true);
+  assert.equal(h.node('#import-confirm').disabled, true);
+
+  // Invalid input shows error and disables confirm
+  h.fire('#import-text', 'input', 'not json data');
+  assert.equal(h.node('#import-error').hidden, false);
+  assert.match(h.node('#import-error').textContent, /Invalid JSON/);
+  assert.equal(h.node('#import-confirm').disabled, true);
+
+  // Valid backup payload enables confirm and shows preview
+  const validBackup = {
+    exportedAt: '2026-09-17T12:00:00.000Z',
+    state: { ...model.fresh(), hp: 22, sp: 3, concentration: 'Web' }
+  };
+  h.fire('#import-text', 'input', JSON.stringify(validBackup));
+  assert.equal(h.node('#import-error').hidden, true);
+  assert.equal(h.node('#import-preview').hidden, false);
+  assert.match(h.node('#import-preview').innerHTML, /22\/47/);
+  assert.match(h.node('#import-preview').innerHTML, /Web/);
+  assert.equal(h.node('#import-confirm').disabled, false);
+
+  // Confirm restores counters and preserves pre-import recovery
+  h.fire('#import-confirm', 'click');
+  assert.equal(h.node('#import-dialog').open, false);
+  assert.equal(h.node('#hp-input').value, 22);
+  assert.equal(h.node('#concentration').value, 'Web');
+  assert.equal(JSON.parse(h.stored.get(model.key)).hp, 22);
+
+  // Pre-import state was archived in recovery storage
+  const recoveryKeys = [...h.stored.keys()].filter(k => k.includes('.recovery.pre-import.'));
+  assert.equal(recoveryKeys.length, 1);
+  assert.equal(JSON.parse(h.stored.get(recoveryKeys[0])).hp, 47);
+});
+
+test('table mode: wake lock toggle handles unavailable environment cleanly', () => {
+  const h = harness(JSON.stringify(model.fresh()));
+  // In Node environment without navigator.wakeLock
+  h.fire('#wake-lock-btn', 'click');
+  assert.equal(h.node('#wake-lock-btn').classList.contains('active'), false);
+  assert.match(h.node('#toast').textContent, /Table mode unavailable/);
+});
+
+test('undo with storage engine loaded: clears undo without throwing and restores saved counters', () => {
+  const h = harness(JSON.stringify(model.fresh()));
+  h.fire('#hp-input', 'change', '20');
+  assert.equal(JSON.parse(h.stored.get(model.key)).hp, 20);
+
+  // Undo must not throw with the storage engine loaded
+  assert.doesNotThrow(() => {
+    h.fire('#undo-change', 'click');
+  });
+
+  assert.equal(h.node('#hp-input').value, 47);
+  assert.equal(JSON.parse(h.stored.get(model.key)).hp, 47);
+  assert.match(h.node('#toast').textContent, /Last tracker change undone/);
+});
+
+test('startup race guard: delayed mirror recovery does not overwrite user edits made while pending', async () => {
+  let resolveMirror;
+  const pendingMirrorPromise = new Promise(resolve => { resolveMirror = resolve; });
+  const mockStorage = {
+    ...storageEngine,
+    loadMirror: () => pendingMirrorPromise,
+    loadUndo: () => Promise.resolve(null),
+    requestPersistence: () => Promise.resolve(false),
+    isAvailable: () => Promise.resolve(true)
+  };
+
+  // Start with empty localStorage (no save stored)
+  const h = harness(undefined, false, mockStorage);
+  assert.equal(h.stored.get(model.key), undefined);
+
+  // User edits HP to 12 while mirror read is still pending
+  h.fire('#hp-input', 'change', '12');
+  assert.equal(JSON.parse(h.stored.get(model.key)).hp, 12);
+
+  // Now the delayed mirror resolves with older session at 30 HP
+  resolveMirror({ ...model.fresh(), hp: 30, savedAt: new Date().toISOString() });
+  await new Promise(r => setImmediate(r));
+
+  // User's edit must NOT have been overwritten
+  assert.equal(h.node('#hp-input').value, 12);
+  assert.equal(JSON.parse(h.stored.get(model.key)).hp, 12);
+});
+
+test('import and snapshot restoration stop and do not mutate state if archival fails', () => {
+  // Test with storage write failure on pre-import archival
+  const h = harness(JSON.stringify(model.fresh()), true);
+
+  const validBackup = {
+    exportedAt: '2026-09-17T12:00:00.000Z',
+    state: { ...model.fresh(), hp: 22 }
+  };
+  h.fire('#import-save', 'click');
+  h.fire('#import-text', 'input', JSON.stringify(validBackup));
+  assert.equal(h.node('#import-confirm').disabled, false);
+
+  // Confirm with failing writes
+  h.fire('#import-confirm', 'click');
+  // State was NOT overwritten
+  assert.equal(h.node('#hp-input').value, 47);
+  assert.match(h.node('#toast').textContent, /Could not archive/);
+});
+
+test('lifecycle flush: hiding or closing with no pending edit writes nothing and adds no snapshot', () => {
+  let snapshots = 0;
+  const h = harness(JSON.stringify(model.fresh()), false, { ...storageEngine, addSnapshot: () => { snapshots++; return Promise.resolve(true); } });
+  const before = h.stored.get(model.key);
+  h.context.document.visibilityState = 'hidden';
+  h.events.get('visibilitychange')();
+  h.events.get('pagehide')();
+  assert.equal(h.events.has('beforeunload'), false);
+  assert.equal(h.stored.get(model.key), before);
+  assert.equal(snapshots, 0);
+});
+
+test('lifecycle flush: commits an HP edit still focused in the input, and the later blur does not wipe undo', () => {
+  const h = harness(JSON.stringify(model.fresh()));
+  const hp = h.node('#hp-input');
+  hp.value = '30';
+  h.context.document.activeElement = hp;
+  h.context.document.visibilityState = 'hidden';
+  h.events.get('visibilitychange')();
+  assert.equal(JSON.parse(h.stored.get(model.key)).hp, 30);
+  h.fire('#hp-input', 'change', '30');
+  assert.equal(h.node('#undo-change').disabled, false);
+});
+
+test('visible resync: a missed save from another tab replaces state and invalidates undo', () => {
+  const h = harness(JSON.stringify(model.fresh()));
+  h.fire('#hp-input', 'change', '20');
+  assert.equal(h.node('#undo-change').disabled, false);
+  h.stored.set(model.key, JSON.stringify({ ...model.fresh(), hp: 9, savedAt: '2026-09-17T20:00:00.000Z' }));
+  h.context.document.visibilityState = 'visible';
+  h.events.get('visibilitychange')();
+  assert.equal(h.node('#hp-input').value, 9);
+  assert.equal(h.node('#undo-change').disabled, true);
+});
+
+test('snapshot history: skips entries that fail validation and renders summaries as text', async () => {
+  const created = [];
+  const h = harness(JSON.stringify(model.fresh()), false, {
+    ...storageEngine,
+    getSnapshots: () => Promise.resolve([
+      { id: 2, timestamp: '2026-09-17T20:00:00.000Z', summary: '<img src=x onerror=alert(1)>', state: { ...model.fresh(), hp: 11 } },
+      { id: 1, timestamp: '2026-09-17T19:00:00.000Z', summary: 'Tampered', state: { ...model.fresh(), concentration: '<script>' } }
+    ])
+  });
+  h.context.document.createElement = () => {
+    const parts = {};
+    return { parts, innerHTML: '', querySelector: sel => (parts[sel] ??= { textContent: '', addEventListener() {} }) };
+  };
+  h.node('#snapshots-list').append = card => created.push(card);
+  await h.node('#snapshots-btn').listeners.click();
+  assert.equal(created.length, 1);
+  assert.equal(created[0].parts['.snapshot-summary'].textContent, '<img src=x onerror=alert(1)>');
+  assert.match(created[0].parts['.snapshot-details'].textContent, /11\/47 HP/);
+});
