@@ -20,28 +20,31 @@ The production site is deployed to GitHub Pages via GitHub Actions: <https://rya
 - Dashboard with situation-based turn guidance, core stats, and reaction reminders.
 - HP, SP, 4/3/2 spell-slot, Hit Dice, Innate Sorcery, and origin-spell counters.
 - Concentration selector, Innate Sorcery effect marker, and Reaction availability.
-- Once-per-Long-Rest SP restoration; confirmed Long Rest with undo until the next tracker edit or reload.
-- Searchable 25-spell reference and a 172-play directory (72 Kief, 100 Mr. Big). Each play has its own page (when to use it, mechanics, table phrasing, the rule underneath) and a direct anchor in the directory.
+- Once-per-Long-Rest SP restoration; confirmed Long Rest, damage/healing entry, concentration-save prompts, and one-step Undo.
+- **Interactive Cast Workflow:** choose spell, slot level, Metamagic, and free-cast/ritual sources; review pre-flight costs, concentration replacement, and Reaction consumption; confirm as an atomic, undoable transaction with table override support.
+- **Turn State Economy:** live tracking for Action, Bonus Action, Reaction, and slot usage; context switching between Kief's turn and off-turn with cross-reload persistence; enforcement of the 2024 one-slot-per-turn limit; manual adjustment pills.
+- Searchable 25-spell reference with casting, range/targets, components, duration, rolls/effects, scaling, cautions, and source links and a 172-play directory (72 Kief, 100 Mr. Big). Each play has its own page (when to use it, mechanics, table phrasing, the rule underneath) and a direct anchor in the directory.
 - Internal linking: the first italic mention of each spell links to its spellbook card; each spell card lists the plays that use it, and each play lists the plays that reference it. Built at compile time, no data to maintain.
 - Stackable cards: play and spell links open as native `<dialog>` cards over the current page; links inside a card stack another card, Esc or × closes the top one, and reopening a card already in the stack closes the cards above it. Links stay real URLs, so new tabs, no-JS, and failed fetches fall back to normal pages.
 - Current character record, rules card, teammate playbook, familiar guide, setup checklist, campaign checks, and growth notes.
-- Responsive layout, labeled native controls, visible focus, and reduced-motion support.
+- Responsive layout and SCSS styling pipeline via Hugo Pipes, labeled native controls, visible focus, and reduced-motion support.
 
 ## Source and authority
 
-The intended build lives in `../kief`. Only its eight current root documents are imported. The July exports are excluded.
+The intended build lives in `../kief`. Nine current root Markdown records and `spell-reference.json` are imported. `rules-arbitration.md` is canonical for rulings and is also mirrored into `docs/rules-arbitration.md`. The July exports are excluded.
 
 The play pages in `content/plays/kief/` and `content/plays/mr-big/` are **site-authored**, not imported. They adapt the archived level 7 guides (`../kief/archive/level-7-2026-09-16/`) to the current level 5 record and the 2024 Cat stat block, keeping the archive's numbering. Level 7 features, the wand, old gear, and Keen Smell were removed; plays that depended on them were replaced (for example Feather Fall, Detect Magic, Invisibility, and Mind Sliver plays). Rulings the plays flag as the DM's call remain open. The short Greatest Hits and Mr. Big summaries are still imported from the current records. D&D Beyond synchronization, starting gear, the cow appearance, and initial summoning remain pending. DM rulings govern play.
 
-The quick references reproduce the local build; this work is not an independent rules audit or a live D&D Beyond verification. Links to the underlying rules remain on the character page.
+The September 17 rules reconciliation checked the cited 2024 references and corrected the identified contradictions. Pending interpretations are listed on Table rulings. This is not a live D&D Beyond verification or a claim that every tactical scenario has been exhaustively adjudicated.
 
 To update source-derived reference pages and Sorcerer/cantrip notes:
 
 ```sh
 python3 scripts/sync_content.py
+python3 scripts/sync_content.py --check
 ```
 
-`data/sources.json` records exact SHA-256 fingerprints of imported documents. The dashboard, resource limits, concentration options, and eight always-prepared spell summaries are curated for this build. Review them, and the play pages, whenever the source changes; imports are not a full character-sheet parser. The importer rejects an obvious level/HP mismatch. A level change requires reviewing `assets/state.js`, `assets/app.js`, `layouts/index.html`, and curated entries in the importer, then changing the storage version/key if necessary.
+`data/sources.json` records exact SHA-256 fingerprints of all ten imported inputs. Edit the shared spell details in `../kief/spell-reference.json`, then regenerate. The check command rejects any generated-output drift without modifying files. The dashboard, resource limits, concentration options, and eight always-prepared spell memberships are curated for this build. Review them, and the play pages, whenever the source changes; imports are not a full character-sheet parser. The importer checks the dashboard’s expected build numbers and rejects incomplete or mismatched spell references. A level change requires reviewing `assets/state.js`, `assets/app.js`, `layouts/index.html`, and curated entries in the importer, then changing the storage version/key if necessary.
 
 ## Session data
 
@@ -49,13 +52,13 @@ Changes save to this browser's local storage under `kief-firelight.level5.sessio
 
 This is manual bookkeeping: selecting a play does not cast it or spend resources; toggling Innate Sorcery does not spend a use or run a timer. Short Rest restores only the selected SP feature; roll Hit Dice and adjust HP yourself. The site does not handle temporary HP, death saves, exhaustion, created extra spell slots, inventory, or automatic rules enforcement. Native reference pages and directories remain readable without JavaScript.
 
-There is no cloud sync or offline service worker. Different browsers, ports, or domains have separate saves. Clearing browser storage removes saved sessions. Unreadable data is preserved until an explicit Long Rest starts a replacement save; meanwhile the tracker is temporary.
+There is no cloud sync or offline service worker. Different browsers, ports, or domains have separate saves. Clearing browser storage removes saved sessions. Unreadable data leaves tracking temporary. Recover save preserves the exact unreadable bytes in browser recovery storage, then saves the current counters without a rest. A confirmed Long Rest also preserves unreadable data before replacement; Undo durably restores pre-rest counters. Export tracking shows copyable JSON and a download link for the visible state and available raw/recovery data. Downloaded backup restoration remains manual; there is no import UI. Clearing browser storage also removes unexported recovery copies.
 
 ## Documentation
 
 Engineering specifications, rules arbitrations, and project lifecycle milestones are maintained in the repository:
 
-- **[Rules Arbitration Guide](docs/rules-arbitration.md)**: Authoritative 2024 D&D (5.5e) mechanical rulings for Kief and Mr. Big (One Spell Slot Per Turn, Innate Sorcery, Careful & Subtle Metamagic, Counterspell 2024, Concentration DC math with CON +7, and 2024 Cat familiar mechanics).
+- **[Rules Arbitration Guide](docs/rules-arbitration.md)**: Imported 2024 D&D reference decisions and explicitly pending DM rulings for Kief and Mr. Big (One Spell Slot Per Turn, Innate Sorcery, Careful & Subtle Metamagic, Counterspell 2024, Concentration DC math with CON +7, and 2024 Cat familiar mechanics).
 - **[Technical Architecture](docs/architecture.md)**: Deep-dive into the zero-dependency Hugo build, pure functional state machine (`assets/state.js`), native `<dialog>` card stacking, regex autolinking pipeline, and verification harnesses.
 - **[Documentation Index](docs/README.md)**: Overview of all technical and operational guides.
 - **[Project Roadmap](roadmap.md)**: Development phases, completed deliverables, and future enhancement paths (Session Zero ledger, offline PWA, Level 6 advancement).
@@ -63,10 +66,13 @@ Engineering specifications, rules arbitrations, and project lifecycle milestones
 ## Targeted verification
 
 ```sh
-node --test tests/state.test.cjs
-hugo --minify --destination /tmp/kief-site-check
+node --test tests/state.test.cjs tests/app.test.cjs
+PYTHONDONTWRITEBYTECODE=1 python3 tests/sync_test.py
+hugo --minify --cleanDestinationDir --noBuildLock --destination /tmp/kief-site-check
 python3 scripts/check_links.py /tmp/kief-site-check
 ```
 
-The state tests cover bounded counters, one-use SP restoration, save roundtrips, and malformed data. The link checker checks generated internal routes/assets and same-page anchors under the production subpath. See `VERIFICATION.md` for browser checks and their limits.
+The focused tests cover resource bounds, restoration, concentration damage, guidance, malformed saves, preservation failures, reset/recovery Undo, external-tab updates, and importer drift/rejection paths. The link checker checks generated internal routes/assets and same-page anchors under the production subpath. See `VERIFICATION.md` for browser checks and their limits.
 
+
+The dashboard’s sticky combat bar jumps to HP, concentration, and Reaction controls. Situation guidance now warns about some resource shortages and concentration replacement; it does not enforce casting. Play search includes the body text. Spell/play cards preserve their cached source nodes and can be reopened repeatedly.

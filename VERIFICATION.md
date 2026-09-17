@@ -1,4 +1,87 @@
-# Verification — 2026-09-16
+# Verification history
+
+## Review bug fixes: turn context reload, hidden override clearing, and Subtle label — 2026-09-17 (local)
+
+This entry records verification of three P2 fixes addressing review findings in the staged/unstaged changes:
+
+- **Saved turn context persistence across reload/sync (Issue 1)**:
+  - Added `kiefSlotSpent: false` to the pure state model contract in `assets/state.js` (`fresh()`, `normalize()` `turnDefaults`, `startTurn()`, `endTurn()`, and `cast()`).
+  - When switching to off-turn, `model.endTurn(state)` preserves `kiefSlotSpent`. When switching back to Kief's turn, `slotSpentThisTurn` is restored from `state.kiefSlotSpent`.
+  - Added regression tests in `tests/state.test.cjs` and `tests/app.test.cjs` verifying that an off-turn save round-tripping through `JSON.stringify` and `normalize()` retains `kiefSlotSpent: true`, so switching back to Kief's turn restores `slotSpentThisTurn: true` and blocks casting a second slot spell.
+- **Hidden override clearance & storage event refresh (Issue 2)**:
+  - In `assets/app.js`, cleared `castOverride.checked = false` whenever `castSpell`, `castMethod`, or `castMetamagic` change, and whenever `updateCastPreview()` hides the override control.
+  - Guarded form submission so `const override = !castOverrideWrap.hidden && castOverride.checked;`, preventing hidden controls from bypassing restrictions.
+  - Added `refreshOpenCast()` callback invoked on `storage` events, updating methods and refreshing preview when another tab saves changes while the cast modal is open, requiring renewed confirmation if restrictions are introduced.
+  - Added regression test in `tests/app.test.cjs` reproducing the Subtle override -> no Metamagic -> cross-tab 0 HP update sequence, verifying that consent is cleared, the 0-HP restriction warning is displayed, and submit fails closed.
+- **Subtle Spell material component exception label (Issue 3)**:
+  - Updated `<option value="Subtle">` in `layouts/index.html` to `"Subtle Spell (1 SP) · Removes components except priced or consumed materials"`, aligning with `content/rulings.md:53`.
+- Automated gates: 26 targeted tests passed:
+  - 13 pure state tests in `tests/state.test.cjs`.
+  - 10 DOM controller tests in `tests/app.test.cjs`.
+  - 3 importer contract tests in `tests/sync_test.py`.
+- Static build & links: Hugo build succeeded without warnings; link and asset audit verified across all 185 generated HTML pages.
+- Synchronization: `python3 scripts/sync_content.py --check` in-sync across all 10 sources.
+
+## Turn state implementation & review refinements — 2026-09-17 (local)
+
+This entry records verification of the Turn State milestone and subsequent code-review refinements:
+
+- Pure state model: extended `fresh()` and `normalize()` with `turnActive`, `actionReady`, `bonusActionReady`, and `slotSpentThisTurn` (with backward-compatible defaulting for prior saves). Added pure `model.startTurn(state)` and `model.endTurn(state)`.
+- Bug fixes & rules alignment:
+  - **Reaction checkbox restored**: Restored the change listener on `#reaction-ready` (layouts/index.html:35), maintaining full two-way synchronization between the checkbox, combat bar shortcut, and `#turn-reaction` pill.
+  - **Override slot cost reporting**: When casting with table override and no slot available, `cast()` accurately reports `override (no ... slot spent)` instead of claiming a slot was spent.
+  - **Ritual action economy**: Ritual casting (`method === 'ritual'`) and non-combat casting times skip action economy deduction, preserving Action and Bonus Action.
+  - **Structural validation separation**: Table override permits bypassing resource limits (0 HP, exhausted slots, 0 SP, spent reaction, slot-per-turn limit) but strictly rejects invalid choices (invalid slot level, free method on spells without free uses, invalid rituals, unknown metamagic).
+  - **One-slot-per-turn rule**: Enforced across all turns (Kief's turn and off-turns), aligning implementation with `docs/rules-arbitration.md:10`.
+  - **Accidental reset prevention**: Turn context toggling (`#toggle-turn-btn` / `#combat-turn-btn`) preserves spent action economy and slot state across switches rather than routing through `startTurn()`. Dedicated advance button (`#advance-turn-btn` / `#new-turn`) remains the sole path for starting a new turn.
+  - **Screen reader accessibility**: Replaced dynamic text replacement on action economy pills with fixed text labels (`Action`, `Bonus Action`, `Reaction`, `Spell slot`), allowing `aria-pressed` alone to carry state and eliminating conflicting screen-reader announcements.
+- Cleanups:
+  - Removed duplicate dot background color assignments in `render()`, relying on `.off-turn .live-dot` CSS.
+  - Removed unnecessary DOM existence checks in `render()` after `#hp-input` early return.
+  - Removed dead CSS rule `.combat-bar a:first-child{font-weight:bold;color:var(--text)}`.
+  - Migrated styling pipeline to SCSS (`assets/style.scss`) with Hugo Pipes (`toCSS (dict "targetPath" "style.css") | minify | fingerprint`), utilizing SCSS nesting for combat bar, cast dialog, turn bar, and pills.
+  - Migrated `#open-cast`, `#advance-turn-btn`, and `#cast-warning` inline styles into stylesheet.
+  - Added spell list parity test in `tests/state.test.cjs` checking `data/spells.json` against `model.spells`.
+  - Removed redundant `len(spells) != 25` check from `scripts/sync_content.py`.
+- Automated gates: 24 targeted tests passed:
+  - 12 pure state tests in `tests/state.test.cjs` (covering turn initialization, backward-compatible normalization, start/end turn transitions, one-slot-per-turn rule across turns, cantrip allowance, ritual action preservation, override slot deduction reporting, structural validation, and spell list parity).
+  - 9 DOM controller tests in `tests/app.test.cjs` (covering turn advance, pill toggling, reaction checkbox synchronization, fixed accessibility labels, on-turn casting and slot locking, off-turn context switching without accidental reset, and Undo).
+  - 3 importer contract tests in `tests/sync_test.py`.
+- Static build & links: Hugo build succeeded without warnings; link and asset audit verified across all 185 generated HTML pages.
+- Synchronization: `python3 scripts/sync_content.py --check` in-sync across all 10 sources.
+
+## Cast workflow implementation — 2026-09-17 (local)
+
+This entry records verification of the interactive Cast Workflow milestone:
+
+- Pure state model: added `model.spells`, `model.previewCast`, and `model.cast` to `assets/state.js`. Validates slot spending, upcasting, Metamagic SP, concentration replacement, reaction deduction, and free-cast features (*Speak with Animals*, *Find Familiar*, rituals) with support for table overrides.
+- Cast dialog UI & controller: added `<dialog id="cast-dialog">` with compile-time spell selector grouped by level, dynamic casting method/slot select, Metamagic picker, live pre-flight preview, resource exhaustion warnings, table override toggle, and atomic undoable execution. Integrated cast shortcut into the sticky combat bar, reserves panel, and modal spell reference cards.
+- Automated gates: 20 targeted tests passed:
+  - 9 pure state tests in `tests/state.test.cjs` (including cantrip/slot spending, upcasting, Metamagic, concentration replacement, reaction deduction, free features, and 0 HP checks).
+  - 8 DOM controller tests in `tests/app.test.cjs` (including cast dialog opening, spell selection, slot/SP/concentration deduction, atomic Undo, reaction spending, and table overrides).
+  - 3 importer contract tests in `tests/sync_test.py`.
+- Static build & links: Hugo production-shaped build (`--gc --minify`) passed without warnings; link and asset audit succeeded across all 185 generated HTML pages.
+- Synchronization: `python3 scripts/sync_content.py --check` passed in-sync across 9 records, 25 spell references, and source fingerprints.
+
+## Trusted companion implementation — 2026-09-17 (local)
+
+This entry is current for the local implementation; earlier entries below describe older versions and deployments.
+
+- Shared authority: imported nine current Markdown records plus `../kief/spell-reference.json`; `sync_content.py --check` confirms exact generated-output agreement, including the engineering rules mirror and all ten input fingerprints. Existing sibling edits were preserved; archives and historical exports were not rewritten.
+- Rules work: compared the linked 2024 rules and spell descriptions, separated pending DM interpretations, and corrected related site-authored plays. Each of the 25 spell records includes casting, targets, components, duration, resolution/effects, scaling, caution, source URL, and check date. This is not exhaustive adjudication of every possible interaction in 172 plays.
+- Automated checks: seven state-model tests, six controller-event tests, and three importer-contract tests passed. These include invalid-save preservation, backup-write failure, recovery without rest, reset/Undo persistence, concentration damage, export payload, cross-tab update invalidation, changed-build rejection, incomplete/duplicate spell rejection, and read-only drift detection. Controller tests use a small DOM adapter; they do not substitute for browser tests.
+- Build: Hugo 0.166.0 production-shaped build under `/kief-site/`, 186 generated pages; link/asset/anchor audit across 185 HTML files. Output was isolated under `/tmp`, not deployed.
+- In-app browser: reopened a play after closing it; opened, closed, and reopened a nested Hypnotic Pattern card. Reopened cards retained the expected content and the spell card contained only that spell.
+- In-app browser: Fly + 23 damage produced 24 HP and a CON +7 / DC 11 prompt. Undo restored 47 HP and Fly across reload. A real keyboard HP edit committed on focus change.
+- In-app browser on isolated localhost port 18766: seeded malformed test data, tracked HP 19 temporarily, recovered without resting, and retained HP 19 after reload. Separately repeated malformed data → HP 19 → confirmed Long Rest → Undo → reload; HP remained 19.
+- Backup: the automatic-download event did not complete in the embedded browser. Export now opens a dialog with an explicit download link and copyable JSON. Inspected payload contained visible HP 19, active raw save HP 19, and both exact malformed originals. The download-to-disk path remains unverified; copying the displayed JSON is the fallback. Backup import is not implemented.
+- Mobile: actual viewports 375×812 and 320×740 reported document widths equal to viewport widths. HP appeared around document y=629 and y=637 respectively. The sticky Reaction shortcut placed its control below the bar. Spellbook and play-directory samples also fit at 320 px.
+- Discovery: spell search for “diamond” isolated Chromatic Orb; play search for “critical hit” found three matching body-text entries. No browser console errors were observed in checked flows.
+- Isolated preview counters were reset to full HP and no concentration after testing. Tests did not change any production browser save.
+
+Not established: all browsers/devices, full keyboard or screen-reader acceptance, downloaded-file restoration, long-session durability, offline availability, full casting enforcement, real D&D Beyond state, or DM approval. Actual quota exhaustion was simulated in controller/model tests, not induced in the browser. No staging, commit, push, deployment, or publication occurred in this implementation.
+
+## Original dashboard — 2026-09-16
 
 Verified against the current local Kief level 5 records, with Hugo 0.166.0 and Node's built-in test runner.
 

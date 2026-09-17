@@ -1,65 +1,55 @@
-# Project Roadmap: Kief Firelight Field Companion
+# Kief companion roadmap
 
-This document outlines the development lifecycle, delivered capabilities, and future evolution of the **Kief Firelight · Field Companion** tabletop companion website.
+## Current milestone: trusted level-5 companion & executable turn
 
----
+Implemented locally on 2026-09-17; see `VERIFICATION.md` for the checks actually performed. Publication is separate.
 
-## 🎯 Completed Milestones
+- Hugo dashboard with bounded browser-local tracking, 172 tactical plays, and 25 detailed source-linked spell cards.
+- Shared canonical character/rules records in `../kief`, nine imported Markdown pages, shared spell JSON, exact source fingerprints, and a read-only drift check.
+- Reviewed corrections to Shield, Alter Self, Web timing, Careful/Subtle assumptions, familiar senses and cargo, detection, and signals. Pending DM interpretations remain explicit.
+- Cloned, reusable cached reference cards with serialized opening and unique dialog titles.
+- Damage/healing entry, concentration-save prompts, one-change Undo, recoverable rest reset, unreadable-save preservation, and downloadable tracking backup.
+- Sticky combat shortcuts, resource-first mobile layout, full-body play search, multiline spell autolinks, and resource/concentration warnings.
+- **Interactive Cast Workflow:** choose spell, slot level, Metamagic, and free-cast/ritual sources; live preview of slot/SP/resource costs, concentration replacement, and Reaction consumption; atomic execution with single-click Undo and table override bypass.
+- **Turn State Economy:** live tracking of Action, Bonus Action, Reaction, and slot spent. Context switching between Kief's turn and off-turn with cross-reload persistence (`kiefSlotSpent`); 2024 one-slot-per-turn limit enforcement; manual correction pills.
+- SCSS asset pipeline via Hugo Pipes (`toCSS` + `minify` + `fingerprint`).
+- Targeted pure state, DOM controller, and importer contract tests, Hugo version pinning, and static link checks.
 
-### Phase 1: Core Architecture & Responsive HUD (Completed)
-- [x] Zero-theme Hugo static site architecture with zero external runtime or build-time npm dependencies.
-- [x] High-contrast, low-glare dark mode UI built with vanilla CSS design tokens optimized for low-light tabletop play.
-- [x] Persistent client-side session HUD tracking HP, AC states, spell slots (4/3/2), Sorcery Points (5), Innate Sorcery (2), and concentration in `localStorage`.
-- [x] Pure functional state machine (`assets/state.js`) with fail-closed validation on malformed or corrupted data.
-- [x] Cross-tab live synchronization via browser `storage` events and Long Rest reset with one-click undo.
+This is a useful manual companion. The following capabilities remain open; a checked-in feature is not evidence of production deployment or table acceptance.
 
-### Phase 2: Tactical Plays Database (Completed)
-- [x] Indexed directory of 172 site-authored tactical plays (72 Kief plays `K-1`..`K-72`, 100 Mr. Big plays `MB-1`..`MB-100`).
-- [x] Adapted legacy level 7 guides to 2024 Level 5 rules, removing obsolete gear, wand charges, and higher-tier spells.
-- [x] Dedicated play pages with situation triggers, mechanical execution, verbal table phrasing, and underlying rule citations.
-- [x] Real-time client-side search and actor facet filtering (Kief vs. Mr. Big) with deep-linkable `#play-id` anchors.
-- [x] Compile-time bi-directional play-to-play cross-referencing backlinks (`REFERENCED BY`).
+## Next: make turn guidance tactical
 
-### Phase 3: Grimoire & Autolinking Pipeline (Completed)
-- [x] Complete 2024 reference catalog for all 25 spells (8 cantrips, 9 Sorcerer preparations, 6 Draconic extras, 2 origin spells).
-- [x] Automated compile-time autolinker (`layouts/partials/autolink.html`) linking the first italic mention of any spell to its spellbook card.
-- [x] Compile-time spell card play counter aggregating every play that uses each spell (`IN X PLAYS`).
-- [x] Visual tags for Concentration, spell level, and source lineage.
+1. **Recommendations:** use actual available resources, equipment, concentration value, distance, target immunities, ally positioning, and agreed rulings. Explain why an option is suggested and provide a cheaper fallback. Current warnings are advisory, not this decision engine.
+2. **Spell provenance:** assign stable IDs and explicit spell dependencies to every play. Replace formatting-based matching and implicit backward references with validated data relationships.
 
-### Phase 4: Mr. Big (Management) Flight Deck (Completed)
-- [x] Full alignment with the 2024 Cat statblock (AC 12, 2 HP, 40 ft speed/climb, Darkvision 60 ft, Stealth +4, Jumper).
-- [x] Explicit separation of cosmetic Tiny Cow appearance from mechanical Cat capabilities.
-- [x] Telepathic scouting protocols within 100-foot range, sensory sharing action costs, and 100 silent Mr. Big tactical routines.
-- [x] Touch spell delivery via familiar Reaction rules and Help action melee risk guidance.
+Acceptance: cast, undo, reload, and correct a representative turn without duplicate spending, losing concentration state, or promising an unavailable tactic.
 
-### Phase 5: Stacked Modal Dialog System (Completed)
-- [x] Native HTML5 `<dialog>` stackable modal cards for rapid inspection of plays and spells without losing page context.
-- [x] Dynamic CSS depth layering (`--depth`) with background scroll lock and visual card elevation.
-- [x] Keyboard `Escape` and backdrop click dismissal popping only the topmost dialog.
-- [x] Graceful progressive enhancement fallback to standard static page URLs on failed fetches or disabled JavaScript.
+## Next: survive a real session
 
-### Phase 6: Operational Documentation & Verification Gates (Completed)
-- [x] Comprehensive architectural specification in `docs/architecture.md` and rules adjudications in `docs/rules-arbitration.md`.
-- [x] Pure state unit test suite (`tests/state.test.cjs`) verified with Node.js's built-in test runner.
-- [x] Static build and subpath link/anchor audit script (`scripts/check_links.py`) ensuring zero broken links or base-path escapes across all 185 generated pages.
-- [x] Automated upstream content importer (`scripts/sync_content.py`) with SHA-256 fingerprint verification (`data/sources.json`).
-- [x] GitHub Pages continuous deployment workflow (`.github/workflows/deploy.yml`) with automated Hugo build, state test, and link verification gates.
+- Temporary HP, death saves, conditions, exhaustion, damage-source handling, and an inspectable event history.
+- Extra slots created through Font of Magic, explicit conversion costs, and a rest workflow covering actual Hit Dice decisions.
+- Familiar HP, initiative, Reaction, presence/summoning status, senses, delivery range, and role assignments.
+- Backup import with schema validation, preview, rollback, and migrations; recovery-copy management; stronger multi-tab conflict handling.
+- Accessible compact combat mode, larger touch controls across all screens, keyboard/focus acceptance, screen-reader checks, and real phone/tablet testing.
+- Installable offline support with visible cache/version status and safe updates during an active session. A normal cached page is not reliable offline availability.
+- Print stylesheet and a compact two-sided rules/character sheet; printable spell and play cards.
 
----
+Acceptance: recover from a reload, interrupted connection, mistaken tap, invalid import, and device handoff without losing the session or hiding uncertainty.
 
-## 🔮 Future Horizons & Enhancements
+## Campaign readiness and content quality
 
-### Phase 7: Session Zero & Equipment Ledger
-- [ ] Starting equipment ledger aligned with DM's campaign starting gold allowance.
-- [ ] Consumable tracking for *Find Familiar* 10 GP incense portions and spell components.
-- [ ] 50+ GP diamond acquisition tracker for unlocking *Chromatic Orb*.
+- Confirm starting gold, inventory, focus/pouch, incense, diamond, healing supplies, cow appearance, and initial summoning.
+- Record DM rulings with date, exact wording, affected spells/plays, and review status.
+- Verify and update the actual D&D Beyond sheet as a separately authorized task.
+- Consolidate overlapping plays into quick favorites and scenario bundles while retaining discoverability and stable links.
+- Separate roleplay flavor, published mechanics, player judgment, and house rules consistently.
+- Add spell/ruling source dates, change history, and automated checks for contradictory rule claims.
+- Benchmark at the table: time to find a spell, taps to record a turn, correction time, and missed resource/effect reminders. Use those observations to choose features.
 
-### Phase 8: Tabletop Helpers & Offline PWA
-- [ ] Progressive Web App (PWA) manifest with service worker caching for offline access at convention or low-connectivity tables.
-- [ ] Tabletop dice macro roller for signature attacks (*Fire Bolt* `2d10`, *Ray of Frost* `2d8`, *Mind Sliver* `2d6`, *Fireball* `8d6`).
-- [ ] Printable compact PDF cheat-sheet exporter formatted for physical physical index cards.
+## Later: growth and reuse
 
-### Phase 9: Level 6 Advancement Readiness
-- [ ] Automated migration schema to transition session data from Level 5 (`kief-firelight.level5.session.v1`) to Level 6.
-- [ ] Draconic Sorcery Elemental Affinity integration (+3 fire damage to Sorcerer spells, fire resistance toggle).
-- [ ] Additional 3rd-level spell slot (3 total) and Sorcery Point maximum expansion (6 SP).
+- Level-6 build migration, new slot/SP totals, spell-choice review, and chosen Elemental Affinity. Do not infer a finalized ancestry/element or silently upgrade a saved character.
+- Generalize character definitions only after the single-character workflows are dependable; avoid duplicating rules in many templates.
+- Optional party sharing and VTT/export integrations with explicit ownership and conflict rules.
+- Dice helpers that show the formula, modifiers, source, and manual override; do not obscure adjudication.
+- Broader content and distribution review before marketing the companion as a reusable commercial product.
