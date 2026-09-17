@@ -1,9 +1,9 @@
 /* Lightweight offline service worker for Kief companion tabletop use */
 const CACHE_PREFIX = 'kief-site-';
 // Rendered by Hugo (resources.ExecuteAsTemplate): each build's fingerprinted assets name a new cache, so old ones are dropped on activate.
-const CACHE_NAME = CACHE_PREFIX + {{ .version | jsonify }};
+const CACHE_NAME = CACHE_PREFIX + '{{ .version }}';
 
-const PRECACHE_URLS = {{ .assets | jsonify }};
+const PRECACHE_URLS = JSON.parse('{{ .assets | jsonify }}');
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
