@@ -180,3 +180,11 @@ These checks do not establish full screen-reader compatibility, all-device cover
   - Tactical Plays: <https://ryan258.github.io/kief-site/plays/>
   - Spellbook: <https://ryan258.github.io/kief-site/spellbook/>
 
+
+## Candy Land theme, rules audit, and content sync — 2026-09-23
+
+- **Content Synchronization:** Ran `python3 scripts/sync_content.py --check` against canonical records in `../kief`: in sync across 9 records, 25 spell references, and SHA-256 source fingerprints.
+- **Automated State & App Tests:** Ran all 33 focused Node tests (`tests/state.test.cjs`, `tests/app.test.cjs`) and 3 sync tests (`tests/sync_test.py`): 36 total tests passed, 0 failed.
+- **Production Build:** Ran `hugo --minify --cleanDestinationDir --noBuildLock` producing 186 pages in 275ms with zero warnings.
+- **Link & Anchor Audit:** Checked internal routes, assets, and page anchors across 185 HTML pages via `scripts/check_links.py`: 0 errors found.
+- **Visual Design & Assets:** Verified `candyland.css` theme and `candyland-night.webp` background asset loading, service worker precaching list updates, SVG icon, and WebManifest branding.

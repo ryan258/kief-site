@@ -1,6 +1,6 @@
-# Kief Firelight — Field Companion
+# Kief Firelight — Sugar & Shadow (Candy Land Companion)
 
-A standalone Hugo dashboard for the current **Forest Gnome / Draconic Sorcerer 5 / Sage** build, using the tabletop companion approach of `../joe-site`. The interface is built around helping the party, keeping concentration, and using scarce resources deliberately.
+A standalone Hugo dashboard for the current **Forest Gnome / Draconic Sorcerer 5 / Sage** build, adapted for the Candy Land dark fairytale campaign ("Sugar & Shadow") using the tabletop companion approach of `../joe-site`. The interface is built around helping the party, keeping concentration, navigating dangerous travel, and using scarce resources deliberately.
 
 ## Run locally
 
@@ -35,6 +35,8 @@ The production site is deployed to GitHub Pages via GitHub Actions: <https://rya
 - Internal linking: the first italic mention of each spell links to its spellbook card; each spell card lists the plays that use it, and each play lists the plays that reference it. Built at compile time, no data to maintain.
 - Current character record, rules card, teammate playbook, familiar guide, setup checklist, campaign checks, and growth notes.
 - Responsive layout and SCSS styling pipeline via Hugo Pipes, labeled native controls, visible focus, and reduced-motion support.
+- **Candy Land Theme & Night Artwork (`candyland.css`):** Bespoke dark fairytale visual atmosphere for the Candy Land campaign ("Sugar & Shadow"), featuring a deep molasses/plum background (`#100d17`), burnt caramel, frosted mint, cotton candy rose (`#e493b6`), and taffy gold accents, translucent frosted topbar/sidebar glassmorphism, radiant card borders, and night fairytale background art (`candyland-night.webp`).
+- **Service Worker Offline Precaching:** Service worker (`sw.js`) precaches core shell assets, the Candy Land theme stylesheet, atmospheric night background art, web app manifest, and icons for seamless offline and low-connectivity tabletop reliability.
 
 ## Source and authority
 
@@ -42,7 +44,7 @@ The intended build lives in `../kief`. Nine current root Markdown records and `s
 
 The play pages in `content/plays/kief/` and `content/plays/mr-big/` are **site-authored**, not imported. They adapt the archived level 7 guides (`../kief/archive/level-7-2026-09-16/`) to the current level 5 record and the 2024 Cat stat block, keeping the archive's numbering. Level 7 features, the wand, old gear, and Keen Smell were removed; plays that depended on them were replaced (for example Feather Fall, Detect Magic, Invisibility, and Mind Sliver plays). Rulings the plays flag as the DM's call remain open. The short Greatest Hits and Mr. Big summaries are still imported from the current records. D&D Beyond synchronization, starting gear, the cow appearance, and initial summoning remain pending. DM rulings govern play.
 
-The September 17 rules reconciliation checked the cited 2024 references and corrected the identified contradictions. Pending interpretations are listed on Table rulings. This is not a live D&D Beyond verification or a claim that every tactical scenario has been exhaustively adjudicated.
+The September 23 rules check audited condition immunities (verifying that Fey/Undead/Construct creature types do not grant automatic immunity to Charm or Fear, preserving Fear's separate dropped-item resolution, and auditing 2024 Command syntax) and clarified component pouch vs. class spellcasting focus rules. Pending interpretations are listed on Table rulings. This is not a live D&D Beyond verification or a claim that every tactical scenario has been exhaustively adjudicated.
 
 To update source-derived reference pages and Sorcerer/cantrip notes:
 

@@ -1,6 +1,16 @@
 # Kief companion roadmap
 
-## Current milestone: trusted level-5 companion & executable turn
+## Current milestone: Candy Land campaign theme & rules audit
+
+Implemented locally on 2026-09-23; see `VERIFICATION.md` for the checks actually performed. Publication is separate.
+
+- **Candy Land Dark Fairytale Theme:** Implemented the "Sugar & Shadow" visual design system (`assets/candyland.css`) featuring deep obsidian/plum (`#100d17`), burnt caramel, frosted mint, cotton candy rose (`#e493b6`), and taffy gold accents, coupled with frosted glassmorphism and atmospheric night background art (`static/pages/candyland-night.webp`).
+- **Service Worker Precaching:** Extended service worker (`sw.js`) asset precaching to include the new Candy Land theme CSS and night art for offline and low-connectivity tabletop reliability.
+- **Rules Arbitration & Condition Immunities Audit:** Synchronized 2026-09-23 rules audit from `../kief` canonical reference (`docs/rules-arbitration.md`), establishing stat-block-specific condition checking (no blanket creature-type immunity for Fey/Undead/Constructs against Charm/Fear), Fear's separate dropped-item resolution on failed saves, 2024 Command syntax, and component pouch vs. class spellcasting focus rules.
+- **Tactical Plays Alignment:** Updated site-authored plays (`k-2`, `k-38`, `k-44`, `mb-43`, `mb-87`) to enforce condition-specific audit protocols, familiar cargo physics, and Candy Land travel dynamics.
+- **Content Parity:** Imported latest canonical records via `sync_content.py` with zero drift and verified SHA-256 fingerprints.
+
+## Preceding milestone: trusted level-5 companion & executable turn
 
 Implemented locally on 2026-09-17; see `VERIFICATION.md` for the checks actually performed. Publication is separate.
 

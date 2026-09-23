@@ -55,6 +55,12 @@ The dashboard has sticky HP/concentration/Reaction shortcuts. Mobile presents re
 
 ## Reading layouts and tabletop accessibility
 
+- **Candy Land Theme ("Sugar & Shadow") & Dark Fairytale Styling (`assets/candyland.css`):**
+  - An overlay styling layer loaded alongside `style.scss`, minified and fingerprinted via Hugo Pipes.
+  - Transforms the visual aesthetic from forest emerald to an atmospheric Candy Land fairytale: deep obsidian plum (`#100d17`), burnt caramel/molasses (`#cf7a3e`), frosted mint (`#5ce1b6`), cotton candy rose (`#e493b6`), and spun-sugar highlights.
+  - Features radiant card borders, candy-cane decorative accents, deep shadow vignettes, and atmospheric night landscape background artwork (`static/pages/candyland-night.webp`).
+  - Precached in the Service Worker (`sw.js`) alongside core application shell assets for tabletop offline resilience.
+
 - **Full-Viewport Modal Windows (20px Margins):** Modal `<dialog class="card-modal">` containers expand to fill the full screen leaving exactly 20px margins (`width: calc(100vw - 40px - var(--depth)*16px)`, `height: calc(100dvh - 40px - var(--depth)*16px)` on desktop, 12px on mobile). A transparent header with a floating top-right `×` close button replaces the old gray top bar, integrating cleanly over the artwork without obscuring card contents.
 - **Play Dashboards:** `layouts/plays/single.html` parses each play's four canonical H3 sections (`when-to-use-it`, `mechanics`, `at-the-table`, `the-rule-underneath`) into a container-queried dashboard (`.play-wrap`, `.play-dash`). At `>= 860px`, the pitch displays full width (`.play-lead`), action mechanics occupy the primary panel (`.play-main`), and table dialogue (`.play-script`), detected spell mini-cards (`.spell-mini`), foldable underlying rules (`<details class="fold">`), and cross-references occupy the sidebar (`.play-side`). In the expanded modal window, plays render natively in this rich multi-column dashboard.
 - **Designer D&D 5.5e Spellbook Modal Cards:** `layouts/spellbook/list.html` formats each spell for both directory scanning and full-dashboard modal review (`.spell-modal-layout`):
