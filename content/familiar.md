@@ -2,11 +2,11 @@
 title = "Mr. Big\u2019s field guide"
 +++
 
-A tiny, entirely silent cow-shaped Fey familiar using the table's 2024 Cat stat block. Cosmetic form and first-session summoning need confirmation. Former 100-play guide preserved in [the historical archive](/history/); its old gear, stat details, and higher-level combos are not current authority.
+A tiny, entirely silent cow-shaped Fey familiar using the 2024 Cat stat block. Fey is a legal *Find Familiar* spirit type; only the cosmetic cow appearance needs DM approval. First-session summoning and its incense remain to be arranged. Former 100-play guide preserved in [the historical archive](/history/); its old gear, stat details, and higher-level combos are not current authority.
 
 ## Eight dependable jobs
 
-1. **The point cow.** Scout a short distance ahead, within 100-foot telepathy. Stop at danger and report; a familiar is not an automatic trap detector.
+1. **The point cow.** Scout a short distance ahead, within 100-foot telepathy. On Candy Land's roads this is his main job: check the next bend before the party walks into it. Stop at danger and report; a familiar is not an automatic trap detector, and nothing about a cursed kingdom makes him harder to kill at 2 HP.
 2. **The second pair of eyes.** Watch a visible approach while the party investigates. Make whatever checks the DM requests; no automatic surprise immunity.
 3. **The window inspection.** Use the Cat form's actual movement and size to reach a vantage point. Kief can spend a Bonus Action to share his senses until the start of Kief's next turn.
 4. **The quiet report.** Telepathically describe what he perceived. Intelligence, senses, distance, and what he actually understands still matter. Beyond 100 feet, use simple prior instructions rather than live updates.
@@ -21,11 +21,13 @@ Mr. Big cannot attack. His cow appearance grants no bovine attacks, hauling abil
 
 He rolls his own initiative, so coordinate Help and touch delivery with actual timing. Summoning takes an hour, or 70 minutes as a ritual, and consumes 10+ GP incense; a free feat cast still consumes it. Confirm components before session one. Neither familiar survival nor resummoning should depend on unconfirmed old inventory.
 
+A tiny silent cow is unremarkable in most kingdoms and completely unremarkable in a candy one. That is useful right up until something here recognizes what he actually is; Fey in a fairy tale may take more interest in a Fey familiar than a farm animal would earn. Ask the DM once, early, rather than discovering it with a 2 HP scout on the far side of a hill.
+
 > Mr. Big blinks once. Kief nods. “He's concerned about your process.”
 
 
 ## Shared rules reference
 
-See [Table rulings](/rulings/) for the 2026-09-17 corrections, official sources, familiar cargo and signal rules, and interpretations still awaiting DM approval. Character choices and campaign readiness are unchanged.
+See [Table rulings](/rulings/) for the 2026-09-23 condition-immunity and component rules, official sources, familiar cargo and signal rules, and interpretations still awaiting DM approval. Use this reference with the current character record; open campaign confirmations are tracked in findings.md.
 
 Shared senses do not impose the legacy blind/deaf restriction. Pocket dismissal and 0 HP leave worn/carried items behind. Signals: sit = hold; circle = fall back; stare = look here; lie down = danger/freeze; return = abort. Kief verbally relays a clear exit.

@@ -2,13 +2,13 @@
 title = "Character record"
 +++
 
-New campaign build, 2026-09-16. Ryan confirmed the same 2024 Forest Gnome / Draconic Sorcerer / Sage concept at level 5, with stronger teammate utility. This is the current local build; D&D Beyond has **not** been updated or verified for this campaign. Previous level 7 exports and approvals are historical.
+Candy Land campaign build; premise recorded 2026-09-23, mechanics unchanged since 2026-09-16. Ryan confirmed the same 2024 Forest Gnome / Draconic Sorcerer / Sage concept at level 5, with stronger teammate utility. The campaign pitch does not specify its ruleset, so this is a 2024 PHB build pending the DM's confirmation. D&D Beyond has **not** been updated or verified for this campaign. Previous level 7 exports and approvals are historical.
 
 ## Build and numbers
 
 | Field | Value |
 | --- | --- |
-| Campaign status | New campaign, starting at level 5 |
+| Campaign status | Candy Land — cursed kingdom, missing King, rumored-kidnapped Princess; starting at level 5 |
 | Class | Sorcerer 5 — Draconic Sorcery (2024) |
 | Species / background | Forest Gnome / Sage |
 | Size / type | Small / Humanoid |
@@ -34,7 +34,9 @@ New campaign build, 2026-09-16. Ryan confirmed the same 2024 Forest Gnome / Drac
 
 Keep the original ability choices: base 8/14/15/9/9/15; Sage +2 Constitution/+1 Wisdom; level 4 ASI +1 Constitution/+1 Charisma. Point-buy cost: 0+7+9+1+1+9 = 27. HP: 6 + (4 × 4) + (5 × 4 Constitution) + 5 Draconic Resilience = 47. AC: 10 + 2 Dexterity + 3 Charisma = 15.
 
-Proficiencies: Constitution and Charisma saves; Arcana +2, History +2, Insight +3, Persuasion +6; Calligrapher's Supplies and Simple Weapons. Languages retained: Common, Draconic, Gnomish. Herbalism Kit proficiency is **not** granted by this build.
+Proficiencies: Constitution and Charisma saves; Arcana +2 and History +2 from Sage; Insight +3 and Persuasion +6 from Sorcerer; Calligrapher's Supplies from Sage; Simple Weapons from Sorcerer. Languages retained: Common, Draconic, Gnomish. Herbalism Kit proficiency is **not** granted by this build. The Forest Gnome lineage spells use Charisma; Magic Initiate (Wizard) also uses Charisma.
+
+**Campaign skill roles:** History +2 compares old map details and half-remembered accounts; Arcana +2 examines magical traces; Insight +3 reads a speaker's mood or intent; Persuasion +6 opens doors and invites people to talk. Checks and clues remain the DM's call. Kief has no proficiency in Investigation, Nature, or Survival, so ask the party to cover route-finding and close searches. His merchant and herb-trade background is story, not Herbalism Kit proficiency.
 
 Gnomish Cunning gives advantage on Intelligence, Wisdom, and Charisma saves. Darkvision 60 feet; Passive Perception 10, Insight 13, Investigation 9. No elemental damage resistance at level 5.
 
@@ -46,11 +48,13 @@ The glow-moss discovery and shop explosion remain. Whether the moss awakened his
 
 **Personality:** I take a long time to finish a sentence, but I notice when somebody needs help. I consult Mr. Big on serious matters and interpret his blinks with unjustified confidence.
 
-**Ideal:** Magic is just chemistry that hasn't been properly commercialized yet. A good blend should improve everybody's evening.
+**Ideal:** Magic is the world's chemistry talking. A good blend, a good story, and a warm fire should be shared.
 
 **Bond:** Mr. Big eats first. My people all get home. Somewhere out there is the perfect blend: part tea, part herb, part prophecy.
 
 **Flaw:** I mistake ominous botanical phenomena for promising business opportunities, and overstate how much Mr. Big understands. When lives are at stake, I still listen to the party.
+
+**Why he took the road:** A kingdom gone sour looks to Kief like a garden mystery and, possibly, an extraordinary tea market. He wants to hear how the roads, crops, and old stories changed; the bond keeps him walking after curiosity runs out: his people get home. The map's origin and Kief's specific stake remain open for the DM and player to settle.
 
 **Ambiguity:** Never confirm what is in the blends. He may be pleasantly altered, naturally unhurried, magically distracted, or all three. The joke is his delivery; his teammates can depend on his decisions. His herbs have no invented healing or drug mechanics.
 
@@ -118,7 +122,7 @@ First-session summoning status is not established. Find Familiar needs 1 hour, o
 
 The old 34 GP, 5,000 GP diamond, Wand of Magic Missiles, Potion of Climbing, two healing potions, and two incense portions are **historical possessions, not confirmed starting gear** for this campaign. No tactical plan here depends on the wand.
 
-Prioritize an arcane focus or component pouch, familiar incense, basic travel equipment and rope. Request a 50+ GP diamond if the budget allows Chromatic Orb. Keep the kettle, blends, moss jar, and herbalism kit as the desired character equipment; confirm purchases with the DM's allowance. A healer's kit and healing potions are useful if affordable, but not assumed owned. Actual gold, inventory, and carry weight remain unset.
+Prioritize a **component pouch**: it covers nonpriced, nonconsumed material components for spells from both Kief's Sorcerer list and Magic Initiate, including Wizard-feat *Mending*. A Sorcerer arcane focus covers Sorcerer spells only; without a component pouch, carry the two lodestones for *Mending*. *Find Familiar* still needs its consumed incense worth at least 10 GP. Request a 50+ GP diamond if the budget allows *Chromatic Orb*. Keep the kettle, blends, moss jar, and herbalism kit as desired character equipment; confirm purchases with the DM's allowance. A healer's kit and healing potions are useful if affordable, but not assumed owned. Actual gold, inventory, and carry weight remain unset.
 
 ## Run him as a teammate
 
@@ -128,9 +132,9 @@ Kief prevents damage and creates opportunities; he has no healing spell. Never i
 
 ## Rules references
 
-Checked for this rebuild: [2024 Sorcerer and Draconic Sorcery](https://www.dndbeyond.com/sources/dnd/br-2024/character-classes#Sorcerer), [casting rules](https://www.dndbeyond.com/sources/dnd/br-2024/spells), [spell descriptions](https://www.dndbeyond.com/sources/dnd/br-2024/spell-descriptions), [2024 Counterspell](https://www.dndbeyond.com/spells/2619072-counterspell), [2024 Find Familiar](https://www.dndbeyond.com/spells/2618877-find-familiar), and [2024 Mind Sliver](https://roll20.net/compendium/dnd5e/Spells:Mind%20Sliver?expansion=32231). DM rulings govern the table. This rebuild does not verify the live D&D Beyond sheet or the campaign's starting allowances.
+Checked for this rebuild: [2024 Sorcerer and Draconic Sorcery](https://www.dndbeyond.com/sources/dnd/br-2024/character-classes#Sorcerer), [casting rules](https://www.dndbeyond.com/sources/dnd/br-2024/spells), [spell descriptions](https://www.dndbeyond.com/sources/dnd/br-2024/spell-descriptions), [Forest Gnome lineage](https://www.dndbeyond.com/species/1751438-gnome), [Sage and Magic Initiate](https://www.dndbeyond.com/backgrounds/406485-sage), [2024 Counterspell](https://www.dndbeyond.com/spells/2619072-counterspell), [2024 Find Familiar](https://www.dndbeyond.com/spells/2618877-find-familiar), and the official [2024 Sorcerer spell list](https://www.dndbeyond.com/sources/dnd/br-2024/character-classes#Sorcerer) for *Mind Sliver*. DM rulings govern the table. The campaign ruleset, live D&D Beyond sheet, and starting allowances are not yet confirmed.
 
 
 ## Shared rules reference
 
-See [Table rulings](/rulings/) for the 2026-09-17 corrections, official sources, familiar cargo and signal rules, and interpretations still awaiting DM approval. Character choices and campaign readiness are unchanged.
+See [Table rulings](/rulings/) for the 2026-09-23 condition-immunity and component rules, official sources, familiar cargo and signal rules, and interpretations still awaiting DM approval. Use this reference with the current character record; open campaign confirmations are tracked in findings.md.

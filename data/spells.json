@@ -50,8 +50,8 @@
     "effect": "At level 5: on failure, 2d6 psychic and subtract 1d4 from its next saving throw before the end of your next turn.",
     "higher": "Damage rises at character levels 11 and 17.",
     "caution": "The penalty affects one saving throw; call it out to the party.",
-    "rules_url": "https://roll20.net/compendium/dnd5e/Spells:Mind%20Sliver?expansion=32231",
-    "checked": "2026-09-17"
+    "rules_url": "https://www.dndbeyond.com/sources/dnd/br-2024/character-classes#Sorcerer",
+    "checked": "2026-09-23"
   },
   {
     "name": "Light",
@@ -283,9 +283,9 @@
     "resolution": "Wisdom save",
     "effect": "On failure: Charmed, Incapacitated, and Speed 0. Ends for a target when it takes damage or another creature uses an action to shake it out.",
     "higher": "No additional effect.",
-    "caution": "These creatures are not Unconscious. Careful Spell can protect up to three chosen creatures for 1 SP.",
+    "caution": "These creatures are not Unconscious. Charm immunity blocks the spell's effect; check the actual condition immunities, not creature type. Careful Spell can protect up to three chosen creatures for 1 SP.",
     "rules_url": "https://www.dndbeyond.com/spells/2619168-hypnotic-pattern",
-    "checked": "2026-09-17"
+    "checked": "2026-09-23"
   },
   {
     "name": "Fireball",
@@ -391,9 +391,9 @@
     "resolution": "Wisdom save",
     "effect": "On failure, drop held items and become Frightened. Each turn, Dash away by the safest route unless there is nowhere to move. End a turn out of your sight: repeat the save, ending the spell on success.",
     "higher": "No additional effect.",
-    "caution": "Fleeing may draw Opportunity Attacks or bring reinforcements; agree on pursuit.",
+    "caution": "Check actual Frightened immunity, not creature type. A failed save still drops held items under this spell's text; fleeing may draw Opportunity Attacks or bring reinforcements.",
     "rules_url": "https://www.dndbeyond.com/spells/2618872-fear",
-    "checked": "2026-09-17"
+    "checked": "2026-09-23"
   },
   {
     "name": "Fly",
@@ -427,9 +427,9 @@
     "resolution": "Influence checks remain applicable",
     "effect": "Understand and verbally communicate with Beasts; use Influence skills with them. Their information is shaped by their lives, nearby places, and recent events.",
     "higher": "No additional effect.",
-    "caution": "Forest Gnome: three free casts per Long Rest, or slots/ritual. Conversation is not obedience or mind reading.",
+    "caution": "Forest Gnome: three free casts per Long Rest, or slots/ritual. Conversation is not obedience or mind reading. Use Charisma as the lineage spellcasting ability.",
     "rules_url": "https://www.dndbeyond.com/spells/2619059-speak-with-animals",
-    "checked": "2026-09-17"
+    "checked": "2026-09-23"
   },
   {
     "name": "Find Familiar",
@@ -445,8 +445,8 @@
     "resolution": "No initial roll",
     "effect": "Acts on its own initiative and cannot attack. Within 100 ft: telepathy, Bonus Action shared senses until your next turn, and familiar Reaction to deliver your touch spell. At 0 HP it vanishes; recast to return. A Magic action dismisses it or returns it within 30 ft. Disappearance leaves worn/carried objects behind.",
     "higher": "No additional effect.",
-    "caution": "Magic Initiate: one free cast per Long Rest, or slots/ritual; time and incense still apply. Tiny cow appearance and initial summoning are pending. Shared-sense targeting needs the spell’s own requirements.",
+    "caution": "Magic Initiate: one free cast per Long Rest, or slots/ritual; time and incense still apply. Fey is a legal spirit type; only the cosmetic cow appearance needs DM approval. Shared-sense targeting needs the spell’s own requirements.",
     "rules_url": "https://www.dndbeyond.com/spells/2618877-find-familiar",
-    "checked": "2026-09-17"
+    "checked": "2026-09-23"
   }
 ]

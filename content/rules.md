@@ -2,7 +2,7 @@
 title = "Table rules"
 +++
 
-Current local campaign build, 2026-09-16. D&D Beyond sync and starting inventory pending. Full choices: [character record](/character/).
+Candy Land campaign; local build unchanged since 2026-09-16. This is a 2024 PHB build, pending confirmation that the DM uses that ruleset. D&D Beyond sync and starting inventory pending. Full choices: [character record](/character/).
 
 **47 HP · AC 15 (20 with Shield) · Speed 30 ft · Initiative +2**
 **Spell attack +6 · Save DC 14 · Constitution save +7**
@@ -57,4 +57,4 @@ Long Rest: restore HP to 47, slots to 4/3/2, SP to 5, Hit Dice to 5d6, Innate So
 
 ## Shared rules reference
 
-See [Table rulings](/rulings/) for the 2026-09-17 corrections, official sources, familiar cargo and signal rules, and interpretations still awaiting DM approval. Character choices and campaign readiness are unchanged.
+See [Table rulings](/rulings/) for the 2026-09-23 condition-immunity and component rules, official sources, familiar cargo and signal rules, and interpretations still awaiting DM approval. Use this reference with the current character record; open campaign confirmations are tracked in findings.md.

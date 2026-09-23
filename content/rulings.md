@@ -2,7 +2,7 @@
 title = "Table rulings and open decisions"
 +++
 
-Current level-5 reference, checked 2026-09-17 against the linked 2024 rules. Published rules and pending interpretations are separated below. DM approval, equipment, and live-sheet synchronization remain pending. This file is canonical: the companion imports it as Table rulings and mirrors it into its engineering documentation. Detailed spell summaries live alongside it in `spell-reference.json`.
+Current level-5 reference, checked 2026-09-23 against the linked 2024 rules. Published rules and pending interpretations are separated below. The campaign's chosen ruleset, DM approval, equipment, and live-sheet synchronization remain pending. This file is canonical: the companion imports it as Table rulings and mirrors it into its engineering documentation. Detailed spell summaries live alongside it in `spell-reference.json`.
 
 ---
 
@@ -125,6 +125,16 @@ The companion site deliberately excludes features and capabilities that Kief has
 - **Signals:** sit = hold; circle = fall back; stare = look here; lie down = danger/freeze; return = abort. A clear exit is reported by Kief after Mr. Big's telepathic report, never by reversing the sit signal.
 - **Hypnotic Pattern:** Charmed, Incapacitated, Speed 0; not the Unconscious condition. Do not infer prone targets or automatic critical hits from the word “sleepers.”
 
+### Condition Immunities and Creature Types
+
+Creature type alone does not grant immunity to Charmed or Frightened. Check the target's actual stat block for condition immunities. *Hypnotic Pattern* relies on Charmed, so Charm immunity prevents its effect. *Fear* says a creature that fails its save drops what it is holding and becomes Frightened; apply a Frightened immunity to that condition, while still resolving the spell's separate dropped-item effect. Neither Fey, Undead, nor Construct is automatically immune by type.
+
+The 2024 *Command* text targets a creature you can see, calls for a Wisdom save, and limits the command to Approach, Drop, Flee, Grovel, or Halt. It has no shared-language or Undead exclusion; don't import those restrictions from earlier text.
+
+### Material Components Across Spell Sources
+
+The general component-pouch rule works for nonpriced, nonconsumed material components regardless of which feature granted the spell. The Sorcerer Spellcasting Focus feature applies to Kief's Sorcerer spells only. For Wizard-feat *Mending*, use a component pouch or carry its two lodestones. Neither option replaces *Find Familiar*'s consumed incense worth at least 10 GP.
+
 ## 7. Pending campaign rulings
 
 | Question | Status and interim instruction |
@@ -147,5 +157,10 @@ Record the ruling, date, and affected plays when the DM decides. A pending entry
 - [Web](https://www.dndbeyond.com/spells/2619208-web)
 - [Counterspell](https://www.dndbeyond.com/spells/2619072-counterspell)
 - [Detect Magic](https://www.dndbeyond.com/spells/2619097-detect-magic)
+- [Gnome lineage traits](https://www.dndbeyond.com/species/1751438-gnome)
+- [Sage background and Magic Initiate](https://www.dndbeyond.com/backgrounds/406485-sage)
+- [2024 Hypnotic Pattern](https://www.dndbeyond.com/spells/2619168-hypnotic-pattern)
+- [2024 Fear](https://www.dndbeyond.com/spells/2618872-fear)
+- [2024 Command](https://www.dndbeyond.com/spells/2618985-command)
 
 These are local reference corrections, not live D&D Beyond edits or new campaign approvals.
