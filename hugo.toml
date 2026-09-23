@@ -1,6 +1,6 @@
 baseURL = 'https://ryan258.github.io/kief-site/'
 locale = 'en-us'
-title = 'Kief Firelight · Field Notes'
+title = 'Kief Firelight · Sugar & Shadow'
 disableKinds = ['taxonomy', 'term', 'RSS']
 [markup.goldmark.renderer]
 unsafe = false
@@ -8,4 +8,4 @@ unsafe = false
 startLevel = 2
 endLevel = 2
 [params]
-description = 'A tabletop companion for Kief Firelight, level 5 Draconic Sorcerer, and Mr. Big.'
+description = 'A dark fairytale campaign companion for Kief Firelight, level 5 Draconic Sorcerer, and Mr. Big.'

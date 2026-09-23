@@ -6,13 +6,15 @@
 <meta name="description" content="{{ site.Params.description }}">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
-<meta name="theme-color" content="#111a16">
+<meta name="theme-color" content="#100d17">
 <link rel="icon" href="{{ "icon.svg" | relURL }}" type="image/svg+xml">
 <link rel="apple-touch-icon" href="{{ "icon-180.png" | relURL }}">
 <meta name="apple-mobile-web-app-title" content="Kief Firelight">
 <link rel="manifest" href="{{ "manifest.webmanifest" | relURL }}">
 {{ $css := resources.Get "style.scss" | toCSS (dict "targetPath" "style.css") | minify | fingerprint }}
 <link rel="stylesheet" href="{{ $css.RelPermalink }}">
+{{ $theme := resources.Get "candyland.css" | minify | fingerprint }}
+<link rel="stylesheet" href="{{ $theme.RelPermalink }}">
 {{ $storage := resources.Get "storage.js" | fingerprint }}
 <script src="{{ $storage.RelPermalink }}" defer></script>
 {{ $state := resources.Get "state.js" | fingerprint }}
@@ -32,7 +34,7 @@
 <div class="shell">
 <aside class="sidebar">
 <a class="brand" href="{{ "" | relURL }}"><span class="brand-mark" aria-hidden="true">✳</span><span>KIEF<span class="brand-sub">FIRELIGHT</span></span></a>
-<p class="eyebrow rail-label">THE FIELD COMPANION</p>
+<p class="eyebrow rail-label">CANDYLAND FIELD GUIDE</p>
 <nav aria-label="Main navigation">
 {{ $current := .RelPermalink }}
 {{ range slice (dict "url" "" "name" "Dashboard" "icon" "◈") (dict "url" "spellbook/" "name" "Spellbook" "icon" "✧") (dict "url" "plays/" "name" "Tactical plays" "icon" "⌘") (dict "url" "familiar/" "name" "Mr. Big" "icon" "♧") (dict "url" "rules/" "name" "Table rules" "icon" "☷") (dict "url" "character/" "name" "Character" "icon" "◇") }}
@@ -51,20 +53,20 @@
 <span class="setup-progress-count">3 / 6</span>
 </div>
 </a>
-<div class="edition">D&D 2024 · LOCAL BUILD<br>RULES CHECK: 17 SEP 2026</div>
+<div class="edition">D&D 2024 · LOCAL BUILD<br>RULES CHECK: 23 SEP 2026</div>
 <div class="sidebar-footer-quote">
 <p>&ldquo;Better players<br>make brighter worlds.&rdquo;</p>
 <div class="gold-diamond" aria-hidden="true">&mdash; &#x25C7; &mdash;</div>
 </div>
 </aside>
 <div class="workspace">
-<header class="topbar"><span><a class="topbar-home" href="{{ "" | relURL }}" aria-label="Dashboard">⌂</a> <span class="slash">/</span> FIELD NOTES <span class="slash">/</span> {{ if .IsHome }}DASHBOARD{{ else }}{{ .Title | upper }}{{ end }}</span><span class="local-indicator"><i></i> Personal tabletop companion</span></header>
+<header class="topbar"><span><a class="topbar-home" href="{{ "" | relURL }}" aria-label="Dashboard">⌂</a> <span class="slash">/</span> SUGAR &amp; SHADOW <span class="slash">/</span> {{ if .IsHome }}DASHBOARD{{ else }}{{ .Title | upper }}{{ end }}</span><span class="local-indicator"><i></i> Personal tabletop companion</span></header>
 <main id="main" tabindex="-1">{{ block "main" . }}{{ end }}</main>
 <footer><div class="footer-wrap"><span>Built for a good turn, and getting everyone home. <a href="{{ "checks/" | relURL }}">Campaign checks</a> <a href="{{ "rulings/" | relURL }}">Table rulings</a> <a href="{{ "character/" | relURL }}">Character record</a></span><small class="footer-meta">Current local build. D&D Beyond sync pending. DM rulings govern play.</small></div></footer>
 </div>
 </div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-{{ $assets := slice ("" | relURL) $css.RelPermalink $storage.RelPermalink $state.RelPermalink $js.RelPermalink ("manifest.webmanifest" | relURL) ("icon.svg" | relURL) ("icon-192.png" | relURL) }}
+{{ $assets := slice ("" | relURL) $css.RelPermalink $theme.RelPermalink ("pages/candyland-night.webp" | relURL) $storage.RelPermalink $state.RelPermalink $js.RelPermalink ("manifest.webmanifest" | relURL) ("icon.svg" | relURL) ("icon-192.png" | relURL) }}
 {{ $sw := resources.Get "sw.js" | resources.ExecuteAsTemplate "sw.js" (dict "assets" $assets "version" (delimit $assets "," | md5)) }}
 <script>
 if ('serviceWorker' in navigator) addEventListener('load', () => navigator.serviceWorker.register('{{ $sw.RelPermalink }}').catch(() => {}));
