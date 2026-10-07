@@ -9,6 +9,7 @@
 {{ $part := dict }}
 {{ range $id := slice "when-to-use-it" "mechanics" "at-the-table" "the-rule-underneath" }}{{ with findRE (printf `<h3 id="%s">[\s\S]*?(?:<h3 |$)` $id) $body 1 }}{{ $part = merge $part (dict $id (index . 0 | replaceRE `<h3 $` "")) }}{{ end }}{{ end }}
 <div class="page-heading"><p class="eyebrow">{{ .Params.play_id }} <span class="separator">/</span> {{ .Params.actor | upper }} <span class="separator">/</span> {{ .Params.group | upper }}</p><h1>{{ .Title }}</h1></div>
+{{ if or (eq .Params.actor "Mr. Big") (in .RawContent "Mr. Big") }}<aside class="panel prose"><p><strong>DM familiar ruling · recorded October 7:</strong> Mr. Big is a physical, intelligent companion. If he dies, he is gone and Kief suffers an unspecified negative effect. He will not willingly sacrifice himself on command. The stats and remaining 2024 mechanics in this play are provisional. <a href="{{ "rulings/#confirmed-campaign-override" | relURL }}">Confirmed ruling and open details ↗</a></p></aside>{{ end }}
 <div class="play-wrap"><article class="play-dash">
 <div class="play-lead prose">{{ replaceRE `<h3 [\s\S]*$` "" $body | safeHTML }}</div>
 <div class="play-main panel prose">{{ index $part "when-to-use-it" | safeHTML }}{{ index $part "mechanics" | safeHTML }}</div>
