@@ -1,5 +1,17 @@
 # Verification history
 
+## 2026-10-07 — Dashboard ability scores & skills quick-reference card
+
+- **Feature:** Exposed all 6 ability scores and saving throws directly beneath core combat numbers in `layouts/index.html`, paired with an expandable quick-reference card detailing passive senses (Perception 10, Insight 13, Investigation 9), proficiencies/lineage traits (CON/CHA saves, Calligrapher's supplies, simple weapons, Common/Draconic/Gnomish languages, Gnomish Cunning), and a complete 18-skill alphabetical grid with proficient skills (Arcana +2, History +2, Insight +3, Persuasion +6) highlighted with star icons and badges.
+- **Navigation & Shortcuts:** Injected a `Stats & Skills ◈` shortcut in the sticky top combat bar (`#combat-skills`), wired in `assets/app.js` to smoothly scroll to and auto-expand `#skills-reference`.
+- **Styling & Accessibility:** Added responsive SCSS rules in `assets/style.scss` maintaining dark aesthetic harmony, 44px min-touch targets on interactive summaries/buttons, and mobile responsive collapsing.
+- **Automated gates passed quietly:**
+  - `node --test tests/app.test.cjs tests/state.test.cjs` passed (33/33).
+  - `python3 tests/sync_test.py` passed (4/4).
+  - `python3 scripts/sync_content.py --check` in sync.
+  - Hugo build (`hugo --minify`) built 287 pages cleanly.
+  - `python3 scripts/check_links.py public` checked all links and assets across 286 HTML pages with 0 errors.
+
 ## 2026-10-07 — Character review and canonical sync
 
 - Found and fixed: `assets/state.js` still listed Mind Sliver and Light, so the cast workflow rejected Elementalism and Shape Water and the spell-parity test failed. `assets/app.js` "holding" guidance also told the player to use Mind Sliver; it now names Ray of Frost and Elementalism.

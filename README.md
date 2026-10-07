@@ -17,7 +17,9 @@ The production site is deployed to GitHub Pages via GitHub Actions: <https://rya
 
 ## Included
 
-- Dashboard with situation-based turn guidance, core stats, and reaction reminders.
+- Dashboard with situation-based turn guidance, core combat stats, and reaction reminders.
+- **Ability Scores & Saving Throws Strip:** Persistent 6-card display directly on the dashboard for STR 8 (-1), DEX 14 (+2), CON 18 (+4 / Save +7), INT 9 (-1 / Adv), WIS 10 (+0 / Adv), and CHA 16 (+3 / Save +6 / Adv), highlighting proficient saves and Gnomish Cunning advantage.
+- **Skills, Passives & Proficiencies Quick Reference Card:** Expandable reference card on the front page detailing passive senses (Perception 10, Insight 13, Investigation 9), tool and weapon proficiencies, languages, and a complete 18-skill alphabetical grid with proficient skills (Arcana +2, History +2, Insight +3, Persuasion +6) tagged and highlighted. Includes a dedicated sticky combat-bar shortcut (`Stats & Skills ◈`) for instant jumping and auto-expansion.
 - HP, SP, 4/3/2 spell-slot, Hit Dice, Innate Sorcery, and origin-spell counters.
 - Concentration selector, Innate Sorcery effect marker, and Reaction availability.
 - Once-per-Long-Rest SP restoration; confirmed Long Rest, damage/healing entry, concentration-save prompts, and one-step Undo.

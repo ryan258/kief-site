@@ -51,9 +51,18 @@ Cards retain native Escape/close behavior. Browser Back still navigates page his
 
 The play directory searches titles, summaries, groups, IDs, and rendered body text across all 273 plays (173 Kief, 100 Mr. Big). Spell search includes purpose, effects, components, and cautions. Query whitespace is normalized. First italic spell mentions are linked at build time, allowing whitespace across lines and apostrophe variants. Spell backlinks use the same matching pattern. This is formatting-dependent: unitalicized mentions are not guaranteed links or backlinks.
 
-The dashboard has sticky HP/concentration/Reaction shortcuts. Mobile presents resources before recommendations, compresses the decorative hero, and enlarges frequently used controls. Shortcuts navigate to controls; they do not spend resources.
+The dashboard has sticky HP/concentration/Reaction/Skills shortcuts. Mobile presents resources before recommendations, compresses the decorative hero, and enlarges frequently used controls. Shortcuts navigate to controls; they do not spend resources.
 
 ## Reading layouts and tabletop accessibility
+
+- **Dashboard Ability Scores & 18-Skill Quick Reference Card:**
+  - Placed directly under the core combat stat strip in `layouts/index.html`.
+  - **Ability Scores Strip (`.ability-strip`):** 6 responsive cards displaying STR 8 (-1), DEX 14 (+2), CON 18 (+4), INT 9 (-1), WIS 10 (+0), and CHA 16 (+3). Proficient saves (CON +7 and CHA +6) feature distinctive sage tags; mental saving throws note advantage from *Gnomish Cunning*.
+  - **Expandable Skills & Proficiencies Card (`<details class="skills-ref-card" id="skills-reference">`):** Native collapsible container (open by default) presenting:
+    - *Passive Senses:* Passive Perception (10), Passive Insight (13), and Passive Investigation (9).
+    - *Proficiencies & Traits:* Saving throws, Calligrapher's Supplies, Simple Weapons, Common/Draconic/Gnomish languages, and *Gnomish Cunning*.
+    - *Complete 18-Skill Grid:* Responsive 3-column alphabetical layout mapping each skill to its governing attribute and net modifier, with the four proficient skills (Arcana +2, History +2, Insight +3, Persuasion +6) highlighted via badges and stars.
+  - **Sticky Combat Bar Shortcut:** The persistent header bar includes a `Stats & Skills ◈` link that smoothly scrolls to and auto-expands the reference card via `assets/app.js`.
 
 - **Candy Land Theme ("Sugar & Shadow") & Dark Fairytale Styling (`assets/candyland.css`):**
   - An overlay styling layer loaded alongside `style.scss`, minified and fingerprinted via Hugo Pipes.
