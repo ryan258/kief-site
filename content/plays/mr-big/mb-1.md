@@ -41,7 +41,7 @@ The dungeon does not know what to make of him. Nothing ever has."*
 
 ### The rule underneath
 
-A familiar acts independently but obeys Kief's commands. Out of combat the
+Mr. Big acts independently, can help intelligently, and may refuse unsafe work. Out of combat the
 DM narrates and routine activity needs no roll. Marching order is a real
 exploration question: surprise and first contact resolve against whoever
 is in front. Putting the perceptive, recoverable creature there is the
