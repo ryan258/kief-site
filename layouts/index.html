@@ -1,10 +1,153 @@
 {{ define "main" }}
-<nav class="combat-bar" aria-label="Combat shortcuts"><button type="button" id="combat-cast" class="cast-shortcut">Cast spell ✧</button><button type="button" id="combat-turn-btn" class="turn-context-pill"><span class="live-dot" id="combat-turn-dot"></span><span id="combat-turn-label">Kief’s turn</span></button><a href="#resources-title" id="combat-hp">47/47 HP</a><a href="#concentration" id="combat-focus">No concentration</a><a href="#reaction-ready" id="combat-reaction">Reaction ready</a><a href="{{ "rulings/" | relURL }}">Rulings</a></nav>
+<nav class="combat-bar" aria-label="Combat shortcuts"><button type="button" id="combat-cast" class="cast-shortcut">Cast spell ✧</button><button type="button" id="combat-turn-btn" class="turn-context-pill"><span class="live-dot" id="combat-turn-dot"></span><span id="combat-turn-label">Kief’s turn</span></button><a href="#resources-title" id="combat-hp">47/47 HP</a><a href="#concentration" id="combat-focus">No concentration</a><a href="#reaction-ready" id="combat-reaction">Reaction ready</a><a href="#skills-reference" id="combat-skills">Stats &amp; Skills ◈</a><a href="{{ "rulings/" | relURL }}">Rulings</a></nav>
 <section class="hero">
 <div class="hero-copy"><p class="eyebrow"><span class="live-dot"></span> LEVEL 05 <span class="separator">/</span> DRACONIC SORCERER</p><h1>Keep the tea warm.<br><em>Keep your people safe.</em></h1><p class="hero-description">Kief Firelight’s field companion. A little control, a well-timed spell, and the quiet confidence of a very small cow.</p><div class="hero-actions"><a class="button primary" href="{{ "plays/" | relURL }}">Find the right play <span aria-hidden="true">↗</span></a><a class="text-link" href="{{ "playbook/" | relURL }}">Read the playbook →</a></div></div>
 <div class="hero-art" aria-hidden="true"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><span class="art-star star-one">✧</span><span class="art-star star-two">✦</span><svg viewBox="0 0 300 240" class="kettle"><defs><linearGradient id="copper" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#e9bb7e"/><stop offset="1" stop-color="#8b4a2f"/></linearGradient></defs><path d="M185 115C250 70 274 165 210 175" fill="none" stroke="#bf8956" stroke-width="13"/><path d="M88 133L37 101 49 143 92 171" fill="url(#copper)" stroke="#e3b07a" stroke-width="2"/><path d="M89 118Q75 178 107 199Q152 217 199 197Q228 173 207 118Z" fill="url(#copper)"/><ellipse cx="148" cy="118" rx="60" ry="10" fill="#eac79b"/><path d="M103 116Q149 73 193 116" fill="#ad7349" stroke="#e4b484" stroke-width="2"/><circle cx="148" cy="92" r="7" fill="#ecd5af"/><path d="M132 65C108 47 156 43 135 20M156 67C139 51 175 44 161 29M179 77C163 65 185 57 177 49" fill="none" stroke="#b7c9a0" stroke-width="3" stroke-linecap="round" opacity=".7"/><path d="M142 160q-20-30-29-12q4 21 29 12q-6 22 14 24q12-16-14-24" fill="#233f31"/><path d="M144 161l17-14" stroke="#233f31" stroke-width="3"/></svg><span class="art-caption">THE LEAF & LEDGER<br><strong>Est. somewhat recently.</strong></span></div>
 </section>
 <section class="stat-strip" aria-label="Core character numbers"><div><span>ARMOR CLASS</span><strong>15 <small>/ 20 shield</small></strong></div><div><span>SPELL SAVE DC</span><strong><span id="spell-dc">14</span> <small id="dc-note">base</small></strong></div><div><span>SPELL ATTACK</span><strong>+6 <small id="attack-note">to hit</small></strong></div><div><span>CONSTITUTION SAVE</span><strong>+7 <small>concentration</small></strong></div><div><span>MOVEMENT</span><strong>30 <small>feet · init +2</small></strong></div></section>
+<section class="ability-strip" aria-label="Ability scores and saving throws">
+  <div class="ability-card">
+    <div class="ability-head"><span>STR</span><strong>8</strong></div>
+    <div class="ability-mod">-1</div>
+    <div class="ability-sub"><span>Save</span> <strong>-1</strong></div>
+  </div>
+  <div class="ability-card">
+    <div class="ability-head"><span>DEX</span><strong>14</strong></div>
+    <div class="ability-mod">+2</div>
+    <div class="ability-sub"><span>Save</span> <strong>+2</strong></div>
+  </div>
+  <div class="ability-card is-proficient">
+    <div class="ability-head"><span>CON</span><strong>18</strong></div>
+    <div class="ability-mod">+4</div>
+    <div class="ability-sub"><span class="prof-tag">Save +7</span> <small class="note-pill">Prof</small></div>
+  </div>
+  <div class="ability-card">
+    <div class="ability-head"><span>INT</span><strong>9</strong></div>
+    <div class="ability-mod">-1</div>
+    <div class="ability-sub"><span>Save</span> <strong>-1</strong> <small class="adv-tag" title="Gnomish Cunning: Advantage on saves vs magic">Adv</small></div>
+  </div>
+  <div class="ability-card">
+    <div class="ability-head"><span>WIS</span><strong>10</strong></div>
+    <div class="ability-mod">+0</div>
+    <div class="ability-sub"><span>Save</span> <strong>+0</strong> <small class="adv-tag" title="Gnomish Cunning: Advantage on saves vs magic">Adv</small></div>
+  </div>
+  <div class="ability-card is-proficient">
+    <div class="ability-head"><span>CHA</span><strong>16</strong></div>
+    <div class="ability-mod">+3</div>
+    <div class="ability-sub"><span class="prof-tag">Save +6</span> <small class="note-pill">Prof</small> <small class="adv-tag" title="Gnomish Cunning: Advantage on saves vs magic">Adv</small></div>
+  </div>
+</section>
+<details class="skills-ref-card" id="skills-reference" open>
+  <summary class="skills-ref-summary">
+    <div class="skills-ref-summary-left">
+      <span class="live-dot" aria-hidden="true"></span>
+      <span class="skills-summary-title">Skills, Passives &amp; Proficiencies</span>
+      <span class="tag">Proficiency +3</span>
+      <span class="skills-summary-chips">
+        <span class="chip">Perception 10</span>
+        <span class="chip">Insight 13</span>
+        <span class="chip">Invest 9</span>
+      </span>
+    </div>
+    <span class="skills-toggle-hint">Collapse / expand ▾</span>
+  </summary>
+  <div class="skills-ref-body">
+    <div class="skills-passives-row">
+      <div class="passive-group">
+        <span class="passive-label">PASSIVE SENSES</span>
+        <div class="passive-badges">
+          <span class="passive-badge"><strong>Perception</strong> 10</span>
+          <span class="passive-badge prof"><strong>Insight</strong> 13</span>
+          <span class="passive-badge"><strong>Investigation</strong> 9</span>
+        </div>
+      </div>
+      <div class="passive-group">
+        <span class="passive-label">PROFICIENCIES &amp; LINEAGE TRAITS</span>
+        <div class="trait-tags">
+          <span class="trait-tag prof">Saves: CON (+7), CHA (+6)</span>
+          <span class="trait-tag">Tools: Calligrapher’s Supplies</span>
+          <span class="trait-tag">Weapons: Simple</span>
+          <span class="trait-tag">Languages: Common, Draconic, Gnomish</span>
+          <span class="trait-tag highlight" title="Advantage on all Intelligence, Wisdom, and Charisma saves against spells and magical effects">Gnomish Cunning (Adv on INT / WIS / CHA saves)</span>
+        </div>
+      </div>
+    </div>
+    <div class="skills-grid" aria-label="All 18 skill modifiers">
+      <div class="skill-item">
+        <div class="skill-name-wrap"><span class="skill-name">Acrobatics</span><span class="skill-attr">DEX</span></div>
+        <span class="skill-mod">+2</span>
+      </div>
+      <div class="skill-item">
+        <div class="skill-name-wrap"><span class="skill-name">Animal Handling</span><span class="skill-attr">WIS</span></div>
+        <span class="skill-mod">+0</span>
+      </div>
+      <div class="skill-item is-proficient">
+        <div class="skill-name-wrap"><span class="prof-star" aria-label="Proficient">★</span><span class="skill-name">Arcana</span><span class="skill-attr">INT</span></div>
+        <span class="skill-mod">+2</span>
+      </div>
+      <div class="skill-item">
+        <div class="skill-name-wrap"><span class="skill-name">Athletics</span><span class="skill-attr">STR</span></div>
+        <span class="skill-mod">-1</span>
+      </div>
+      <div class="skill-item">
+        <div class="skill-name-wrap"><span class="skill-name">Deception</span><span class="skill-attr">CHA</span></div>
+        <span class="skill-mod">+3</span>
+      </div>
+      <div class="skill-item is-proficient">
+        <div class="skill-name-wrap"><span class="prof-star" aria-label="Proficient">★</span><span class="skill-name">History</span><span class="skill-attr">INT</span></div>
+        <span class="skill-mod">+2</span>
+      </div>
+      <div class="skill-item is-proficient">
+        <div class="skill-name-wrap"><span class="prof-star" aria-label="Proficient">★</span><span class="skill-name">Insight</span><span class="skill-attr">WIS</span></div>
+        <span class="skill-mod">+3</span>
+      </div>
+      <div class="skill-item">
+        <div class="skill-name-wrap"><span class="skill-name">Intimidation</span><span class="skill-attr">CHA</span></div>
+        <span class="skill-mod">+3</span>
+      </div>
+      <div class="skill-item">
+        <div class="skill-name-wrap"><span class="skill-name">Investigation</span><span class="skill-attr">INT</span></div>
+        <span class="skill-mod">-1</span>
+      </div>
+      <div class="skill-item">
+        <div class="skill-name-wrap"><span class="skill-name">Medicine</span><span class="skill-attr">WIS</span></div>
+        <span class="skill-mod">+0</span>
+      </div>
+      <div class="skill-item">
+        <div class="skill-name-wrap"><span class="skill-name">Nature</span><span class="skill-attr">INT</span></div>
+        <span class="skill-mod">-1</span>
+      </div>
+      <div class="skill-item">
+        <div class="skill-name-wrap"><span class="skill-name">Perception</span><span class="skill-attr">WIS</span></div>
+        <span class="skill-mod">+0</span>
+      </div>
+      <div class="skill-item">
+        <div class="skill-name-wrap"><span class="skill-name">Performance</span><span class="skill-attr">CHA</span></div>
+        <span class="skill-mod">+3</span>
+      </div>
+      <div class="skill-item is-proficient">
+        <div class="skill-name-wrap"><span class="prof-star" aria-label="Proficient">★</span><span class="skill-name">Persuasion</span><span class="skill-attr">CHA</span></div>
+        <span class="skill-mod">+6</span>
+      </div>
+      <div class="skill-item">
+        <div class="skill-name-wrap"><span class="skill-name">Religion</span><span class="skill-attr">INT</span></div>
+        <span class="skill-mod">-1</span>
+      </div>
+      <div class="skill-item">
+        <div class="skill-name-wrap"><span class="skill-name">Sleight of Hand</span><span class="skill-attr">DEX</span></div>
+        <span class="skill-mod">+2</span>
+      </div>
+      <div class="skill-item">
+        <div class="skill-name-wrap"><span class="skill-name">Stealth</span><span class="skill-attr">DEX</span></div>
+        <span class="skill-mod">+2</span>
+      </div>
+      <div class="skill-item">
+        <div class="skill-name-wrap"><span class="skill-name">Survival</span><span class="skill-attr">WIS</span></div>
+        <span class="skill-mod">+0</span>
+      </div>
+    </div>
+  </div>
+</details>
 <div class="dashboard-grid">
 <section class="panel resources-panel" aria-labelledby="resources-title"><div class="section-heading"><div><p class="eyebrow">01 / THE RESERVES</p><h2 id="resources-title">A little in the tank.</h2></div><span class="tag">Level 5</span></div>
 <noscript><p class="notice">Enable JavaScript for session tracking. Reference content is available without it.</p></noscript>

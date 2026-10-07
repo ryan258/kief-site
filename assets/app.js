@@ -619,6 +619,14 @@
 
     $('#open-cast')?.addEventListener('click', () => openCast());
     $('#combat-cast')?.addEventListener('click', () => openCast());
+    $('#combat-skills')?.addEventListener('click', () => {
+      const skillsRef = $('#skills-reference');
+      if (skillsRef) skillsRef.open = true;
+    });
+    if (typeof location !== 'undefined' && location.hash === '#skills-reference') {
+      const skillsRef = $('#skills-reference');
+      if (skillsRef) skillsRef.open = true;
+    }
     $('#cast-cancel')?.addEventListener('click', () => castDialog.close());
 
     castSpell?.addEventListener('change', () => {
