@@ -1,6 +1,17 @@
 # Kief companion roadmap
 
-## Current milestone: Candy Land campaign theme & rules audit
+## Current milestone: DM familiar override & table-flow guidance audit
+
+Implemented locally on 2026-10-07; see `VERIFICATION.md` for the checks actually performed. Publication is separate.
+
+- **Confirmed Campaign Familiar Override:** Recorded DM (Binyled) ruling establishing Mr. Big as an actual physical, intelligent companion rather than a disposable summoned spirit. Once summoned, that individual is the familiar; death is permanent loss and inflicts an unspecified negative effect on Kief; he will not willingly sacrifice himself on command. Recasting *Find Familiar* is not a recovery mechanism. Retained 2024 Cat stat block, creature type, and remaining spell mechanics are explicitly provisional.
+- **Spell Use & Table-Flow DM Guidance:** Recorded DM guidance confirming *Mind Sliver* (and contextualizing *Silvery Barbs*) is allowed without a hard ban or usage cap, but spamming is unwelcome and may prompt unusual enemy resistances or immunities. Added practical guidance to use *Mind Sliver* for coordinated setups rather than automatic every-round routines.
+- **Tactical Plays Audit & Banners:** Audited over 25 plays across `content/plays/kief/` and `content/plays/mr-big/` to remove disposable-familiar advice, suicide scouting, and unsupported Intelligence 3 limitations. Injected dynamic disclaimer callout banners on all Mr. Big tactical plays (`layouts/plays/single.html`) linking directly to confirmed rulings and open questions.
+- **Dashboard & Playbook Integration:** Updated dashboard familiar panel (`layouts/index.html`) and teammate playbook advice (`layouts/playbook/single.html`) with companion status, intelligent agency, and table-flow guidance.
+- **Content Importer Fragment Preservation:** Enhanced `scripts/sync_content.py` to preserve anchor fragments (`#...`) during markdown source link rewriting, backed by contract tests in `tests/sync_test.py`.
+- **Content & Fingerprint Synchronization:** Imported all updated canonical records from `../kief` via `sync_content.py`, updating `data/sources.json`, `data/spells.json`, and `data/spell_meta.json` with zero drift under `--check`.
+
+## Preceding milestone: Candy Land campaign theme & rules audit
 
 Implemented locally on 2026-09-23; see `VERIFICATION.md` for the checks actually performed. Publication is separate.
 

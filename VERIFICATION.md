@@ -1,5 +1,26 @@
 # Verification history
 
+## Familiar campaign override, spell table-flow guidance, and link fragment preservation — 2026-10-07 (local)
+
+This entry records verification of the DM familiar campaign override, spell table-flow guidance, tactical plays audit, and importer link fragment preservation:
+
+- **Familiar Campaign Override & Table Rulings**:
+  - Recorded confirmed DM (Binyled) ruling: Mr. Big is an actual physical, intelligent companion; permanent death penalty; will not willingly sacrifice himself on command; provisional 2024 Cat mechanics.
+  - Recorded DM table-flow guidance on *Mind Sliver*: permitted without ban/cap, but spamming prompts unusual enemy resistances/immunities; guidance directs use for coordinated setups.
+  - Injected dynamic warning callout banner on all Mr. Big tactical plays in `layouts/plays/single.html`.
+  - Updated dashboard familiar panel (`layouts/index.html`) and playbook team advice (`layouts/playbook/single.html`).
+- **Tactical Plays Alignment**:
+  - Audited 25+ plays across `content/plays/kief/` and `content/plays/mr-big/`, replacing disposable-familiar assumptions, suicide distraction tactics, and unsupported Intelligence 3 limits with companion agency, negotiated tasks, and provisional mechanics.
+- **Importer Anchor Fragment Preservation**:
+  - In `scripts/sync_content.py`, updated markdown link rewriting to preserve `#` fragments across both plain and URL-encoded targets.
+  - Added `test_source_links_preserve_fragments` in `tests/sync_test.py`.
+- **Automated gates: 37 targeted tests passed quietly**:
+  - 13 pure state tests in `tests/state.test.cjs`.
+  - 20 DOM controller tests in `tests/app.test.cjs`.
+  - 4 importer contract tests in `tests/sync_test.py`.
+- **Synchronization**: `python3 scripts/sync_content.py --check` in-sync across all 9 records, 25 spell references, and source fingerprints.
+- **Static build & links**: Hugo production-shaped build (`--minify`) succeeded in 250ms without warnings (186 pages); link and asset audit verified across 185 generated HTML pages (`scripts/check_links.py`).
+
 ## Full-viewport modal windows, D&D 5.5e designer spellbook cards, and atmospheric background artwork — 2026-09-17 (local)
 
 This entry records verification of the expanded modal dialog layout, designer D&D 5.5e spellbook card presentation, bespoke 25-spell WebP artwork library, faint card covers, and main page background covers:

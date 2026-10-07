@@ -23,7 +23,7 @@ The production site is deployed to GitHub Pages via GitHub Actions: <https://rya
 - Once-per-Long-Rest SP restoration; confirmed Long Rest, damage/healing entry, concentration-save prompts, and one-step Undo.
 - **Interactive Cast Workflow:** choose spell, slot level, Metamagic, and free-cast/ritual sources; review pre-flight costs, concentration replacement, and Reaction consumption; confirm as an atomic, undoable transaction with table override support.
 - **Turn State Economy:** live tracking for Action, Bonus Action, Reaction, and slot usage; context switching between Kief's turn and off-turn with cross-reload persistence; enforcement of the 2024 one-slot-per-turn limit; manual adjustment pills.
-- Searchable 25-spell reference with casting, range/targets, components, duration, rolls/effects, scaling, cautions, and source links, plus a 172-play directory (72 Kief, 100 Mr. Big).
+- Searchable 25-spell reference with casting, range/targets, components, duration, rolls/effects, scaling, cautions, and source links, plus a 172-play directory (72 Kief, 100 Mr. Big) with dynamic DM override disclaimers on provisional familiar mechanics.
 - **Full-Viewport Modal Dashboards:** Play and spell links open as native `<dialog class="card-modal">` windows expanding to fill the viewport leaving 20px margins, with a floating top-right `×` close button. Stacking support lets nested lookups peek underneath with depth offsets.
 - **D&D 5.5e Designer Spellbook Cards:** Full-dashboard presentation (`.spell-modal-layout`) featuring atmospheric art headers, spell badge rows (Level, School, Reaction/Action, Role, Concentration), italic flavor quotes with diamond dividers, body description with "ⓘ Note" callouts, Quick Use action tiles (Add/Cast, Copy Text, Share Link, Favorite), At a Glance specs table, Effect/Scaling cards, Target specifications, and cross-linked tactical plays.
 - **Unique 25-Spell WebP Artwork & Faint Card Covers:** Bespoke 1376×768 compressed WebP illustrations for all 25 spells (`static/spells/<slug>.webp`). Injected dynamically via `--spell-bg` into modal cards and displayed as subtle, atmospheric background covers on directory preview cards.
@@ -44,7 +44,9 @@ The intended build lives in `../kief`. Nine current root Markdown records and `s
 
 The play pages in `content/plays/kief/` and `content/plays/mr-big/` are **site-authored**, not imported. They adapt the archived level 7 guides (`../kief/archive/level-7-2026-09-16/`) to the current level 5 record and the 2024 Cat stat block, keeping the archive's numbering. Level 7 features, the wand, old gear, and Keen Smell were removed; plays that depended on them were replaced (for example Feather Fall, Detect Magic, Invisibility, and Mind Sliver plays). Rulings the plays flag as the DM's call remain open. The short Greatest Hits and Mr. Big summaries are still imported from the current records. D&D Beyond synchronization, starting gear, the cow appearance, and initial summoning remain pending. DM rulings govern play.
 
-The September 23 rules check audited condition immunities (verifying that Fey/Undead/Construct creature types do not grant automatic immunity to Charm or Fear, preserving Fear's separate dropped-item resolution, and auditing 2024 Command syntax) and clarified component pouch vs. class spellcasting focus rules. Pending interpretations are listed on Table rulings. This is not a live D&D Beyond verification or a claim that every tactical scenario has been exhaustively adjudicated.
+The September 23 rules check audited condition immunities (verifying that Fey/Undead/Construct creature types do not grant automatic immunity to Charm or Fear, preserving Fear's separate dropped-item resolution, and auditing 2024 Command syntax) and clarified component pouch vs. class spellcasting focus rules.
+
+The October 7 update recorded the DM’s confirmed familiar campaign override (establishing Mr. Big as an actual physical, intelligent companion whose death harms Kief and cannot be solved by recasting, with provisional 2024 Cat mechanics) and table-flow guidance on *Mind Sliver* (permitted, but spamming is discouraged and prompts unusual enemy resistances/immunities; guidance directs use for coordinated setups).
 
 To update source-derived reference pages and Sorcerer/cantrip notes:
 
@@ -67,8 +69,8 @@ There is no cloud sync or offline service worker. Different browsers, ports, or 
 
 Engineering specifications, rules arbitrations, and project lifecycle milestones are maintained in the repository:
 
-- **[Rules Arbitration Guide](docs/rules-arbitration.md)**: Imported 2024 D&D reference decisions and explicitly pending DM rulings for Kief and Mr. Big (One Spell Slot Per Turn, Innate Sorcery, Careful & Subtle Metamagic, Counterspell 2024, Concentration DC math with CON +7, and 2024 Cat familiar mechanics).
-- **[Technical Architecture](docs/architecture.md)**: Deep-dive into the zero-dependency Hugo build, pure functional state machine (`assets/state.js`), native `<dialog>` card stacking, regex autolinking pipeline, and verification harnesses.
+- **[Rules Arbitration Guide](docs/rules-arbitration.md)**: Imported 2024 D&D reference decisions, confirmed campaign overrides (Mr. Big physical familiar ruling and Mind Sliver table-flow guidance), and explicitly pending DM rulings for Kief and Mr. Big (One Spell Slot Per Turn, Innate Sorcery, Careful & Subtle Metamagic, Counterspell 2024, Concentration DC math with CON +7, and provisional 2024 Cat familiar mechanics).
+- **[Technical Architecture](docs/architecture.md)**: Deep-dive into the zero-dependency Hugo build, pure functional state machine (`assets/state.js`), native `<dialog>` card stacking, regex autolinking pipeline, importer anchor fragment preservation, and verification harnesses.
 - **[Documentation Index](docs/README.md)**: Overview of all technical and operational guides.
 - **[Project Roadmap](roadmap.md)**: Development phases, completed deliverables, and future enhancement paths (Session Zero ledger, offline PWA, Level 6 advancement).
 
@@ -85,3 +87,7 @@ The focused tests cover resource bounds, restoration, concentration damage, guid
 
 
 The dashboard’s sticky combat bar jumps to HP, concentration, and Reaction controls. Situation guidance now warns about some resource shortages and concentration replacement; it does not enforce casting. Play search includes the body text. Spell/play cards preserve their cached source nodes and can be reopened repeatedly.
+
+## Familiar campaign override & spell table-flow guidance — 2026-10-07
+
+The canonical ruling is in `../kief/rules-arbitration.md`, imported into `/rulings/`. Binyled’s message establishes a physical, intelligent, persistent familiar whose death is permanent loss and negatively affects Kief; it will not willingly sacrifice himself on command. Exact penalties and remaining mechanics are pending. Active tactical plays now remove disposable-spirit/recasting advice and unsupported Intelligence 3 limits; retained 2024 mechanics are explicitly provisional. Single-play layouts (`layouts/plays/single.html`) inject a prominent disclaimer banner linking to confirmed rulings and open questions. DM guidance also clarifies that *Mind Sliver* is allowed without a ban, but anti-spam table etiquette applies, directing use toward coordinated setups. Additionally, `scripts/sync_content.py` preserves anchor fragments (`#...`) across markdown links, with verified contract test coverage. Update canonical records first, run the importer, and review site-authored plays and spell metadata when further rulings arrive.

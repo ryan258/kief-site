@@ -17,9 +17,9 @@ browser localStorage + IndexedDB mirror ↔ validated session state ↔ dashboar
 
 Nine current Markdown records and one spell-reference JSON file are fingerprinted. Rules arbitration is also mirrored byte-for-byte into this directory. Edit shared character/rules material in `../kief`, then import; do not fix only the generated copies. Historical level-7 records, exports, and gear are excluded.
 
-The importer merges the character's eight cantrips and nine preparations with six curated subclass spells and two origin spells. It requires all 25 names to match the detailed shared spell references, rejects missing fields and duplicate names, and checks the current HP, AC, save/attack, slots/SP, Constitution save, speed, Innate Sorcery, and restoration expectations before writing. `--check` compares every expected output without writing. This remains a curated import, not an arbitrary character-sheet parser.
+The importer merges the character's eight cantrips and nine preparations with six curated subclass spells and two origin spells. It requires all 25 names to match the detailed shared spell references, rejects missing fields and duplicate names, and checks the current HP, AC, save/attack, slots/SP, Constitution save, speed, Innate Sorcery, and restoration expectations before writing. Markdown cross-links are rewritten to target site routes while preserving anchor fragments (`#...`). `--check` compares every expected output without writing. This remains a curated import, not an arbitrary character-sheet parser.
 
-The dashboard limits and labels remain explicit in `assets/state.js` and `layouts/index.html`. A changed build deliberately requires reviewing those consumers. Source fingerprints alone do not prove every tactical claim correct. Site-authored plays must be reviewed when character choices or table rulings change.
+The dashboard limits and labels remain explicit in `assets/state.js` and `layouts/index.html`. A changed build deliberately requires reviewing those consumers. Source fingerprints alone do not prove every tactical claim correct. Site-authored plays must be reviewed when character choices or table rulings change (for example, the confirmed 2026-10-07 familiar campaign override establishing Mr. Big as an actual physical, intelligent companion whose death harms Kief and who refuses suicidal tasks, along with DM table-flow guidance on Mind Sliver).
 
 ## Runtime state
 
@@ -81,7 +81,7 @@ The dashboard has sticky HP/concentration/Reaction shortcuts. Mobile presents re
 
 ## Verification and delivery
 
-Focused Node tests exercise the state model and tracker event wiring using a small DOM adapter. Python importer contract tests use temporary fixtures from checked-in data, so CI does not require the sibling repository. Browser checks remain necessary for dialogs, layout, focus, and downloads.
+Focused Node tests exercise the state model and tracker event wiring using a small DOM adapter. Python importer contract tests in `tests/sync_test.py` use temporary fixtures from checked-in data (exercising drift detection, link rewriting with anchor fragment preservation, build verification, and reference structure), so CI does not require the sibling repository. Browser checks remain necessary for dialogs, layout, focus, and downloads.
 
 Hugo is pinned to 0.166.0 in GitHub Actions. CI builds the site, runs the focused tests, and checks links/assets. The sibling-aware `sync_content.py --check` is a local gate because CI checks out only this repository. See `../VERIFICATION.md` for evidence and limits.
 
