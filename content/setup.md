@@ -23,7 +23,8 @@ The local rebuild is complete. **These changes have not been applied or verified
 ## Campaign details to settle
 
 - [ ] DM starting gold/equipment/magic-item allowance; do not assume the old wand, diamond, potions, or 34 GP carry over.
-- [ ] Select Fey as Mr. Big's familiar spirit type (a legal spell choice) and the 2024 Cat form/stat block; ask the DM only about the cosmetic miniature-cow appearance.
+- [x] Record the DM’s physical, intelligent, persistent familiar ruling; death is permanent loss and harms Kief.
+- [ ] Confirm the death penalty, 0 HP/healing rules, creature type, cow appearance, Cat stat block, intelligence capabilities, and remaining spell mechanics. See [Table rulings](/rulings/).
 - [ ] Obtain consumed incense and arrange time to summon Mr. Big before adventuring.
 - [ ] Prioritize a component pouch for nonpriced, nonconsumed material components across both spell sources, including Wizard-feat Mending's two lodestones. A Sorcerer arcane focus covers Sorcerer spells only; the familiar's consumed 10+ GP incense is still required.
 - [ ] Confirm fixed HP and milestone advancement under the campaign's rules.

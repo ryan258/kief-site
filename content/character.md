@@ -81,6 +81,8 @@ The glow-moss discovery and shop explosion remain. Whether the moss awakened his
 | Mage Hand | Magic Initiate | Remote handling, within the spell's limits; not an attack or trap detector |
 | Mending | Magic Initiate | Repair small breaks; takes a minute and doesn't restore magical functions |
 
+DM spell-use guidance recorded 2026-10-07: Mind Sliver is allowed, but the DM objects to spam and warned of unusual enemy resistances or immunities in response. No numerical limit was given. Use it deliberately for a specific setup; see [table-flow guidance](/rulings/#spell-use-and-table-flow-dm-guidance). Silvery Barbs is not in this build.
+
 Mind Sliver replaces Shape Water; Light replaces Dancing Lights. This is a fresh starting build, not a claim that a normal level-up allows two cantrip replacements. All selections are 2024 PHB spells; no expanded-source cantrip is needed.
 
 ## Sorcerer preparations — exactly 9
@@ -112,9 +114,23 @@ Fly is the ally-mobility tool already supplied by the subclass. Fear provides an
 
 ## Mr. Big
 
-Same companion: a miniature toy cow, mechanically a **Cat-form Fey familiar**, subject to the new DM accepting the cosmetic cow appearance. He never moos; he never needs to. Use the [current Cat stat block](https://www.dndbeyond.com/monsters/4775808-cat): AC 12, HP 2, Speed 40 feet, Climb 40 feet, Perception +3, Stealth +4, Darkvision 60 feet, Passive Perception 13, and Jumper. Find Familiar changes the creature type to Fey. The old local record's Climb 30 feet and Keen Smell mixed in legacy details; those are not this selected block. Cow appearance adds no attacks, size, or carrying capacity.
+## Confirmed DM ruling — Find Familiar
 
-He can scout and communicate telepathically within 100 feet. Kief can use a Bonus Action to see and hear through him until the start of Kief's next turn. The 2024 sense-sharing text does not remove Kief's own senses. Mr. Big leaves worn/carried items in his space when dismissed to the pocket dimension or reduced to 0 HP. He has his own initiative and cannot attack. Help, Dodge, and other legal actions remain available; a combat Help attempt puts a fragile familiar near the enemy. Delivering a touch spell takes Mr. Big's Reaction and requires him to be within 100 feet of Kief and in reach of the recipient.
+Recorded 2026-10-07 from Binyled's message relayed by Ryan (message timestamp 11:00 AM; original message date not supplied).
+
+- The familiar is an actual physical creature, not a disposable summoned spirit.
+- You can summon it and put it away. Once summoned, that individual is your familiar.
+- If it dies, it is gone. Do not plan on restoring it by recasting *Find Familiar*.
+- Its bond to you means its death negatively affects you.
+- The DM considers it intelligent and able to provide legitimate help. It will not willingly sacrifice itself just because it is asked.
+
+**Still to clarify:** the exact death penalty; what happens at 0 HP, including any death saves or opportunity to heal; the numerical Intelligence score and specific capabilities; creature type and accepted form/stat block; and which remaining casting, dismissal, cargo, telepathy, shared-sense, and touch-delivery mechanics carry over. “How it used to be ran” does not establish a specific older edition or its penalties.
+
+**At the table:** treat Mr. Big as a companion with judgment and self-preservation. Agree on a safe job and an exit; stop or change the plan when he refuses. The 2024 details elsewhere are a provisional reference wherever this ruling has not settled them. Initial summoning and components remain unconfirmed.
+
+Same intended companion: a miniature toy cow with a **proposed 2024 Cat stat block**, subject to DM confirmation under the ruling above. He never moos; he never needs to. Use the [current Cat stat block](https://www.dndbeyond.com/monsters/4775808-cat): AC 12, HP 2, Speed 40 feet, Climb 40 feet, Perception +3, Stealth +4, Darkvision 60 feet, Passive Perception 13, and Jumper. The earlier build selected Fey; creature type is now unconfirmed under the campaign override. The old local record's Climb 30 feet and Keen Smell mixed in legacy details; those are not this selected block. Cow appearance adds no attacks, size, or carrying capacity.
+
+**Provisional 2024 mechanics, subject to the DM’s remaining ruling:** he can scout and communicate telepathically within 100 feet. Kief can use a Bonus Action to see and hear through him until the start of Kief's next turn. The 2024 sense-sharing text does not remove Kief's own senses. Do not assume the published disappearance/cargo rule applies at 0 HP; the campaign’s death and cargo mechanics remain unspecified. He has his own initiative and cannot attack. Help, Dodge, and other legal actions remain available; a combat Help attempt puts a fragile familiar near the enemy. Delivering a touch spell takes Mr. Big's Reaction and requires him to be within 100 feet of Kief and in reach of the recipient.
 
 First-session summoning status is not established. Find Familiar needs 1 hour, or 70 minutes as a ritual, and consumes at least 10 GP of incense each time, even with the free feat casting. Plan to summon him before adventuring if time and components permit.
 

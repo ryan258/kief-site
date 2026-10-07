@@ -4,6 +4,12 @@ title = "The teammate playbook"
 
 Current local build; see [the character record](/character/). Kief is starting the Candy Land campaign: a cursed kingdom, dangerous roads, and a map to follow. The build uses 2024 PHB rules pending the DM's ruleset confirmation. He's a mellow tea merchant with a field scholar's curiosity, not a wilderness expert: share the kettle, listen before judging, ask good questions, and make sure the party gets home.
 
+
+## Spell-use guidance — recorded 2026-10-07
+
+The DM allows tricky spell use, including Mind Sliver, but objects to spam and warned that repeated overuse may lead to upcoming enemies with unusual resistances or immunities. No usage cap or spell ban was stated. **Practical interpretation:** use Mind Sliver for a specific coordinated setup, not an automatic every-round routine; keep turns brief and share the action with teammates. Silvery Barbs was mentioned as an example, not added to Kief’s spell list. See [the recorded guidance](/rulings/#spell-use-and-table-flow-dm-guidance).
+
+
 ## The normal fight
 
 1. Identify the problem: a crowd, a choke point, a caster, or an ally in trouble.
@@ -60,6 +66,10 @@ Careful keeps control and emergency damage usable around friends. Subtle keeps t
 
 This is a versatile teammate, not a healer or an answer to every obstacle. Revisit the spell list after seeing what the other characters actually cover.
 
+
+## Familiar campaign override — recorded 2026-10-07
+
+Mr. Big is a physical, intelligent companion who can be summoned and put away. If he dies, he is gone and Kief suffers an unspecified negative effect. He will not willingly sacrifice himself on command. Do not use recasting as a recovery plan. Other familiar mechanics below remain provisional; see [the confirmed ruling and open details](/rulings/#confirmed-campaign-override).
 
 ## Shared rules reference
 

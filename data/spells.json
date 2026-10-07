@@ -49,9 +49,9 @@
     "resolution": "Intelligence save",
     "effect": "At level 5: on failure, 2d6 psychic and subtract 1d4 from its next saving throw before the end of your next turn.",
     "higher": "Damage rises at character levels 11 and 17.",
-    "caution": "The penalty affects one saving throw; call it out to the party.",
+    "caution": "The penalty affects one saving throw; call it out to the party. DM guidance recorded 2026-10-07: allowed, but spam is unwelcome and may prompt unusual enemy resistances or immunities. No usage cap was stated. Practical guidance: use for a specific coordinated setup, not an automatic every-round routine. The separate concentration-save timing ruling remains pending.",
     "rules_url": "https://www.dndbeyond.com/sources/dnd/br-2024/character-classes#Sorcerer",
-    "checked": "2026-09-23"
+    "checked": "2026-10-07 (DM guidance recorded; published baseline checked 2026-09-23)"
   },
   {
     "name": "Light",
@@ -436,17 +436,17 @@
     "level": 1,
     "concentration": false,
     "source": "Magic Initiate",
-    "job": "One free cast per Long Rest, or slots/ritual. Still consumes 10+ GP incense; 1 hour, or 70 minutes as a ritual.",
+    "job": "Physical, intelligent companion under the DM ruling. Death is permanent loss and harms Kief; exact penalty and remaining mechanics pending.",
     "casting": "1 hour or ritual (70 minutes total)",
     "range": "10 ft",
-    "target": "One familiar spirit in an allowed form",
+    "target": "One physical, persistent familiar; form/type pending DM confirmation",
     "components": "V, S, M (burning incense worth at least 10 GP, consumed)",
     "duration": "Instantaneous; familiar persists",
     "resolution": "No initial roll",
-    "effect": "Acts on its own initiative and cannot attack. Within 100 ft: telepathy, Bonus Action shared senses until your next turn, and familiar Reaction to deliver your touch spell. At 0 HP it vanishes; recast to return. A Magic action dismisses it or returns it within 30 ft. Disappearance leaves worn/carried objects behind.",
+    "effect": "Confirmed DM ruling: an actual physical, intelligent companion. You can summon it and put it away; once summoned, that individual is your familiar. If it dies, it is gone and its death negatively affects Kief. It can legitimately help but will not willingly sacrifice itself just because it is asked.",
     "higher": "No additional effect.",
-    "caution": "Magic Initiate: one free cast per Long Rest, or slots/ritual; time and incense still apply. Fey is a legal spirit type; only the cosmetic cow appearance needs DM approval. Shared-sense targeting needs the spell’s own requirements.",
+    "caution": "Recorded 2026-10-07 from Binyled via Ryan. Exact death penalty, 0 HP/healing rules, Intelligence score, creature type, form/stat block, and remaining spell mechanics are unspecified. Casting/time/components shown here are the provisional 2024 reference. Recasting is not a recovery plan. The linked published spell is not the source of the campaign override.",
     "rules_url": "https://www.dndbeyond.com/spells/2618877-find-familiar",
-    "checked": "2026-09-23"
+    "checked": "2026-10-07 (DM override recorded; published baseline checked 2026-09-23)"
   }
 ]

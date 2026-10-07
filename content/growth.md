@@ -30,6 +30,10 @@ Sorcery Incarnate, fourth-level slots, and the Draconic Arcane Eye / Charm Monst
 Default ASI recommendation: +2 Charisma, 16 to 18. This improves DC, spell attack, Draconic AC, Persuasion, and Careful's protected-creature count. Revisit only if play establishes a more pressing need.
 
 
+## Familiar campaign override — recorded 2026-10-07
+
+Mr. Big is a physical, intelligent companion who can be summoned and put away. If he dies, he is gone and Kief suffers an unspecified negative effect. He will not willingly sacrifice himself on command. Do not use recasting as a recovery plan. Other familiar mechanics below remain provisional; see [the confirmed ruling and open details](/rulings/#confirmed-campaign-override).
+
 ## Shared rules reference
 
 See [Table rulings](/rulings/) for the 2026-09-23 condition-immunity and component rules, official sources, familiar cargo and signal rules, and interpretations still awaiting DM approval. Use this reference with the current character record; open campaign confirmations are tracked in findings.md.

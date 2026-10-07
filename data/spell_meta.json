@@ -115,7 +115,7 @@
     "school": "Conjuration",
     "role": "Bonded Familiar",
     "quote": "“He’s a cow. He’s always been a cow.”",
-    "description": "You gain the service of a familiar, a spirit that takes an animal form you choose, bound to your service.",
+    "description": "At this table, your familiar is a physical, intelligent companion. You can summon it and put it away; death means losing it and a negative effect on you. It will not willingly sacrifice itself on command.",
     "icon": "🐮"
   },
   "Fire Bolt": {

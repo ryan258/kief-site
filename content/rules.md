@@ -10,6 +10,12 @@ Candy Land campaign; local build unchanged since 2026-09-16. This is a 2024 PHB 
 
 Innate Sorcery: Bonus Action, twice per Long Rest, 1 minute. Sorcerer save DC becomes **15**; Sorcerer spell attacks have advantage, still +6. Short Rest restoration: up to **2 SP**, once per Long Rest.
 
+
+## Spell-use guidance — recorded 2026-10-07
+
+The DM allows tricky spell use, including Mind Sliver, but objects to spam and warned that repeated overuse may lead to upcoming enemies with unusual resistances or immunities. No usage cap or spell ban was stated. **Practical interpretation:** use Mind Sliver for a specific coordinated setup, not an automatic every-round routine; keep turns brief and share the action with teammates. Silvery Barbs was mentioned as an example, not added to Kief’s spell list. See [the recorded guidance](/rulings/#spell-use-and-table-flow-dm-guidance).
+
+
 ## One useful decision
 
 | Situation | Default |
@@ -54,6 +60,10 @@ Long Rest: restore HP to 47, slots to 4/3/2, SP to 5, Hit Dice to 5d6, Innate So
 
 > “Everybody breathe. Except you, Mr. Big. You're doing beautifully.”
 
+
+## Familiar campaign override — recorded 2026-10-07
+
+Mr. Big is a physical, intelligent companion who can be summoned and put away. If he dies, he is gone and Kief suffers an unspecified negative effect. He will not willingly sacrifice himself on command. Do not use recasting as a recovery plan. Other familiar mechanics below remain provisional; see [the confirmed ruling and open details](/rulings/#confirmed-campaign-override).
 
 ## Shared rules reference
 

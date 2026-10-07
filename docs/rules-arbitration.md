@@ -1,8 +1,20 @@
 # 2024 D&D (5.5e) Rules Arbitration Guide
 
-Current level-5 reference, checked 2026-09-23 against the linked 2024 rules. Published rules and pending interpretations are separated below. The campaign's chosen ruleset, DM approval, equipment, and live-sheet synchronization remain pending. This file is canonical: the companion imports it as Table rulings and mirrors it into its engineering documentation. Detailed spell summaries live alongside it in `spell-reference.json`.
+Current level-5 reference, checked 2026-09-23 against the linked 2024 rules. Published rules, confirmed campaign overrides, and pending interpretations are separated below. The familiar override was recorded 2026-10-07. The campaign's chosen ruleset, DM approval, equipment, and live-sheet synchronization remain pending. This file is canonical: the companion imports it as Table rulings and mirrors it into its engineering documentation. Detailed spell summaries live alongside it in `spell-reference.json`.
 
 ---
+
+
+## Spell use and table flow: DM guidance
+
+Recorded 2026-10-07 from Binyled’s reply relayed by Ryan (11:19 AM; original message date not supplied), after Ryan asked whether any spells in his spellbook would compromise game flow.
+
+**What the DM said:** no spell ban was stated in this reply. He allows “shady shifty” tactics and says the issue is how they are used and the player’s behavior. He explicitly said Silvery Barbs and Mind Sliver have a place, but objects when they are spammed. He warned that upcoming enemies may then have resistances or immunities they would not normally have.
+
+**What this establishes:** Mind Sliver can stay in Kief’s current build. Silvery Barbs was an example in the discussion; it is not in the current local spell list, and this reply does not add it. The message does not specify a usage cap, define “spammed,” name particular resistances or immunities, or settle the separate Mind Sliver/concentration-save timing question.
+
+**Practical play guidance (our interpretation):** use Mind Sliver for a specific, coordinated setup rather than treating it as the automatic answer every round. Choose the action that serves the current situation, keep resolution brief, and leave teammates room to act. This is table-flow guidance, not an invented once-per-fight rule or a required spell swap. If repeated use becomes an issue, clarify the expectation with the DM rather than guessing a numerical limit.
+
 
 ## 1. Action Economy & Spellcasting
 
@@ -79,9 +91,23 @@ Current level-5 reference, checked 2026-09-23 against the linked 2024 rules. Pub
 
 ---
 
-## 4. Mr. Big (Cat-Form Fey Familiar)
+## 4. Mr. Big — campaign familiar ruling
 
-### Mechanical Statblock (2024 Cat)
+### Confirmed campaign override
+
+Recorded 2026-10-07 from Binyled's message relayed by Ryan (message timestamp 11:00 AM; original message date not supplied).
+
+- The familiar is an actual physical creature, not a disposable summoned spirit.
+- You can summon it and put it away. Once summoned, that individual is your familiar.
+- If it dies, it is gone. Do not plan on restoring it by recasting *Find Familiar*.
+- Its bond to you means its death negatively affects you.
+- The DM considers it intelligent and able to provide legitimate help. It will not willingly sacrifice itself just because it is asked.
+
+**Still to clarify:** the exact death penalty; what happens at 0 HP, including any death saves or opportunity to heal; the numerical Intelligence score and specific capabilities; creature type and accepted form/stat block; and which remaining casting, dismissal, cargo, telepathy, shared-sense, and touch-delivery mechanics carry over. “How it used to be ran” does not establish a specific older edition or its penalties.
+
+**At the table:** treat Mr. Big as a companion with judgment and self-preservation. Agree on a safe job and an exit; stop or change the plan when he refuses. The 2024 details elsewhere are a provisional reference wherever this ruling has not settled them. Initial summoning and components remain unconfirmed.
+
+### Provisional mechanical stat block (2024 Cat; DM confirmation pending)
 * **Armor Class:** 12
 * **Hit Points:** 2 ($1\text{d}4$)
 * **Speed:** 40 ft., climb 40 ft.
@@ -89,8 +115,8 @@ Current level-5 reference, checked 2026-09-23 against the linked 2024 rules. Pub
 * **Skills:** Perception +3, Stealth +4 (Passive Perception 13).
 * **Trait:** *Jumper* (uses Dexterity instead of Strength for jump distance).
 
-### Tabletop Capabilities & Boundaries
-* **Creature Type & Appearance:** Fey familiar summoned via *Find Familiar*. Cosmetic appearance is a tiny, silent cow. This appearance is purely aesthetic; it grants no bovine carrying strength, trampling attacks, or physical weight advantages.
+### Provisional 2024 capabilities — subject to the override above
+* **Creature Type & Appearance:** The earlier build selected Fey under the published spell; creature type is now pending confirmation under the physical-familiar ruling. Cosmetic appearance is a tiny, silent cow. This appearance is purely aesthetic; it grants no bovine carrying strength, trampling attacks, or physical weight advantages.
 * **Attacks:** Mr. Big **cannot attack**.
 * **Initiative & Actions:** Rolls his own initiative in combat. He can take standard non-attack actions, including *Dodge*, *Dash*, *Disengage*, *Hide*, and *Help*.
 * **Help Action Dynamics:** To grant advantage on an ally's attack against an enemy, Mr. Big must be within 5 feet of that enemy during his turn. Because Mr. Big has only 2 HP and lacks the *Flyby* trait, positioning him within melee reach exposes him to opportunity attacks and area effects.
@@ -117,7 +143,7 @@ The companion site deliberately excludes features and capabilities that Kief has
 - **Shield:** with AC 15, ordinary attack totals 15–19 become misses at AC 20. A total of 20 still hits; a critical hit is not negated by this AC increase. Shield lasts until the start of Kief's next turn, not a guaranteed full round.
 - **Alter Self:** self only; Change Appearance can change voice, but not size category or basic body shape. It supplies no skill proficiency.
 - **Sorcerous Restoration:** optional at the end of a Short Rest. At full SP, leave the feature unused.
-- **Familiar cargo:** anything Mr. Big wears or carries stays in his space when he drops to 0 HP or enters the pocket dimension. Retrieve items separately.
+- **Familiar cargo:** the published 2024 disappearance rule leaves items behind. Cargo handling and the outcome at 0 HP under this physical-familiar ruling are unconfirmed; do not assume disappearance or item transport.
 - **Targeting:** apply each spell's sight and range requirements separately from the clear-path/total-cover rules. Area spells do not universally require a visible point. Shared senses do not move the spell's origin to Mr. Big.
 - **Detect Magic:** detects magical effects and, when applicable, a spell's school. It does not identify creature type; do not claim it proves Mr. Big is Fey.
 - **Signals:** sit = hold; circle = fall back; stare = look here; lie down = danger/freeze; return = abort. A clear exit is reported by Kief after Mr. Big's telepathic report, never by reversing the sit signal.

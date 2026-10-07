@@ -19,6 +19,12 @@ Twelve current plays. Full former 72-play guide preserved in [the level 7 archiv
 | 11 | Inspect before touching | Ritual Detect Magic when time allows; concentration; then ordinary investigation | “That's either enchanted or exceptionally badly stored.” |
 | 12 | Keep everyone functional | Light, Mending, Mage Hand, and Prestidigitation within their actual limits | “I brought a blend for this. Also rope.” |
 
+
+## Spell-use guidance — recorded 2026-10-07
+
+The DM allows tricky spell use, including Mind Sliver, but objects to spam and warned that repeated overuse may lead to upcoming enemies with unusual resistances or immunities. No usage cap or spell ban was stated. **Practical interpretation:** use Mind Sliver for a specific coordinated setup, not an automatic every-round routine; keep turns brief and share the action with teammates. Silvery Barbs was mentioned as an example, not added to Kief’s spell list. See [the recorded guidance](/rulings/#spell-use-and-table-flow-dm-guidance).
+
+
 ## What Candy Land will keep asking for
 
 The road is the campaign, so plays 3, 4, 5, 6, and 10 come up more than the set-piece ones. Following the map means scouting (5), crossing what the map does not mention (6), and catching whoever the map drops (4). Half-forgotten stories mean asking animals what they saw (10) and inspecting the thing that is too magical to be decorative (11).
@@ -37,6 +43,10 @@ Misty Step is the personal exit: Bonus Action, visible space within 30 feet, no 
 
 Subtle Spell costs 1 SP and removes components other than priced/consumed materials. Use for quiet utility when justified; it doesn't make spell effects invisible or erase social consequences. It cannot be combined with Careful on this level 5 build.
 
+
+## Familiar campaign override — recorded 2026-10-07
+
+Mr. Big is a physical, intelligent companion who can be summoned and put away. If he dies, he is gone and Kief suffers an unspecified negative effect. He will not willingly sacrifice himself on command. Do not use recasting as a recovery plan. Other familiar mechanics below remain provisional; see [the confirmed ruling and open details](/rulings/#confirmed-campaign-override).
 
 ## Shared rules reference
 
