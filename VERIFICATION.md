@@ -1,5 +1,21 @@
 # Verification history
 
+## 2026-10-07 — Character review and canonical sync
+
+- Found and fixed: `assets/state.js` still listed Mind Sliver and Light, so the cast workflow rejected Elementalism and Shape Water and the spell-parity test failed. `assets/app.js` "holding" guidance also told the player to use Mind Sliver; it now names Ray of Frost and Elementalism.
+- Full run after the fix: `node --test tests/*.cjs` 35/35, `python3 tests/sync_test.py` 4/4, `sync_content.py --check` clean, Hugo build and `check_links.py` clean over 286 HTML pages.
+- Remaining Mind Sliver/Light mentions in content are deliberate history of the swap; plays k-44, k-171, mb-94 correctly say Light is gone.
+- Rules rechecked against 5e24srd and D&D Beyond: Sorcerer L5 table, Font of Magic, Sorcerous Restoration, Draconic Resilience, 2024 Cat block (Climb 40, Darkvision 60), Web, Shape Water. No discrepancies.
+
+## 2026-10-07 — 101 additional Kief plays
+
+- Added exactly K-73–K-173, across eight groups. Total: 173 Kief plays plus 100 Mr. Big plays, 273 directory cards. Existing play routes remain intact.
+- Checked the 101 new TOML headers, IDs, weights, unique titles, four required sections, and italic spell references against the current 25-spell data. New prose distinguishes proposed consequences from guaranteed spell effects and uses the recorded liquid/familiar rulings.
+- Source sync check passed. Hugo built 287 pages; local links/assets passed across 286 HTML files. Whitespace checks passed in both repositories.
+- Live local browser spot checks: 273 directory cards; searching K-173 returns one card; actor filters return 173 and 100; clearing filters restores 273. K-73 and K-173 render all four play sections without desktop horizontal overflow; K-73 links to the current Shape Water card and displays its spell mini-card.
+- This is local content and browser validation, not DM approval, a live-session trial, mobile/assistive-technology acceptance, or publication. No full test suite was run for this content expansion.
+
+
 ## Familiar campaign override, spell table-flow guidance, and link fragment preservation — 2026-10-07 (local)
 
 This entry records verification of the DM familiar campaign override, spell table-flow guidance, tactical plays audit, and importer link fragment preservation:

@@ -19,7 +19,7 @@ Nine current Markdown records and one spell-reference JSON file are fingerprinte
 
 The importer merges the character's eight cantrips and nine preparations with six curated subclass spells and two origin spells. It requires all 25 names to match the detailed shared spell references, rejects missing fields and duplicate names, and checks the current HP, AC, save/attack, slots/SP, Constitution save, speed, Innate Sorcery, and restoration expectations before writing. Markdown cross-links are rewritten to target site routes while preserving anchor fragments (`#...`). `--check` compares every expected output without writing. This remains a curated import, not an arbitrary character-sheet parser.
 
-The dashboard limits and labels remain explicit in `assets/state.js` and `layouts/index.html`. A changed build deliberately requires reviewing those consumers. Source fingerprints alone do not prove every tactical claim correct. Site-authored plays must be reviewed when character choices or table rulings change (for example, the confirmed 2026-10-07 familiar campaign override establishing Mr. Big as an actual physical, intelligent companion whose death harms Kief and who refuses suicidal tasks, along with DM table-flow guidance on Mind Sliver).
+The dashboard limits and labels remain explicit in `assets/state.js` and `layouts/index.html`. A changed build deliberately requires reviewing those consumers. Source fingerprints alone do not prove every tactical claim correct. Site-authored plays must be reviewed when character choices or table rulings change (for example, the confirmed 2026-10-07 familiar campaign override establishing Mr. Big as an actual physical, intelligent companion whose death harms Kief and who refuses suicidal tasks; the cantrip selections of *Elementalism* and *Shape Water* replacing *Mind Sliver* and *Light* under the DM's wit-and-whimsy guidance; and the expansion to 273 tactical plays including K-73–K-173).
 
 ## Runtime state
 
@@ -49,7 +49,7 @@ Internal play and spell links retain real URLs. JavaScript intercepts eligible l
 
 Cards retain native Escape/close behavior. Browser Back still navigates page history; it is not a modal-stack control. Deep stacks and full screen-reader behavior need broader acceptance testing.
 
-The play directory searches titles, summaries, groups, IDs, and rendered body text. Spell search includes purpose, effects, components, and cautions. Query whitespace is normalized. First italic spell mentions are linked at build time, allowing whitespace across lines and apostrophe variants. Spell backlinks use the same matching pattern. This is formatting-dependent: unitalicized mentions are not guaranteed links or backlinks.
+The play directory searches titles, summaries, groups, IDs, and rendered body text across all 273 plays (173 Kief, 100 Mr. Big). Spell search includes purpose, effects, components, and cautions. Query whitespace is normalized. First italic spell mentions are linked at build time, allowing whitespace across lines and apostrophe variants. Spell backlinks use the same matching pattern. This is formatting-dependent: unitalicized mentions are not guaranteed links or backlinks.
 
 The dashboard has sticky HP/concentration/Reaction shortcuts. Mobile presents resources before recommendations, compresses the decorative hero, and enlarges frequently used controls. Shortcuts navigate to controls; they do not spend resources.
 
