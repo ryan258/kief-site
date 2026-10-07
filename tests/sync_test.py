@@ -41,6 +41,14 @@ class ImportContract(unittest.TestCase):
             self.run_import('--check')
         self.assertEqual(output.read_text(), 'manual drift')
 
+    def test_source_links_preserve_fragments(self):
+        source = self.source / 'kiefs-greatest-hits.md'
+        source.write_text(source.read_text() + '\n[Override](rules-arbitration.md#confirmed-campaign-override)\n[Rules](D&D%205.5e%20Rules%20Cheat%20Sheet.md#exploration)\n')
+        self.run_import()
+        output = (self.site / 'content/greatest-hits.md').read_text()
+        self.assertIn('](/rulings/#confirmed-campaign-override)', output)
+        self.assertIn('](/rules/#exploration)', output)
+
     def test_changed_build_fails_before_writing(self):
         char = self.source / 'kief-firelight-character.md'
         char.write_text(char.read_text().replace('**DC 14 / +6**', '**DC 15 / +7**'))

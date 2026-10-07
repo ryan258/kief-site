@@ -43,7 +43,9 @@ def main():
         text = re.sub(r'^# .+\n', '', text, count=1).lstrip()
         for source, (target, _) in SOURCES.items():
             text = text.replace(f']({source})', f'](/{target}/)')
+            text = text.replace(f']({source}#', f'](/{target}/#')
             text = text.replace(f']({source.replace(" ", "%20")})', f'](/{target}/)')
+            text = text.replace(f']({source.replace(" ", "%20")}#', f'](/{target}/#')
         text = re.sub(r'\]\(archive/[^)]+\)', '](/history/)', text)
         generated[SITE / 'content' / f'{route}.md'] = ('+++\ntitle = ' + json.dumps(title) + '\n+++\n\n' + text)
     spells = []
@@ -59,7 +61,7 @@ def main():
         ('Fear', 3, True, 'Draconic Sorcery', 'Another control option when the situation suits fear.'),
         ('Fly', 3, True, 'Draconic Sorcery', 'Help an ally cross an obstacle; agree on a safe landing.'),
         ('Speak with Animals', 1, False, 'Forest Gnome', 'Three free casts per Long Rest, or slots/ritual. Animals know what animals perceive.'),
-        ('Find Familiar', 1, False, 'Magic Initiate', 'One free cast per Long Rest, or slots/ritual. Still consumes 10+ GP incense; 1 hour, or 70 minutes as a ritual.'),
+        ('Find Familiar', 1, False, 'Magic Initiate', 'Physical, intelligent companion under the DM ruling. Death is permanent loss and harms Kief; exact penalty and remaining mechanics pending.'),
     ]
     for name, level, conc, source, job in extras:
         spells.append(dict(name=name, level=level, concentration=conc, source=source, job=job))
