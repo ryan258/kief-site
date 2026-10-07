@@ -174,7 +174,7 @@
     crowd: ['k-2/', 'ACTION · 3RD LEVEL · CONCENTRATION', 'Give everyone a moment.', 'Careful Hypnotic Pattern. Spend 1 SP to protect up to three allies. Mark affected enemies and tell the party to avoid damaging them; they are Charmed and Incapacitated, not Unconscious.', '“Let’s all take a moment. Them especially.”'],
     ally: ['k-32/', 'CHOOSE THE HELP THEY NEED', 'Ask, then make a way.', 'Fly crosses the gap. Invisibility supports the scout. Both need concentration and a return plan. Feather Fall catches up to five falling creatures within 60 feet with your Reaction.', '“The stairs are more of a suggestion.”'],
     caster: ['k-4/', 'REACTION · 3RD LEVEL · 60 FEET', 'Disagree with enemy magic.', 'Keep a third-level slot and your Reaction. Counterspell needs sight of a creature casting with components within 60 feet. The enemy makes a Constitution save; cancellation does not consume its spell slot.', '“No, mate. That’s the wrong blend.”'],
-    holding: ['k-51/', 'PRESERVE CONCENTRATION', 'A quiet turn is a good turn.', 'Take cover. Use Mind Sliver to set up an ally’s next saving-throw effect, Ray of Frost to slow pursuit, or Dodge. Spend another big slot only when it solves a new problem.', '“Everybody breathe. Except you, Mr. Big.”']
+    holding: ['k-51/', 'PRESERVE CONCENTRATION', 'A quiet turn is a good turn.', 'Take cover. Use Ray of Frost to slow pursuit, Elementalism for a scene-setting flourish, or Dodge. Spend another big slot only when it solves a new problem.', '“Everybody breathe. Except you, Mr. Big.”']
   };
   $$('[data-situation]').forEach(button => button.addEventListener('click', () => {
     $$('[data-situation]').forEach(other => {

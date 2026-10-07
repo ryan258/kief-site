@@ -69,8 +69,8 @@
   const spells = {
     'Fire Bolt': { level: 0, time: 'Action', concentration: false },
     'Ray of Frost': { level: 0, time: 'Action', concentration: false },
-    'Mind Sliver': { level: 0, time: 'Action', concentration: false },
-    'Light': { level: 0, time: 'Action', concentration: false },
+    'Elementalism': { level: 0, time: 'Action', concentration: false },
+    'Shape Water': { level: 0, time: 'Action', concentration: false },
     'Prestidigitation': { level: 0, time: 'Action', concentration: false },
     'Minor Illusion': { level: 0, time: 'Action', concentration: false },
     'Mage Hand': { level: 0, time: 'Action', concentration: false },
