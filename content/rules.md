@@ -2,7 +2,7 @@
 title = "Table rules"
 +++
 
-Candy Land campaign; local build unchanged since 2026-09-16. This is a 2024 PHB build, pending confirmation that the DM uses that ruleset. D&D Beyond sync and starting inventory pending. Full choices: [character record](/character/).
+Candy Land campaign; level 5 build as of 2026-10-07 (cantrip swaps: Elementalism and Shape Water). This is a 2024 PHB build, pending confirmation that the DM uses that ruleset. D&D Beyond sync and starting inventory pending. Full choices: [character record](/character/).
 
 **47 HP · AC 15 (20 with Shield) · Speed 30 ft · Initiative +2**
 **Spell attack +6 · Save DC 14 · Constitution save +7**
@@ -13,7 +13,7 @@ Innate Sorcery: Bonus Action, twice per Long Rest, 1 minute. Sorcerer save DC be
 
 ## Spell-use guidance — recorded 2026-10-07
 
-The DM allows tricky spell use, including Mind Sliver, but objects to spam and warned that repeated overuse may lead to upcoming enemies with unusual resistances or immunities. No usage cap or spell ban was stated. **Practical interpretation:** use Mind Sliver for a specific coordinated setup, not an automatic every-round routine; keep turns brief and share the action with teammates. Silvery Barbs was mentioned as an example, not added to Kief’s spell list. See [the recorded guidance](/rulings/#spell-use-and-table-flow-dm-guidance).
+The DM allows tricky spell use, including Mind Sliver, but objects to spam and warned that repeated overuse may lead to upcoming enemies with unusual resistances or immunities. No usage cap or spell ban was stated. **Current choice:** Ryan replaced Mind Sliver with Elementalism on 2026-10-07. Keep turns brief and share the action with teammates; the earlier discussion remains context, not an active Mind Sliver tactic. Silvery Barbs was mentioned as an example, not added to Kief’s spell list. See [the recorded guidance](/rulings/#spell-use-and-table-flow-dm-guidance).
 
 
 ## One useful decision
@@ -22,7 +22,7 @@ The DM allows tricky spell use, including Mind Sliver, but objects to spam and w
 | --- | --- |
 | Allies and enemies mixed together | Careful Hypnotic Pattern; mark affected enemies |
 | A doorway or choke point | Web, keeping allies outside |
-| Ally needs their saving-throw effect to land | Mind Sliver before their turn |
+| A scene needs a small elemental flourish | Elementalism: breeze, dust word, scented smoke, mist, or a crude elemental shape |
 | Dangerous enemy caster | Keep a third-level slot and Reaction for Counterspell |
 | Somebody falls | Feather Fall, if within 60 feet and Reaction available |
 | Scout needs concealment | Invisibility |
@@ -37,7 +37,7 @@ The DM allows tricky spell use, including Mind Sliver, but objects to spam and w
 - **3rd:** Counterspell, Hypnotic Pattern, Fireball.
 - **Draconic extras:** Chromatic Orb, Command, Alter Self, Dragon's Breath, Fear, Fly.
 - **Origin extras:** Speak with Animals; Find Familiar.
-- **Cantrips:** Fire Bolt, Ray of Frost, Mind Sliver, Light, Prestidigitation; Minor Illusion, Mage Hand, Mending.
+- **Cantrips:** Fire Bolt, Ray of Frost, Elementalism, Shape Water, Prestidigitation; Minor Illusion, Mage Hand, Mending.
 
 ## Rules that prevent expensive mistakes
 
@@ -54,7 +54,7 @@ The DM allows tricky spell use, including Mind Sliver, but objects to spam and w
 
 ## Between scenes
 
-Use Detect Magic and Speak with Animals as rituals when time allows. Light does not compete for concentration. Mr. Big scouts within the 100-foot telepathy limit; he cannot attack. Familiar summoning needs 10+ GP incense and 1 hour, or 70 minutes as a ritual.
+Use Detect Magic and Speak with Animals as rituals when time allows. Shape Water and Elementalism do not require concentration. Arrange a party light source; Light is no longer selected. Mr. Big scouts within the 100-foot telepathy limit; he cannot attack. Familiar summoning needs 10+ GP incense and 1 hour, or 70 minutes as a ritual.
 
 Long Rest: restore HP to 47, slots to 4/3/2, SP to 5, Hit Dice to 5d6, Innate Sorcery to 2, Speak with Animals to 3 free casts, Find Familiar to 1 free cast; reset Sorcerous Restoration. Starting gear is still pending.
 

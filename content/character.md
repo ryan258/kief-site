@@ -2,7 +2,7 @@
 title = "Character record"
 +++
 
-Candy Land campaign build; premise recorded 2026-09-23, mechanics unchanged since 2026-09-16. Ryan confirmed the same 2024 Forest Gnome / Draconic Sorcerer / Sage concept at level 5, with stronger teammate utility. The campaign pitch does not specify its ruleset, so this is a 2024 PHB build pending the DM's confirmation. D&D Beyond has **not** been updated or verified for this campaign. Previous level 7 exports and approvals are historical.
+Candy Land campaign build; premise recorded 2026-09-23, numbers unchanged since 2026-09-16; cantrip choices updated 2026-10-07. Ryan confirmed the same 2024 Forest Gnome / Draconic Sorcerer / Sage concept at level 5, with stronger teammate utility. The campaign pitch does not specify its ruleset, so this is a 2024 PHB build pending the DM's confirmation. D&D Beyond has **not** been updated or verified for this campaign. Previous level 7 exports and approvals are historical.
 
 ## Build and numbers
 
@@ -74,16 +74,18 @@ The glow-moss discovery and shop explosion remain. Whether the moss awakened his
 | --- | --- | --- |
 | Fire Bolt | Sorcerer | 2d10 fire; ranged damage, +6 to hit |
 | Ray of Frost | Sorcerer | 2d8 cold; hit reduces target Speed by 10 feet until Kief's next turn |
-| Mind Sliver | Sorcerer | Intelligence save; 2d6 psychic and -1d4 on the next save before the end of Kief's next turn |
-| Light | Sorcerer | Illumination for teammates without Darkvision; no concentration |
+| Elementalism | Sorcerer | Small elemental effects within 30 feet; sculpt a crude 1-foot elemental shape for 1 hour; no concentration |
+| Shape Water | Sorcerer | Manipulate visible water/liquid within a 5-foot cube at 30 feet; DM approved liquids; no concentration |
 | Prestidigitation | Sorcerer | Tea temperature, clean clothes, small harmless flourishes |
 | Minor Illusion | Forest Gnome | Sound or static object image for distractions and explanations |
 | Mage Hand | Magic Initiate | Remote handling, within the spell's limits; not an attack or trap detector |
 | Mending | Magic Initiate | Repair small breaks; takes a minute and doesn't restore magical functions |
 
-DM spell-use guidance recorded 2026-10-07: Mind Sliver is allowed, but the DM objects to spam and warned of unusual enemy resistances or immunities in response. No numerical limit was given. Use it deliberately for a specific setup; see [table-flow guidance](/rulings/#spell-use-and-table-flow-dm-guidance). Silvery Barbs is not in this build.
+DM spell-use guidance recorded 2026-10-07: Mind Sliver is allowed, but the DM objects to spam and warned of unusual enemy resistances or immunities in response. No numerical limit was given. Ryan has now chosen Elementalism instead; see [table-flow guidance](/rulings/#spell-use-and-table-flow-dm-guidance). Silvery Barbs is not in this build.
 
-Mind Sliver replaces Shape Water; Light replaces Dancing Lights. This is a fresh starting build, not a claim that a normal level-up allows two cantrip replacements. All selections are 2024 PHB spells; no expanded-source cantrip is needed.
+The DM’s later reply (11:47 AM, recorded 2026-10-07) describes the campaign as wit and whimsy and encourages creative spell choices. Ryan selected Elementalism to replace Mind Sliver on 2026-10-07; live-sheet reconciliation remains pending. See [campaign direction](/rulings/#campaign-direction-wit-and-whimsy).
+
+Current choices confirmed by Ryan on 2026-10-07: Elementalism replaces Mind Sliver, and Shape Water replaces Light. Ryan reports DM approval for Shape Water to affect liquids. Shape Water is the older Elemental Evil Player’s Companion spell with this campaign extension; the other selections use the 2024 PHB. These are local campaign setup choices; live-sheet reconciliation and swap timing remain to be confirmed. Arrange a party light source now that Light is not selected.
 
 ## Sorcerer preparations — exactly 9
 
@@ -142,13 +144,13 @@ Prioritize a **component pouch**: it covers nonpriced, nonconsumed material comp
 
 ## Run him as a teammate
 
-Open with one useful control spell, then protect concentration. Use Mind Sliver before an ally's saving-throw effect, Ray of Frost to slow pursuit, or ordinary actions to help with the objective. Ask who wants Fly or Invisibility. Tell allies which targets are affected by Hypnotic Pattern so they don't immediately wake them. Keep an exit route and one Reaction available when possible.
+Open with one useful control spell, then protect concentration. Use Ray of Frost to slow pursuit, Fire Bolt for damage, or ordinary actions to help with the objective. Elementalism supplies creative environmental flourishes, not damage or a saving-throw penalty. Ask who wants Fly or Invisibility. Tell allies which targets are affected by Hypnotic Pattern so they don't immediately wake them. Keep an exit route and one Reaction available when possible.
 
 Kief prevents damage and creates opportunities; he has no healing spell. Never imply that tea restores HP. Check potion ownership before counting on emergency healing.
 
 ## Rules references
 
-Checked for this rebuild: [2024 Sorcerer and Draconic Sorcery](https://www.dndbeyond.com/sources/dnd/br-2024/character-classes#Sorcerer), [casting rules](https://www.dndbeyond.com/sources/dnd/br-2024/spells), [spell descriptions](https://www.dndbeyond.com/sources/dnd/br-2024/spell-descriptions), [Forest Gnome lineage](https://www.dndbeyond.com/species/1751438-gnome), [Sage and Magic Initiate](https://www.dndbeyond.com/backgrounds/406485-sage), [2024 Counterspell](https://www.dndbeyond.com/spells/2619072-counterspell), [2024 Find Familiar](https://www.dndbeyond.com/spells/2618877-find-familiar), and the official [2024 Sorcerer spell list](https://www.dndbeyond.com/sources/dnd/br-2024/character-classes#Sorcerer) for *Mind Sliver*. DM rulings govern the table. The campaign ruleset, live D&D Beyond sheet, and starting allowances are not yet confirmed.
+Checked for this rebuild: [2024 Sorcerer and Draconic Sorcery](https://www.dndbeyond.com/sources/dnd/br-2024/character-classes#Sorcerer), [casting rules](https://www.dndbeyond.com/sources/dnd/br-2024/spells), [spell descriptions](https://www.dndbeyond.com/sources/dnd/br-2024/spell-descriptions), [Forest Gnome lineage](https://www.dndbeyond.com/species/1751438-gnome), [Sage and Magic Initiate](https://www.dndbeyond.com/backgrounds/406485-sage), [2024 Counterspell](https://www.dndbeyond.com/spells/2619072-counterspell), [2024 Find Familiar](https://www.dndbeyond.com/spells/2618877-find-familiar), and the official [2024 Sorcerer spell list](https://www.dndbeyond.com/sources/dnd/br-2024/character-classes#Sorcerer) for *Elementalism*. DM rulings govern the table. The campaign ruleset, live D&D Beyond sheet, and starting allowances are not yet confirmed.
 
 
 ## Shared rules reference

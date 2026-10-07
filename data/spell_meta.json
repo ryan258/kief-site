@@ -132,26 +132,12 @@
     "description": "A frigid beam of blue-white light streaks toward a creature within range, reducing its Speed.",
     "icon": "❄️"
   },
-  "Mind Sliver": {
-    "school": "Enchantment",
-    "role": "Save Disruption",
-    "quote": "“Crack the shell before the hammer falls.”",
-    "description": "You drive a disorienting spike of psychic energy into the mind of one creature, weakening its next save.",
-    "icon": "🧠"
-  },
   "Shocking Grasp": {
     "school": "Evocation",
     "role": "Melee Disengage",
     "quote": "“Touch them and leave. No opportunity attack.”",
     "description": "Lightning springs from your hand to shock a creature and prevent it from taking reactions.",
     "icon": "⚡"
-  },
-  "Light": {
-    "school": "Evocation",
-    "role": "Utility & Vision",
-    "quote": "“Never spend a torch when a pebble will do.”",
-    "description": "You touch one object, causing it to shed bright light in a 20-foot radius and dim light for an additional 20 feet.",
-    "icon": "💡"
   },
   "Mage Hand": {
     "school": "Conjuration",
@@ -180,5 +166,19 @@
     "quote": "“Everything breaks. Most things can be convinced to stay whole.”",
     "description": "This spell repairs a single break or tear in an object you touch, restoring broken items.",
     "icon": "🧵"
+  },
+  "Elementalism": {
+    "school": "Transmutation",
+    "role": "Elemental Whimsy",
+    "quote": "“Management is considering your proposal.”",
+    "description": "Create small elemental effects or sculpt an element into a crude shape. A little breeze, scented smoke, or a tiny smoke cow can give the scene its flourish.",
+    "icon": "🍃"
+  },
+  "Shape Water": {
+    "school": "Transmutation",
+    "role": "Liquid Whimsy",
+    "quote": "“Management would like to sweeten the offer.”",
+    "description": "Shape, animate, recolor, or gently redirect existing liquid. The DM approved liquids for this campaign; unusual freezing outcomes remain a table ruling.",
+    "icon": "💧"
   }
 }

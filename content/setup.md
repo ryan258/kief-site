@@ -11,7 +11,7 @@ The local rebuild is complete. **These changes have not been applied or verified
 - [ ] Preserve base 8/14/15/9/9/15; Sage +2 Con/+1 Wis; level 4 ASI +1 Con/+1 Cha.
 - [ ] Verify final 8/14/18/9/10/16; HP 47 using fixed advancement; AC 15; DC 14; spell attack +6.
 - [ ] Keep Careful and Subtle Metamagic. Verify 5 SP, slots 4/3/2, Sorcerous Restoration recovery 2.
-- [ ] Sorcerer cantrips: Fire Bolt, Ray of Frost, Mind Sliver, Light, Prestidigitation.
+- [ ] Sorcerer cantrips: Fire Bolt, Ray of Frost, Elementalism, Shape Water, Prestidigitation.
 - [ ] Origin cantrips: Minor Illusion; Mage Hand and Mending from Magic Initiate (Wizard), using Charisma.
 - [ ] Exactly nine Sorcerer preparations: Shield, Feather Fall, Detect Magic, Misty Step, Web, Invisibility, Counterspell, Hypnotic Pattern, Fireball.
 - [ ] Verify six Draconic extras: Chromatic Orb, Command, Alter Self, Dragon's Breath, Fear, Fly.
@@ -19,6 +19,11 @@ The local rebuild is complete. **These changes have not been applied or verified
 - [ ] Set Charisma as the Forest Gnome lineage spellcasting ability and the Magic Initiate (Wizard) spellcasting ability.
 - [ ] Remove active fourth-level spells, Elemental Affinity, fire resistance, and Sorcery Incarnate from the level 5 view.
 - [ ] Paste revised personality, bond, flaw, and campaign status from the record.
+
+- [ ] Apply the 2026-10-07 local cantrip choice: replace Mind Sliver with Elementalism on the live sheet and confirm campaign rebuild timing with the DM.
+
+- [ ] Replace Light with Shape Water on the live sheet; retain Elementalism instead of Mind Sliver. Record the DM-approved liquid scope.
+- [ ] Arrange a party light source through confirmed equipment or a teammate.
 
 ## Campaign details to settle
 

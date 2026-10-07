@@ -7,7 +7,7 @@ Twelve current plays. Full former 72-play guide preserved in [the level 7 archiv
 | # | Play | Mechanical call | Kief's version |
 | --- | --- | --- | --- |
 | 1 | Give the party breathing room | Careful Hypnotic Pattern; protect up to three allies for 1 SP; concentrate | “Let's all take a moment. Them especially.” |
-| 2 | Set up the next caster | Mind Sliver; failed Intelligence save takes 2d6 psychic and -1d4 on its next save before the end of your next turn | “Your aura's got a loose thread.” |
+| 2 | Give the scene a little whimsy | Elementalism; sculpt existing smoke into a crude cow within a 1-foot cube for 1 hour | “Management is considering your proposal.” |
 | 3 | Make the doorway a problem | Web across supported terrain, with allies outside; concentrate | “The room would like you to slow down.” |
 | 4 | Catch the falling people | Feather Fall Reaction; up to five falling creatures within 60 feet | “Nobody rush the landing.” |
 | 5 | Let the scout do their thing | Invisibility on the willing scout; concentrate; agree on their return plan | “Lovely. I've misplaced you already.” |
@@ -17,12 +17,18 @@ Twelve current plays. Full former 72-play guide preserved in [the level 7 archiv
 | 9 | End the dangerous crowd | Fireball, 8d6 fire; Careful protects up to three chosen creatures for 1 SP | “Bit oversteeped.” |
 | 10 | Ask a local | Speak with Animals; ritual or species free cast; animals know what animals can perceive | “Management has a few questions for the pigeon.” |
 | 11 | Inspect before touching | Ritual Detect Magic when time allows; concentration; then ordinary investigation | “That's either enchanted or exceptionally badly stored.” |
-| 12 | Keep everyone functional | Light, Mending, Mage Hand, and Prestidigitation within their actual limits | “I brought a blend for this. Also rope.” |
+| 12 | Keep everyone functional | Shape Water, Mending, Mage Hand, and Prestidigitation within their actual limits | “I brought a blend for this. Also rope.” |
+
+
+
+## Campaign direction: wit and whimsy
+
+The DM’s reply recorded 2026-10-07 encourages fun, interesting spell uses and trying something Ryan has wanted to explore. He suggested no specific replacement; Ryan subsequently selected Elementalism for Mind Sliver on 2026-10-07. This local change still needs live-sheet reconciliation. **Practical interpretation:** consider a playful idea and the scenes it could create with teammates, then check spell availability and mechanics before changing the build. Earlier guidance against spam still applies. See [the recorded campaign direction](/rulings/#campaign-direction-wit-and-whimsy).
 
 
 ## Spell-use guidance — recorded 2026-10-07
 
-The DM allows tricky spell use, including Mind Sliver, but objects to spam and warned that repeated overuse may lead to upcoming enemies with unusual resistances or immunities. No usage cap or spell ban was stated. **Practical interpretation:** use Mind Sliver for a specific coordinated setup, not an automatic every-round routine; keep turns brief and share the action with teammates. Silvery Barbs was mentioned as an example, not added to Kief’s spell list. See [the recorded guidance](/rulings/#spell-use-and-table-flow-dm-guidance).
+The DM allows tricky spell use, including Mind Sliver, but objects to spam and warned that repeated overuse may lead to upcoming enemies with unusual resistances or immunities. No usage cap or spell ban was stated. **Current choice:** Ryan replaced Mind Sliver with Elementalism on 2026-10-07. Keep turns brief and share the action with teammates; the earlier discussion remains context, not an active Mind Sliver tactic. Silvery Barbs was mentioned as an example, not added to Kief’s spell list. See [the recorded guidance](/rulings/#spell-use-and-table-flow-dm-guidance).
 
 
 ## What Candy Land will keep asking for
@@ -37,7 +43,7 @@ For the map and old stories, let the clues steep: History +2 compares names and 
 
 Concentration is one ongoing spell at a time. Two third-level slots means the party cannot receive every big play in one fight. Pattern ends on a creature when it takes damage or someone uses an action to shake it awake; mark targets and focus the remaining threats. Careful does not remove Web terrain; its delayed/repeated-save interaction awaits the ruling recorded in [Table rulings](/rulings/). Keep allies outside. No elemental damage bonus at level 5.
 
-Mind Sliver needs its own failed save before the penalty applies, and the next save consumes that benefit. Don't promise your ally a guaranteed success. An attack cantrip is useful; maintaining a successful control spell while taking cover can be more useful.
+Elementalism provides only its listed small effects. A smoke shape does not automatically obscure vision, distract an enemy, or grant advantage; ask the DM to resolve any proposed consequence. An attack cantrip is useful; maintaining a successful control spell while taking cover can be more useful.
 
 Misty Step is the personal exit: Bonus Action, visible space within 30 feet, no passenger. After spending a slot on it, use a cantrip or a non-slot action on that turn. He cannot Dimension Door anybody out yet.
 

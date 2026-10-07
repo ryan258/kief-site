@@ -5,22 +5,41 @@ Current level-5 reference, checked 2026-09-23 against the linked 2024 rules. Pub
 ---
 
 
+## Shape Water: campaign liquid ruling
+
+Recorded 2026-10-07: Ryan reports that the DM gave approval for Shape Water to affect liquids, following the liquid-candy discussion. Ryan selected it in place of Light, keeping Elementalism in place of Mind Sliver.
+
+Use the published Shape Water mechanics with the approved liquid scope: visible liquid within 30 feet, fitting in a 5-foot cube; one listed effect per casting; no concentration; at most two lasting effects active. The message does not specify how freezing or hardening works for each unusual candy liquid, or grant extra damage, control of creatures, or permanent creations. Resolve those particular outcomes with the DM. The exact DM wording and original message time were not supplied.
+
+Published reference: [Shape Water](https://www.dndbeyond.com/spells/2397-shape-water), Elemental Evil Player’s Companion, page 164. Live D&D Beyond update remains pending.
+
+
+## Campaign direction: wit and whimsy
+
+Recorded 2026-10-07 from Binyled’s reply relayed by Ryan (11:47 AM; original message date not supplied). Ryan asked whether any underrated spells would suit this campaign as a replacement for Mind Sliver.
+
+**What the DM said:** the whole campaign is “wit and whimsy.” This is a campaign for something Ryan thinks could be used in a fun or interesting way, or has simply wanted to try.
+
+**What this establishes:** creative experimentation is encouraged. The DM did not recommend a particular spell, require removing Mind Sliver, or select a replacement. Ryan subsequently chose Elementalism to replace Mind Sliver on 2026-10-07; the local build now reflects that choice. Live-sheet reconciliation is pending. This invitation does not by itself settle source-book access, class eligibility, spell-swap timing, or a proposed use beyond a spell’s text. The earlier guidance about spam and table flow still applies.
+
+**Practical direction (our interpretation):** when considering a replacement, start with a playful idea Ryan wants to try and the scenes it could create with the party. Check its actual rules and availability before changing the build. The cursed-kingdom premise remains, now with an explicit wit-and-whimsy direction; it should not be treated as a mandate for relentlessly grim play.
+
 ## Spell use and table flow: DM guidance
 
 Recorded 2026-10-07 from Binyled’s reply relayed by Ryan (11:19 AM; original message date not supplied), after Ryan asked whether any spells in his spellbook would compromise game flow.
 
 **What the DM said:** no spell ban was stated in this reply. He allows “shady shifty” tactics and says the issue is how they are used and the player’s behavior. He explicitly said Silvery Barbs and Mind Sliver have a place, but objects when they are spammed. He warned that upcoming enemies may then have resistances or immunities they would not normally have.
 
-**What this establishes:** Mind Sliver can stay in Kief’s current build. Silvery Barbs was an example in the discussion; it is not in the current local spell list, and this reply does not add it. The message does not specify a usage cap, define “spammed,” name particular resistances or immunities, or settle the separate Mind Sliver/concentration-save timing question.
+**What this establishes:** Mind Sliver was permitted; Ryan subsequently chose Elementalism instead on 2026-10-07. Silvery Barbs was an example in the discussion; it is not in the current local spell list, and this reply does not add it. The message does not specify a usage cap, define “spammed,” name particular resistances or immunities, or settle the separate Mind Sliver/concentration-save timing question.
 
-**Practical play guidance (our interpretation):** use Mind Sliver for a specific, coordinated setup rather than treating it as the automatic answer every round. Choose the action that serves the current situation, keep resolution brief, and leave teammates room to act. This is table-flow guidance, not an invented once-per-fight rule or a required spell swap. If repeated use becomes an issue, clarify the expectation with the DM rather than guessing a numerical limit.
+**Practical play guidance (our interpretation):** choose spells for a specific purpose rather than treating one tactic as the automatic answer every round. Mind Sliver is no longer in the current build. Choose the action that serves the current situation, keep resolution brief, and leave teammates room to act. This is table-flow guidance, not an invented once-per-fight rule or a required spell swap. If repeated use becomes an issue, clarify the expectation with the DM rather than guessing a numerical limit.
 
 
 ## 1. Action Economy & Spellcasting
 
 ### One Spell Slot Per Turn
 * **Core Rule:** On any single turn, a creature can expend only **one spell slot** to cast a spell (2024 PHB p. 237).
-* **Implication for Bonus Actions:** Casting a bonus action spell using a slot (such as *Misty Step*) prevents casting any Action spell that expends a slot on that same turn. Casting a cantrip (such as *Fire Bolt*, *Ray of Frost*, or *Mind Sliver*) or taking a non-spell action remains legal.
+* **Implication for Bonus Actions:** Casting a bonus action spell using a slot (such as *Misty Step*) prevents casting any Action spell that expends a slot on that same turn. Casting a cantrip (such as *Fire Bolt*, *Ray of Frost*, or *Elementalism*) or taking a non-spell action remains legal.
 * **Innate Sorcery Interaction:** Activating *Innate Sorcery* is a Bonus Action granted by a class feature, **not** casting a spell. Kief can activate *Innate Sorcery* and cast a leveled spell (such as *Hypnotic Pattern* or *Fireball*) using a spell slot as an Action on the same turn.
 * **Reactions on Kief's Turn:** If Kief casts a spell using a slot as an Action (e.g., *Fireball*), he **cannot** cast a Reaction spell using a slot (such as *Counterspell* or *Shield*) on that same turn, even if an enemy attempts to counterspell his spell.
 * **Reactions on Other Turns:** Reactions taken on another creature's turn occur on a separate turn. Kief can freely cast *Counterspell*, *Shield*, or *Feather Fall* on other turns, provided his Reaction and a spell slot are available.
@@ -121,7 +140,7 @@ Recorded 2026-10-07 from Binyled's message relayed by Ryan (message timestamp 11
 * **Initiative & Actions:** Rolls his own initiative in combat. He can take standard non-attack actions, including *Dodge*, *Dash*, *Disengage*, *Hide*, and *Help*.
 * **Help Action Dynamics:** To grant advantage on an ally's attack against an enemy, Mr. Big must be within 5 feet of that enemy during his turn. Because Mr. Big has only 2 HP and lacks the *Flyby* trait, positioning him within melee reach exposes him to opportunity attacks and area effects.
 * **Touch Spell Delivery:**
-  * When Kief casts a spell with a range of touch (e.g., *Fly*, *Invisibility*, *Dragon's Breath*, *Light*, *Mending*), Mr. Big can deliver the spell using his **Reaction**.
+  * When Kief casts a spell with a range of touch (e.g., *Fly*, *Invisibility*, *Dragon's Breath*, *Mending*), Mr. Big can deliver the spell using his **Reaction**.
   * Mr. Big must be within 100 feet of Kief at the time of delivery and within touch range (5 feet) of the target.
   * Kief pays the spell’s normal costs and maintains concentration when required; Mr. Big spends his Reaction. Cantrips do not cost spell slots.
 * **Sensory Sharing:** Kief can use a Bonus Action to see through Mr. Big's eyes and hear through his ears until the start of Kief's next turn, without the legacy blind/deaf restriction: the 2024 text does not remove his own senses.
@@ -166,7 +185,7 @@ The general component-pouch rule works for nonpriced, nonconsumed material compo
 | Careful Spell with Web's delayed/repeated saves | Pending. Keep allies out; no promised immunity. |
 | Dragon's Breath on a familiar; Careful on later exhalations | Pending. Confirm before selecting the tactic. |
 | Targeting through familiar shared senses | Pending. Check each spell's wording, origin, range, and clear path with the DM. |
-| Mind Sliver penalty on the concentration save caused by its own damage | Pending. Record the timing ruling before relying on it. |
+| Mind Sliver penalty on the concentration save caused by its own damage | Inactive for this build: replaced by Elementalism on 2026-10-07. No timing ruling was established. |
 | Cosmetic cow form and manipulating/pouring potions | Pending. No extra capabilities assumed from appearance. |
 
 Record the ruling, date, and affected plays when the DM decides. A pending entry is not approval.

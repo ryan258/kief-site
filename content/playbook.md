@@ -5,9 +5,15 @@ title = "The teammate playbook"
 Current local build; see [the character record](/character/). Kief is starting the Candy Land campaign: a cursed kingdom, dangerous roads, and a map to follow. The build uses 2024 PHB rules pending the DM's ruleset confirmation. He's a mellow tea merchant with a field scholar's curiosity, not a wilderness expert: share the kettle, listen before judging, ask good questions, and make sure the party gets home.
 
 
+
+## Campaign direction: wit and whimsy
+
+The DM’s reply recorded 2026-10-07 encourages fun, interesting spell uses and trying something Ryan has wanted to explore. He suggested no specific replacement; Ryan subsequently selected Elementalism for Mind Sliver on 2026-10-07. This local change still needs live-sheet reconciliation. **Practical interpretation:** consider a playful idea and the scenes it could create with teammates, then check spell availability and mechanics before changing the build. Earlier guidance against spam still applies. See [the recorded campaign direction](/rulings/#campaign-direction-wit-and-whimsy).
+
+
 ## Spell-use guidance — recorded 2026-10-07
 
-The DM allows tricky spell use, including Mind Sliver, but objects to spam and warned that repeated overuse may lead to upcoming enemies with unusual resistances or immunities. No usage cap or spell ban was stated. **Practical interpretation:** use Mind Sliver for a specific coordinated setup, not an automatic every-round routine; keep turns brief and share the action with teammates. Silvery Barbs was mentioned as an example, not added to Kief’s spell list. See [the recorded guidance](/rulings/#spell-use-and-table-flow-dm-guidance).
+The DM allows tricky spell use, including Mind Sliver, but objects to spam and warned that repeated overuse may lead to upcoming enemies with unusual resistances or immunities. No usage cap or spell ban was stated. **Current choice:** Ryan replaced Mind Sliver with Elementalism on 2026-10-07. Keep turns brief and share the action with teammates; the earlier discussion remains context, not an active Mind Sliver tactic. Silvery Barbs was mentioned as an example, not added to Kief’s spell list. See [the recorded guidance](/rulings/#spell-use-and-table-flow-dm-guidance).
 
 
 ## The normal fight
@@ -15,7 +21,7 @@ The DM allows tricky spell use, including Mind Sliver, but objects to spam and w
 1. Identify the problem: a crowd, a choke point, a caster, or an ally in trouble.
 2. In an important fight, activate Innate Sorcery with your Bonus Action. Cast Web or Hypnotic Pattern with your Action if control fits the situation. These can happen on the same turn.
 3. Tell the party what changed: “Those three are out. Hit the one on the left.”
-4. Preserve concentration from cover. Mind Sliver supports an ally's next saving-throw effect; Ray of Frost slows pursuit. Dodge is a good turn when your existing spell is doing the work.
+4. Preserve concentration from cover. Ray of Frost slows pursuit; Fire Bolt supplies damage. Elementalism adds environmental flourishes when they serve the scene. Dodge is a good turn when your existing spell is doing the work.
 5. Spend another big slot only when it solves a new problem. You have just two third-level slots.
 
 Choose control by the target's actual stat block, not its creature type. Hypnotic Pattern relies on the Charmed condition; immunity to Charmed shuts down that spell's effect. Fear applies Frightened and also says a creature that fails its save drops what it is holding, so resolve the condition immunity and the spell's other text separately. Fey, Undead, and constructs have no blanket immunity from their type alone. Web, Fireball, and 2024 Command remain options when their own targeting and save requirements fit. Web is useful control at a cheaper slot, but allies also face its terrain and saves. Fire can destroy the webbing; don't sabotage your own battlefield control casually. Fireball is the damage fallback, with Careful if allies need protection.
@@ -24,11 +30,11 @@ Choose control by the target's actual stat block, not its creature type. Hypnoti
 
 **For the martial:** Web can restrain targets, giving attacks against them advantage. 2024 Command can disrupt a dangerous foe with one of its listed commands; it calls for a Wisdom save. Mr. Big may Help when the benefit justifies exposing him.
 
-**For the caster:** Mind Sliver can penalize the target's next save by 1d4 if the initial Intelligence save fails. Coordinate timing: another save can consume that penalty first. Counterspell may stop the enemy's most dangerous cast.
+**For the caster:** coordinate control and target selection. Counterspell may stop the enemy’s most dangerous cast. Elementalism has no damage or save-penalty effect; use its small environmental effects for creative scene work.
 
 **For the scout:** Cast Invisibility on them and let them lead. Stay somewhere safe enough to maintain concentration. Agree on a return signal; invisibility does not remove noise or tracks.
 
-**For the explorer:** Light, Mage Hand, Mending, Detect Magic, Speak with Animals, and Mr. Big cover many mundane problems without burning the day's big slots. Fly solves a specific obstacle; rope can keep solving it after the spell ends.
+**For the explorer:** Shape Water, Mage Hand, Mending, Detect Magic, Speak with Animals, and Mr. Big cover many mundane problems without burning the day's big slots. Fly solves a specific obstacle; rope can keep solving it after the spell ends.
 
 **For the road:** Candy Land's roads are the campaign, so budget for the day rather than the fight. Mr. Big can check the next bend within telepathy range, but at 2 HP he is a fragile scout, not a trap detector. Fly and Misty Step can solve particular obstacles, Feather Fall answers a fall, and Speak with Animals can ask local animals what they noticed. Landmark-checking with ritual Detect Magic costs no slot but takes time, requires concentration during the ritual, and reveals magic rather than a curse's terms. Save a slot and a Reaction for trouble after the investigation.
 
@@ -52,7 +58,7 @@ Concentration is the real bottleneck. Fly on the fighter ends Web. Invisibility 
 
 Describe the result in plain mechanics, then add one Kief sentence. Make the combat decision promptly; drawl afterward.
 
-- “Mind Sliver on the captain; if it lands, his next save gets -1d4. Mate, your thoughts have got knots in them.”
+- “Elementalism: I shape the smoke into a little cow. Management is considering your proposal.”
 - “Feather Fall on the falling party members. Easy. The ground can wait.”
 - “Invisibility on our scout. You're going to have to trust that I'm making eye contact.”
 - “Careful Pattern; these three allies are protected. Everyone else, take a little moment.”

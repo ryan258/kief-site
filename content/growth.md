@@ -4,6 +4,12 @@ title = "The road to level six"
 
 Current starting point: Sorcerer 5, Candy Land campaign. Local build updated 2026-09-16, premise recorded 2026-09-23; live-sheet sync pending. The previous level 7 improvement plan is in the archive.
 
+
+## Campaign direction: wit and whimsy
+
+The DM’s reply recorded 2026-10-07 encourages fun, interesting spell uses and trying something Ryan has wanted to explore. He suggested no specific replacement; Ryan subsequently selected Elementalism for Mind Sliver on 2026-10-07. This local change still needs live-sheet reconciliation. **Practical interpretation:** consider a playful idea and the scenes it could create with teammates, then check spell availability and mechanics before changing the build. Earlier guidance against spam still applies. See [the recorded campaign direction](/rulings/#campaign-direction-wit-and-whimsy).
+
+
 ## Before play
 
 Complete [D&D Beyond setup](/setup/), confirm starting gear and Mr. Big's form, and tell teammates: Kief brings control, scouting support, mobility, fall rescue, and Counterspell. He does not bring healing magic.
