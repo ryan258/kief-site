@@ -9,12 +9,15 @@
 {{ $uses := slice }}
 {{ range $plays }}{{ if findRE $pattern .Content 1 }}{{ $uses = $uses | append . }}{{ end }}{{ end }}
 {{ $meta := index hugo.Data.spell_meta .name }}
-<article class="panel directory-card spell-card" id="spell-{{ anchorize .name }}" data-card data-filter-value="{{ .level }}" data-spell-bg="{{ printf "spells/%s.webp" (anchorize .name) | relURL }}" style="--spell-bg: url('{{ printf "spells/%s.webp" (anchorize .name) | relURL }}');" data-search-text="{{ .name }} {{ .source }} {{ .job }} {{ .effect }} {{ .caution }} {{ .components }} {{ .resolution }} {{ if .concentration }}concentration{{ end }}">
+{{ $slug := anchorize .name }}
+{{ $bg := printf "spells/%s.webp" $slug | relURL }}
+{{ $href := printf "spellbook/#spell-%s" $slug | relURL }}
+<article class="panel directory-card spell-card" id="spell-{{ $slug }}" data-card data-filter-value="{{ .level }}" data-spell-bg="{{ $bg }}" style="--spell-bg: url('{{ $bg }}');" data-search-text="{{ .name }} {{ .source }} {{ .job }} {{ .effect }} {{ .caution }} {{ .components }} {{ .resolution }} {{ if .concentration }}concentration{{ end }}">
   <div class="card-top">
     <span class="eyebrow">{{ if eq (int .level) 0 }}CANTRIP{{ else }}LEVEL {{ .level }}{{ end }}</span>
     {{ if .concentration }}<span class="tag sage">Concentration</span>{{ end }}
   </div>
-  <h2><a class="card-link" href="{{ printf "spellbook/#spell-%s" (anchorize .name) | relURL }}">{{ .name }}</a></h2>
+  <h2><a class="card-link" href="{{ $href }}">{{ .name }}</a></h2>
   <p class="spell-job">{{ .job }}</p>
 
   <div class="spell-card-preview">
@@ -27,7 +30,7 @@
     <span class="text-link" aria-hidden="true">Open spell ↗</span>
   </div>
 
-  <div class="spell-modal-layout" data-spell-bg="{{ printf "spells/%s.webp" (anchorize .name) | relURL }}">
+  <div class="spell-modal-layout" data-spell-bg="{{ $bg }}">
     <header class="spell-hero">
       <div class="spell-hero-info">
         <div class="spell-hero-eyebrow"><span class="spell-glyph">{{ with $meta }}{{ .icon }}{{ else }}✨{{ end }}</span> • SPELLS</div>
