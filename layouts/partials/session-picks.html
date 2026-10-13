@@ -1,0 +1,24 @@
+<section class="panel session-picks" aria-labelledby="session-picks-title">
+  <div class="section-heading"><div><p class="eyebrow">THREE FAMILIAR CHOICES</p><h2 id="session-picks-title">Bring these to the table.</h2></div></div>
+  <p class="session-picks-intro" id="session-picks-help">One combat choice, one exploration choice, one playful experiment. Change a selection when you want variety; opening a play does not cast it.</p>
+  <div class="session-picks-grid">
+  {{ range site.Data.session_picks }}
+    {{ $default := index .options 0 }}
+    {{ $defaultPage := site.GetPage (printf "/plays/kief/%s" $default.id) }}
+    <article class="session-pick" data-session-pick="{{ .kind }}">
+      <label for="session-pick-{{ .kind }}">{{ .label }}</label>
+      <select id="session-pick-{{ .kind }}" aria-describedby="session-picks-help session-note-{{ .kind }}">
+      {{ range .options }}
+        {{ $page := site.GetPage (printf "/plays/kief/%s" .id) }}
+        {{ if not $page }}{{ errorf "Session selection points to missing play %s" .id }}{{ end }}
+        <option value="{{ .id }}" data-href="{{ $page.RelPermalink }}" data-note="{{ .note }}">{{ .label }}</option>
+      {{ end }}
+      </select>
+      <p id="session-note-{{ .kind }}" class="session-pick-note">{{ $default.note }}</p>
+      <a class="button" id="session-open-{{ .kind }}" href="{{ $defaultPage.RelPermalink }}" aria-label="Open {{ .label }} selection: {{ $default.label }}">Open {{ .label | lower }} play <span aria-hidden="true">↗</span></a>
+    </article>
+  {{ end }}
+  </div>
+  <p id="session-picks-status" class="fine-print" role="status">With JavaScript, selections save in this browser until changed, including after a rest. Your combat counters are tracked separately.</p>
+  <noscript><p class="fine-print">Default play links work without JavaScript. Enable JavaScript to change and save selections.</p></noscript>
+</section>

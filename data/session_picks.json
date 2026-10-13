@@ -1,0 +1,70 @@
+[
+  {
+    "kind": "combat",
+    "label": "Combat",
+    "options": [
+      {
+        "id": "k-2",
+        "label": "Breathing room · Pattern",
+        "note": "Name affected enemies, let the party choose a target order, then protect concentration."
+      },
+      {
+        "id": "k-25",
+        "label": "Hold a route · Web",
+        "note": "Keep allies outside, name actually Restrained enemies, and preserve a clear route."
+      },
+      {
+        "id": "k-20",
+        "label": "One enemy · Command",
+        "note": "Choose the result, then coordinate around the enemy’s next turn; no concentration."
+      },
+      {
+        "id": "k-51",
+        "label": "Keep the opening alive",
+        "note": "Say what your concentration is buying, then choose a cantrip, Dodge, or an objective action."
+      }
+    ]
+  },
+  {
+    "kind": "exploration",
+    "label": "Exploration",
+    "options": [
+      {
+        "id": "k-24",
+        "label": "Let the scout lead",
+        "note": "Agree on a route and return plan, then hold Invisibility while the scout makes the decisions."
+      },
+      {
+        "id": "k-32",
+        "label": "An ally’s flight plan",
+        "note": "Ask who wants Fly and agree on a landing before changing concentration."
+      },
+      {
+        "id": "k-21",
+        "label": "Ask an animal",
+        "note": "Ask what the animal actually noticed and invite the party’s next question."
+      }
+    ]
+  },
+  {
+    "kind": "whimsy",
+    "label": "Whimsy",
+    "options": [
+      {
+        "id": "k-73",
+        "label": "The Syrup Witness",
+        "note": "Illustrate the account, invite corrections, then hand the next question to a teammate."
+      },
+      {
+        "id": "k-16",
+        "label": "Management in the smoke",
+        "note": "Offer one small elemental flourish and let the DM resolve any proposed consequence."
+      },
+      {
+        "id": "k-15",
+        "label": "Mending: a quiet favor",
+        "note": "Repair a small break within the spell’s limits, then let the conversation grow from the favor."
+      }
+    ]
+  }
+]

@@ -188,6 +188,60 @@
     if ($('#move-status')) $('#move-status').textContent = model.guidance(state, selectedSituation);
   }));
 
+  // Keep these references independent of resource tracking, rests, backups, and Undo.
+  (() => {
+    const picks = $$('[data-session-pick]');
+    if (!picks.length) return;
+    const key = 'kief-firelight.level5.session-picks.v1';
+    const status = $('#session-picks-status');
+    const fields = picks.map(pick => {
+      const kind = pick.dataset.sessionPick;
+      const select = $(`#session-pick-${kind}`);
+      return { kind, select, note: $(`#session-note-${kind}`), link: $(`#session-open-${kind}`),
+        options: [...select.options] };
+    });
+    function parse(raw) {
+      const value = raw === null ? {} : JSON.parse(raw);
+      if (!value || typeof value !== 'object' || Array.isArray(value)) throw new Error('Invalid selections');
+      return value;
+    }
+    function render(saved) {
+      fields.forEach(field => {
+        const option = field.options.find(option => option.value === saved[field.kind]) || field.options[0];
+        field.select.value = option.value;
+        field.note.textContent = option.dataset.note;
+        field.link.href = option.dataset.href;
+        field.link.setAttribute('aria-label', `Open ${field.kind} selection: ${option.textContent.trim()}`);
+      });
+    }
+    try {
+      render(parse(localStorage.getItem(key)));
+      status.textContent = 'Selections stay in this browser until changed, including after a rest. Opening a play spends no resources.';
+    } catch {
+      render({});
+      status.textContent = 'Default selections shown. Saved choices could not be loaded; combat counters are separate.';
+    }
+    fields.forEach(field => field.select.addEventListener('change', () => {
+      const selected = Object.fromEntries(fields.map(field => [field.kind, field.select.value]));
+      render(selected);
+      try {
+        localStorage.setItem(key, JSON.stringify(selected));
+        status.textContent = 'Three selections saved. Opening a play spends no resources.';
+      } catch {
+        status.textContent = 'Selections changed for this visit; this browser could not save them.';
+      }
+    }));
+    addEventListener('storage', event => {
+      if (event.key !== key && event.key !== null) return;
+      try {
+        render(parse(event.newValue));
+        status.textContent = 'Selections updated from browser storage. Combat counters are separate.';
+      } catch {
+        status.textContent = 'Another tab saved unreadable selections; keeping the choices shown here.';
+      }
+    });
+  })();
+
   if (!$('#hp-input')) return;
   let state = model.fresh();
   let invalidStored = false;
