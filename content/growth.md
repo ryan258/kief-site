@@ -12,7 +12,7 @@ The DM’s reply recorded 2026-10-07 encourages fun, interesting spell uses and 
 
 ## Before play
 
-Complete [D&D Beyond setup](/setup/), confirm starting gear and Mr. Big's form, and tell teammates: Kief brings control, scouting support, mobility, fall rescue, and Counterspell. He does not bring healing magic.
+Complete [D&D Beyond setup](/setup/), confirm starting gear and Mr. Big's form, and tell teammates: Kief brings control, scouting support, mobility, fall rescue, and Counterspell. He does not bring healing magic. Review the table card’s six familiar choices and turn-resumption sequence ([Table card](/rules/)) and signature plays ([Greatest hits](/greatest-hits/#six-signature-plays)) for table flow.
 
 Two things to raise with this DM specifically, because they change what the build is worth: how a curse can be ended at this table, and which travel rules are in use. Neither is a build decision — both are recorded as open items in [campaign checks](/checks/).
 

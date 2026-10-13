@@ -67,7 +67,7 @@ Recorded 2026-10-07 from Binyled's message relayed by Ryan (message timestamp 11
 - Six Draconic spells plus species/feat spells are separate from the nine class preparations.
 - No active fourth-level spells, Elemental Affinity, fire resistance, or Sorcery Incarnate.
 - Elementalism replaces Mind Sliver and Shape Water replaces Light, per Ryan on 2026-10-07. Ryan reports DM approval for Shape Water to affect liquids. Party illumination must be covered by equipment or a teammate; no lighting inventory is assumed.
-- Local play aids rewritten for level 5; historical long-form guides retained separately.
+- Local play aids rewritten for level 5; historical long-form guides retained separately. First pass for table enjoyment (2026-10-13) reorganized the table card around six familiar choices, emergency reactions, and turn resumption; expanded six signature plays with follow-through and fallbacks; and structured Mr. Big’s jobs starting beside Kief.
 - Current official Cat block checked: Climb 40 feet and Jumper; removed legacy Keen Smell and Climb 30 feet from the active record.
 - Current choices have been checked against 2024 PHB rules. The campaign pitch does not say which rules version the DM will use; confirm before treating the build as table-final.
 

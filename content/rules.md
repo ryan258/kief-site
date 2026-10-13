@@ -11,24 +11,41 @@ Candy Land campaign; level 5 build as of 2026-10-07 (cantrip swaps: Elementalism
 Innate Sorcery: Bonus Action, twice per Long Rest, 1 minute. Sorcerer save DC becomes **15**; Sorcerer spell attacks have advantage, still +6. Short Rest restoration: up to **2 SP**, once per Long Rest.
 
 
-## Spell-use guidance — recorded 2026-10-07
+## Choose one useful move
 
-The DM allows tricky spell use, including Mind Sliver, but objects to spam and warned that repeated overuse may lead to upcoming enemies with unusual resistances or immunities. No usage cap or spell ban was stated. **Current choice:** Ryan replaced Mind Sliver with Elementalism on 2026-10-07. Keep turns brief and share the action with teammates; the earlier discussion remains context, not an active Mind Sliver tactic. Silvery Barbs was mentioned as an example, not added to Kief’s spell list. See [the recorded guidance](/rulings/#spell-use-and-table-flow-dm-guidance).
+Call the mechanics, give the party the result, then add one Kief sentence. These are defaults to consider, not a required rotation. Full sequences: [six signature plays](/greatest-hits/#six-signature-plays).
 
+| What you want | Familiar choice | Follow-through |
+| --- | --- | --- |
+| Give the party breathing room | Hypnotic Pattern; Careful for up to three allies if needed | Name affected enemies; let the party choose target order or escape |
+| Hold a route or doorway | Web with supported placement; keep allies outside | Name actually Restrained enemies; protect a clear route for allies |
+| Keep a successful spell working | Ray of Frost, Fire Bolt, Dodge, or an objective action | Say what your concentration is buying; attack unaffected threats |
+| Change one enemy’s next turn | Command: Approach, Drop, Flee, Grovel, or Halt | Coordinate the result on the enemy’s next turn; no concentration |
+| Help a teammate investigate or cross | Invisibility for concealment; Fly for a gap | Agree on return or landing; let the teammate lead |
+| Make a discovery or conversation memorable | Shape Water, Minor Illusion, Prestidigitation, or Elementalism | Offer one small effect, invite a teammate in, accept a quick ruling |
 
-## One useful decision
+If the save succeeds or the plan changes, use the fallback rather than automatically spending another slot. In an important fight, Innate Sorcery + an Action spell is a legal opening when both are available.
 
-| Situation | Default |
+## Emergencies and reactions
+
+| Trigger / need | Response |
 | --- | --- |
-| Allies and enemies mixed together | Careful Hypnotic Pattern; mark affected enemies |
-| A doorway or choke point | Web, keeping allies outside |
-| A scene needs a small elemental flourish | Elementalism: breeze, dust word, scented smoke, mist, or a crude elemental shape |
-| Dangerous enemy caster | Keep a third-level slot and Reaction for Counterspell |
-| Somebody falls | Feather Fall, if within 60 feet and Reaction available |
-| Scout needs concealment | Invisibility |
-| Somebody needs to cross a gap | Fly; agree on a landing plan |
-| Too many enemies, damage needed now | Careful Fireball; choose up to three protected creatures |
-| Unsure and already concentrating | Take cover; cantrip or Dodge |
+| You are hit | Shield if AC 20 turns the hit into a miss; also works against Magic Missile |
+| Somebody falls | Feather Fall: Reaction, up to five falling creatures within 60 feet |
+| Dangerous visible component casting within 60 feet | Counterspell: Reaction, 3rd-level slot, enemy Constitution save |
+| You need to escape | Misty Step: Bonus Action, visible destination within 30 feet, self only; then cantrip or non-slot action |
+| A dangerous crowd needs damage now | Fireball; Careful protects up to three chosen creatures for 1 SP |
+
+Shield, Feather Fall, and Counterspell share one Reaction until your next turn starts. A Reaction on another creature’s turn has its own one-slot-per-turn limit; a Reaction on your turn shares your turn’s limit.
+
+## Resume your turn
+
+1. What am I concentrating on, and is it still helping?
+2. What does the party need next: an opening, an objective action, damage, or safety?
+3. Choose the move; check available Action, Bonus Action, Reaction, slots, and SP.
+4. Say what changed and who can use it. Add the drawl afterward.
+
+“I’m holding the spell. You handle the door.” A successful opening stays useful even on a quiet turn.
 
 ## Prepared spells
 
@@ -54,7 +71,7 @@ The DM allows tricky spell use, including Mind Sliver, but objects to spam and w
 
 ## Between scenes
 
-Use Detect Magic and Speak with Animals as rituals when time allows. Shape Water and Elementalism do not require concentration. Arrange a party light source; Light is no longer selected. Mr. Big scouts within the 100-foot telepathy limit; he cannot attack. Familiar summoning needs 10+ GP incense and 1 hour, or 70 minutes as a ritual.
+Use Detect Magic and Speak with Animals as rituals when time allows. Shape Water and Elementalism do not require concentration. Arrange a party light source; Light is no longer selected. Start Mr. Big beside Kief as a watcher or silent consultant. Bounded scouting and 100-foot telepathy remain provisional under the DM familiar ruling; he cannot attack. Familiar summoning needs 10+ GP incense and 1 hour, or 70 minutes as a ritual.
 
 Long Rest: restore HP to 47, slots to 4/3/2, SP to 5, Hit Dice to 5d6, Innate Sorcery to 2, Speak with Animals to 3 free casts, Find Familiar to 1 free cast; reset Sorcerous Restoration. Starting gear is still pending.
 
@@ -64,6 +81,12 @@ Long Rest: restore HP to 47, slots to 4/3/2, SP to 5, Hit Dice to 5d6, Innate So
 ## Familiar campaign override — recorded 2026-10-07
 
 Mr. Big is a physical, intelligent companion who can be summoned and put away. If he dies, he is gone and Kief suffers an unspecified negative effect. He will not willingly sacrifice himself on command. Do not use recasting as a recovery plan. Other familiar mechanics below remain provisional; see [the confirmed ruling and open details](/rulings/#confirmed-campaign-override).
+
+## Campaign direction and setup
+
+The DM encourages wit and whimsy. Try a small creative effect, invite someone else into the scene, and keep resolution brief. Tricky use is permitted; the recorded guidance discourages spam without setting a numerical cap. Current choices are Elementalism and Shape Water; Mind Sliver and Silvery Barbs are not active spells. [Recorded guidance](/rulings/#campaign-direction-wit-and-whimsy).
+
+The current level 5 build is unchanged. Campaign ruleset, starting gear, and live-sheet reconciliation remain pending. Do not assume old magic items or consumables.
 
 ## Shared rules reference
 
