@@ -1,5 +1,23 @@
 # Verification history
 
+## 2026-10-13 — Table enjoyment pass, session selections & template quote hygiene
+
+- **Feature & Architecture:**
+  - Injected three persistent session selections (Combat, Exploration, Whimsy) directly onto the dashboard (`layouts/partials/session-picks.html`), loaded from `data/session_picks.json`.
+  - Stored selections independently under `kief-firelight.level5.session-picks.v1` in `assets/app.js`, decoupled from combat counters, rests, Undo history, and backup archives.
+  - Fail-safe defaults render without JavaScript; unreadable or invalid localStorage data falls back to default choices; cross-tab `storage` events update cleanly.
+  - Reorganized six signature companion plays (`K-2`, `K-20`, `K-24`, `K-25`, `K-51`, `K-73`) into a 4-phase flow: *Opening*, *Follow-through*, *Fallback*, and *Who gets the next moment?* (teammate handoff).
+  - Aligned `content/rules.md` (table card) around six familiar choices, emergency reactions, and turn resumption sequence.
+  - Reorganized `content/familiar.md` around jobs starting beside Kief before bounded tasks.
+  - Fixed syntax error in `layouts/spellbook/list.html` where nested double quotes inside attribute values broke CSS styling and HTML parsing; scoped template variables (`$slug`, `$bg`, `$href`).
+  - Synchronized canonical records from `../kief` (`content/checks.md`, `content/growth.md`, `content/familiar.md`, `content/greatest-hits.md`, `content/rules.md`, `data/sources.json`) via `scripts/sync_content.py` with zero drift.
+- **Automated gates passed quietly:**
+  - `node --test tests/*.cjs` passed (39/39 across `app.test.cjs`, `session-picks.test.cjs`, `state.test.cjs`, `storage.test.cjs`).
+  - `python3 tests/sync_test.py` passed (4/4).
+  - `python3 scripts/sync_content.py --check` in sync.
+  - Hugo build (`hugo --minify`) built 287 pages cleanly.
+  - `python3 scripts/check_links.py public` checked all links and assets across 286 HTML pages with 0 errors.
+
 ## 2026-10-07 — Dashboard ability scores & skills quick-reference card
 
 - **Feature:** Exposed all 6 ability scores and saving throws directly beneath core combat numbers in `layouts/index.html`, paired with an expandable quick-reference card detailing passive senses (Perception 10, Insight 13, Investigation 9), proficiencies/lineage traits (CON/CHA saves, Calligrapher's supplies, simple weapons, Common/Draconic/Gnomish languages, Gnomish Cunning), and a complete 18-skill alphabetical grid with proficient skills (Arcana +2, History +2, Insight +3, Persuasion +6) highlighted with star icons and badges.

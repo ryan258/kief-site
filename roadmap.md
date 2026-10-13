@@ -1,6 +1,18 @@
 # Kief companion roadmap
 
-## Current milestone: DM familiar override, cantrip swaps & 273 tactical plays
+## Current milestone: Table enjoyment pass & session selections
+
+Implemented locally on 2026-10-13; see `VERIFICATION.md` for the checks actually performed. Publication is separate.
+
+- **Dashboard Session Selections:** Embedded three persistent session selectors (Combat, Exploration, Whimsy) directly below the hero section on the front page (`layouts/partials/session-picks.html`), fed by `data/session_picks.json`.
+- **Decoupled Preference Storage:** Stored selections independently under `kief-firelight.level5.session-picks.v1` in `assets/app.js`. Choices survive page reload, rests, and resets without mutating or touching combat counters, Undo history, or backup archives.
+- **Fail-Safe Fallbacks & Storage Synchronization:** Defaults render statically for JavaScript-free browsing. Corrupt, invalid, or empty stored data falls back gracefully to default play selections. Cross-tab `storage` events synchronize updates live.
+- **Signature Companion Plays Alignment:** Reorganized six core plays (`K-2`, `K-20`, `K-24`, `K-25`, `K-51`, `K-73`) into a 4-phase table enjoyment flow: *Opening*, *Follow-through*, *Fallback*, and *Who gets the next moment?* (teammate handoff).
+- **Table Card & Familiar Field Guide Alignment:** Reorganized `content/rules.md` around six familiar choices, emergency reactions, and turn resumption sequence. Aligned `content/familiar.md` to structure Mr. Big's jobs starting beside Kief before bounded scouting.
+- **Template Hygiene in Spellbook:** Scoped template variables (`$slug`, `$bg`, `$href`) in `layouts/spellbook/list.html` to eliminate nested quote syntax collisions in HTML/CSS attributes.
+- **Canonical Content Synchronization:** Synchronized current canonical records from `../kief` (`content/checks.md`, `content/growth.md`, `content/familiar.md`, `content/greatest-hits.md`, `content/rules.md`, `data/sources.json`) via `scripts/sync_content.py` with zero drift under `--check`.
+
+## Preceding milestone: DM familiar override, cantrip swaps & 273 tactical plays
 
 Implemented locally on 2026-10-07; see `VERIFICATION.md` for the checks actually performed. Publication is separate.
 

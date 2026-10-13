@@ -17,6 +17,7 @@ The production site is deployed to GitHub Pages via GitHub Actions: <https://rya
 
 ## Included
 
+- Three session selections (combat, exploration, whimsy) with native selectors, direct play links, and separate browser storage; defaults remain readable without JavaScript.
 - Dashboard with situation-based turn guidance, core combat stats, and reaction reminders.
 - **Ability Scores & Saving Throws Strip:** Persistent 6-card display directly on the dashboard for STR 8 (-1), DEX 14 (+2), CON 18 (+4 / Save +7), INT 9 (-1 / Adv), WIS 10 (+0 / Adv), and CHA 16 (+3 / Save +6 / Adv), highlighting proficient saves and Gnomish Cunning advantage.
 - **Skills, Passives & Proficiencies Quick Reference Card:** Expandable reference card on the front page detailing passive senses (Perception 10, Insight 13, Investigation 9), tool and weapon proficiencies, languages, and a complete 18-skill alphabetical grid with proficient skills (Arcana +2, History +2, Insight +3, Persuasion +6) tagged and highlighted. Includes a dedicated sticky combat-bar shortcut (`Stats & Skills ◈`) for instant jumping and auto-expansion.
@@ -107,3 +108,9 @@ Added K-73 through K-173 as site-authored level-5 plays, retaining the existing 
 Each new page has a situation, ordered actions, a short table line, and a specific rules boundary. Rules were checked against the current imported spell references and [2024 spell descriptions](https://www.dndbeyond.com/sources/dnd/br-2024/spell-descriptions), with [Shape Water](https://www.dndbeyond.com/spells/2397-shape-water) using the DM-approved liquid scope. Candy hardening, familiar details, and other pending rulings remain pending. Outcomes depending on checks, NPC reactions, geometry, or equipment are stated as attempts. The new plays do not change the character build or establish new campaign facts.
 
 These pages stay in `content/plays/kief/`; the importer does not overwrite them. Review them when `../kief` changes. Narrative examples are suggestions, not records of events or rulings from play.
+
+## Table enjoyment first pass — 2026-10-13
+
+The source table card now leads with six familiar choices and a turn-resumption sequence. Six existing companion plays (K-2, K-25, K-51, K-20, K-24, K-73) include opening, follow-through, fallback, and teammate handoff. The familiar guide starts with jobs beside Kief before bounded tasks and deliberate exposure. No character build or spell changes.
+
+The dashboard surfaces three session selections, defaulting to Pattern, the invisible scout, and the Syrup Witness. Each native selector offers a small curated set from `data/session_picks.json`; the links open existing play cards and do not cast or spend resources. Choices save separately under `kief-firelight.level5.session-picks.v1`, survive rest and reload, and follow other-tab selection changes. Invalid entries fall back to that category’s default; unavailable storage leaves the controls usable for the visit. Combat reset, Undo, and tracking import/export do not change or include these preferences.

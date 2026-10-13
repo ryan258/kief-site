@@ -43,6 +43,14 @@ The dashboard limits and labels remain explicit in `assets/state.js` and `layout
 
 Every change saves synchronously, so lifecycle guards on `visibilitychange` (hidden) and `pagehide` only commit an HP edit still focused in its input; they never re-save unchanged state or add snapshots. When the page becomes visible again it resyncs from `localStorage` through the same path as cross-tab `storage` events, which also invalidates in-memory Undo. Table mode (`navigator.wakeLock`) keeps the iPad screen awake when supported and confirmed, and reports unavailable/failed when unsupported or denied. Recover save preserves unreadable data and saves visible counters without a rest. Export tracking produces a downloadable or copyable JSON backup; an export kept outside the browser remains the ultimate recovery mechanism if an entire origin's storage is cleared. Import tracking parses JSON files or pasted text, validates counters, displays a preview, and requires successful archival of existing counters before applying. An archival failure blocks replacement.
 
+### Session selections (table enjoyment)
+
+The dashboard presents three curated session picks (Combat, Exploration, Whimsy) directly beneath the hero via `layouts/partials/session-picks.html` and `data/session_picks.json`.
+- **Decoupled browser preferences:** User choices are persisted under `kief-firelight.level5.session-picks.v1` in `localStorage`. They are strictly isolated from character combat state, rest resets, Undo history, and tracking import/export archives.
+- **Fail-safe resilience:** Default choices (e.g. *Pattern*, *The invisible scout*, *The Syrup Witness*) render statically and remain fully navigable without JavaScript. If stored JSON is unreadable, malformed, or missing, options fall back cleanly to defaults without throwing or corrupting valid tracking state. Write errors or quota blocks keep controls interactive for the active visit. Cross-tab storage updates synchronize live without resetting combat counters.
+- **Pure reference links:** Selecting an option immediately points its launch button to the corresponding play route. Activating a play simply opens its card modal; it does not cast spells or consume resources.
+- **Signature plays alignment:** Six core companion plays (`K-2`, `K-20`, `K-24`, `K-25`, `K-51`, `K-73`) follow a structured 4-phase flow: *Opening*, *Follow-through*, *Fallback*, and *Who gets the next moment?* (teammate handoff).
+
 ## Reference cards and discovery
 
 Internal play and spell links retain real URLs. JavaScript intercepts eligible links and fetches/caches parsed pages. Each opening clones the cached nodes instead of moving them. Opens are serialized to avoid duplicate dialogs from overlapping fetches. Unique title IDs label each native dialog. A link to an already-open card closes cards above it; failed fetches and unsupported dialogs fall back to page navigation.
