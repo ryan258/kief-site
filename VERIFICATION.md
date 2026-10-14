@@ -1,5 +1,15 @@
 # Verification history
 
+## 2026-10-14 — Shared bottom table controller
+
+- Moved existing resource, focus, turn, reaction, and recovery/casting dialogs into shared partials rendered by the base layout. Added a fixed bottom controller, an expandable nonmodal sheet, ability/save reference, and optional gold/Mr. Big notes on every route. Old saves retain their original counters; absent optional notes default to unset. Long Rest preserves gold and Mr. Big's recorded HP/location.
+- Targeted Node checks: 38 tests passed across `tests/state.test.cjs` and `tests/app.test.cjs`, including optional-field validation, backward compatibility, Long Rest preservation, dock actions/Undo on reference pages, cross-tab notes, invalid input handling, and pagehide gold flushing. JavaScript syntax checks passed.
+- Generated HTML check: one controller and one instance of each checked core tracker ID on all 287 HTML pages. Internal link/asset and whitespace checks passed.
+- Browser checks in a separate test context: damage entered on Learn persisted after navigation to Spellbook; manual slot changes persisted; casting Web from an individual play deducted the slot and updated concentration on both open pages; another-tab changes invalidated stale Undo. Gold and Mr. Big notes survived a confirmed Long Rest. Dock SP spending and Undo worked.
+- Layout checks at desktop 1440px and mobile 320/390px: no page overflow in inspected views, dock stayed at the viewport bottom, checked dock buttons were at least 44px tall, and bottom content cleared the dock. Escape closed the sheet and returned focus to its opener. Header/tabs remain fixed while sheet content scrolls.
+- Offline browser check: after service-worker installation, reloaded Learn with network emulation Offline, spent SP through the dock, and verified the change was saved. The controller stylesheet is included in shell precaching.
+- Scope: local focused checks only. Full suites, actual mobile devices, dictation, assistive technology, and publication remain untested. The existing session-picks `site.Data` Hugo deprecation is unchanged.
+
 ## 2026-10-14 — Sugar & Shadow artwork expansion
 
 - Generated six coordinated illustrations with the built-in image generator: spellbook, crossroads, Mr. Big's garden, beginner practice table, reference ledger, and tea kettle. Saved twelve WebP exports (1440×960 and 480×320), totaling 1,047,386 bytes. Exact prompts and export settings are in `docs/theme-art-prompts.json`.

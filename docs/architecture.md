@@ -12,7 +12,7 @@ The companion is a Hugo static site with vanilla JavaScript and SCSS (processed 
                                                        docs/rules-arbitration.md
 content/plays/{kief,mr-big}/*.md ─ site-authored tactics ─┐
 layouts/ + assets/ + imported data ─────────────────────┴─ Hugo → static site
-browser localStorage + IndexedDB mirror ↔ validated session state ↔ dashboard controls
+browser localStorage + IndexedDB mirror ↔ validated session state ↔ table controller & dashboard reference
 ```
 
 Nine current Markdown records and one spell-reference JSON file are fingerprinted. Rules arbitration is also mirrored byte-for-byte into this directory. Edit shared character/rules material in `../kief`, then import; do not fix only the generated copies. Historical level-7 records, exports, and gear are excluded.
@@ -22,6 +22,10 @@ The importer merges the character's eight cantrips and nine preparations with si
 The dashboard limits and labels remain explicit in `assets/state.js` and `layouts/index.html`. A changed build deliberately requires reviewing those consumers. Source fingerprints alone do not prove every tactical claim correct. Site-authored plays must be reviewed when character choices or table rulings change (for example, the confirmed 2026-10-07 familiar campaign override establishing Mr. Big as an actual physical, intelligent companion whose death harms Kief and who refuses suicidal tasks; the cantrip selections of *Elementalism* and *Shape Water* replacing *Mind Sliver* and *Light* under the DM's wit-and-whimsy guidance; and the expansion to 273 tactical plays including K-73–K-173).
 
 ## Runtime state
+
+`layouts/partials/table-controller.html` supplies one fixed bottom controller and expandable nonmodal sheet on every route, including individual plays. Existing resource/focus controls and dialogs are shared through `tracker-resources.html`, `tracker-focus.html`, and `tracker-dialogs.html`; there is one instance of each tracker ID per page. `assets/table-controller.css` keeps the bar fixed, sizes the sheet above it, and reserves page space using a measured CSS custom property. The dashboard retains its reference content and recommendations while live tracking lives in the shared controller.
+
+Version-1 saves retain the same key and core validation. Optional `gold` (nonnegative GP, at most two decimal places), `cowHp` (nonnegative whole-number note), and `cowStatus` (unknown/beside/away/scouting) default to unset/unknown when absent in old saves. They share mirroring, backups, Undo, and cross-tab synchronization. `longRest` restores Kief's resources while preserving these table notes; it does not infer familiar recovery or death.
 
 `assets/state.js` exports the same pure API to browsers and Node tests. The persisted key remains `kief-firelight.level5.session.v1`; existing valid saves remain compatible. State includes HP 0–47, SP 0–5, daily uses, Hit Dice, fixed 4/3/2 slot booleans, concentration, Innate effect, Reaction, restoration-used flag, turn context (`turnActive`), Action/Bonus Action readiness (`actionReady`, `bonusActionReady`), turn slot spending (`slotSpentThisTurn`), turn slot persistence (`kiefSlotSpent`), and a save timestamp.
 
@@ -59,7 +63,7 @@ Cards retain native Escape/close behavior. Browser Back still navigates page his
 
 The play directory searches titles, summaries, groups, IDs, and rendered body text across all 273 plays (173 Kief, 100 Mr. Big). Spell search includes purpose, effects, components, and cautions. Query whitespace is normalized. First italic spell mentions are linked at build time, allowing whitespace across lines and apostrophe variants. Spell backlinks use the same matching pattern. This is formatting-dependent: unitalicized mentions are not guaranteed links or backlinks.
 
-The dashboard has sticky HP/concentration/Reaction/Skills shortcuts. Mobile presents resources before recommendations, compresses the decorative hero, and enlarges frequently used controls. Shortcuts navigate to controls; they do not spend resources.
+The shared table dock provides sticky HP/concentration/Reaction/Action/Bonus/slots shortcuts and status on every route, while the dashboard retains its core stat strip, ability scores strip, and collapsible 18-skill reference card with a jump shortcut. Mobile presents resources in the dock and scrollable bottom sheet, compresses decorative hero artwork, and preserves 44px touch targets across all controls.
 
 ## Reading layouts and tabletop accessibility
 
@@ -76,7 +80,7 @@ The dashboard has sticky HP/concentration/Reaction/Skills shortcuts. Mobile pres
   - An overlay styling layer loaded alongside `style.scss`, minified and fingerprinted via Hugo Pipes.
   - Transforms the visual aesthetic from forest emerald to an atmospheric Candy Land fairytale: deep obsidian plum (`#100d17`), burnt caramel/molasses (`#cf7a3e`), frosted mint (`#5ce1b6`), cotton candy rose (`#e493b6`), and spun-sugar highlights.
   - Features radiant card borders, candy-cane decorative accents, deep shadow vignettes, and atmospheric night landscape background artwork (`static/pages/candyland-night.webp`).
-  - Precached in the Service Worker (`sw.js`) alongside core application shell assets for tabletop offline resilience.
+  - Precached in the Service Worker (`sw.js`) alongside `assets/table-controller.css` and core application shell assets for tabletop offline resilience.
 
 - **Full-Viewport Modal Windows (20px Margins):** Modal `<dialog class="card-modal">` containers expand to fill the full screen leaving exactly 20px margins (`width: calc(100vw - 40px - var(--depth)*16px)`, `height: calc(100dvh - 40px - var(--depth)*16px)` on desktop, 12px on mobile). A transparent header with a floating top-right `×` close button replaces the old gray top bar, integrating cleanly over the artwork without obscuring card contents.
 - **Play Dashboards:** `layouts/plays/single.html` parses each play's four canonical H3 sections (`when-to-use-it`, `mechanics`, `at-the-table`, `the-rule-underneath`) into a container-queried dashboard (`.play-wrap`, `.play-dash`). At `>= 860px`, the pitch displays full width (`.play-lead`), action mechanics occupy the primary panel (`.play-main`), and table dialogue (`.play-script`), detected spell mini-cards (`.spell-mini`), foldable underlying rules (`<details class="fold">`), and cross-references occupy the sidebar (`.play-side`). In the expanded modal window, plays render natively in this rich multi-column dashboard.
