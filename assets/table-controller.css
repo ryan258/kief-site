@@ -12,6 +12,17 @@ body.controller-ready { padding-bottom: var(--table-dock-height); }
 .table-dock-row { display: flex; align-items: center; gap: 6px; overflow-x: auto; padding: 2px 0; }
 .table-dock button { min-height: 44px; white-space: nowrap; padding: 8px 11px; font-size: 12px; flex-shrink: 0; }
 .dock-label { display: block; color: var(--muted); font-size: 9px; }
+.dock-slots { display: flex; align-items: center; gap: 12px; flex-shrink: 0; padding: 0 5px; }
+.dock-slot-level .dock-label { margin-bottom: 3px; }
+.dock-slot-level .dock-label span { margin-left: 5px; color: var(--mint); }
+.dock-slots .slot-buttons { gap: 3px; }
+.table-dock .slot { width: 44px; min-width: 44px; height: 44px; padding: 0; font-size: 19px; color: #b6a5ba; }
+.table-dock .slot:not(.available) { border-style: dashed; }
+.table-dock .slot.available { color: #ffd3e4; background: #67435a; border-color: #da91b4; }
+#short-rest-dialog { background: var(--panel); color: var(--text); border: 1px solid var(--rose); border-radius: 12px; max-width: 520px; width: calc(100% - 32px); padding: 24px; }
+#short-rest-dialog h2 { margin-bottom: 16px; }
+#short-rest-dialog button { min-height: 44px; }
+#short-rest-status { color: var(--mint); }
 .dock-counter { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
 .dock-counter button { min-width: 44px; padding: 0; font-size: 20px; }
 .dock-counter span { min-width: 49px; text-align: center; font-size: 12px; }

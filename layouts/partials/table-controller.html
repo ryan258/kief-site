@@ -31,7 +31,14 @@
   <div class="table-dock-row">
     <button type="button" id="combat-cast" class="primary">Cast ✧</button>
     <button type="button" id="combat-hp" data-controller-open="resources" aria-controls="table-sheet" aria-expanded="false">47/47 HP</button>
-    <button type="button" data-controller-open="resources" aria-controls="table-sheet" aria-expanded="false"><span class="dock-label">Slots 1 / 2 / 3</span><strong id="dock-slots">4 / 3 / 2</strong></button>
+    <div class="dock-slots" role="group" aria-label="Spell slots · filled means available; click to spend or restore">
+      {{ range slice (dict "level" 1 "max" 4 "label" "1st") (dict "level" 2 "max" 3 "label" "2nd") (dict "level" 3 "max" 2 "label" "3rd") }}
+      <div class="dock-slot-level" role="group" aria-label="{{ .label }}-level spell slots">
+        <span class="dock-label">{{ .label }} <span data-slot-count="{{ .level }}">{{ .max }}/{{ .max }}</span></span>
+        <div class="slot-buttons">{{ $level := .level }}{{ range seq .max }}<button type="button" class="slot available" data-slot="{{ $level }}" data-index="{{ sub . 1 }}" aria-label="Spend level {{ $level }} spell slot {{ . }} (available)" aria-pressed="true"><span aria-hidden="true">●</span></button>{{ end }}</div>
+      </div>
+      {{ end }}
+    </div>
     <div class="dock-counter"><button type="button" data-resource="sp" data-delta="-1" aria-label="Spend one sorcery point from table bar">−</button><span id="dock-sp">5/5 SP</span><button type="button" data-resource="sp" data-delta="1" aria-label="Restore one sorcery point from table bar">+</button></div>
     <button type="button" id="combat-turn-btn"><span id="combat-turn-label">Kief’s turn</span></button>
     <button type="button" id="dock-action" aria-pressed="true">Action</button>
@@ -41,6 +48,8 @@
     <button type="button" id="dock-undo" disabled>Undo</button>
   </div>
   <div class="table-dock-row table-dock-secondary">
+    <button type="button" id="dock-short-rest">Short rest</button>
+    <button type="button" id="dock-long-rest">Long rest</button>
     <button type="button" id="combat-focus" data-controller-open="focus" aria-controls="table-sheet" aria-expanded="false">No concentration</button>
     <button type="button" data-controller-open="abilities" aria-controls="table-sheet" aria-expanded="false">Abilities</button>
     <button type="button" data-controller-open="companion" aria-controls="table-sheet" aria-expanded="false"><span id="dock-gold">Gold unset</span> · <span id="dock-cow">Mr. Big unset</span></button>

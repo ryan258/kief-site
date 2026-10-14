@@ -5,7 +5,7 @@ const fs = require('node:fs');
 const model = require('../assets/state.js');
 const storageEngine = require('../assets/storage.js');
 // Small DOM adapter for tracker event paths, not a browser/layout substitute.
-function harness(raw, failWrites = false, customStorage = storageEngine, referencePage = false) {
+function harness(raw, failWrites = false, customStorage = storageEngine, referencePage = false, withSlotCopies = false) {
   const nodes = new Map(), events = new Map(), stored = new Map();
   if (raw !== undefined) stored.set(model.key, raw);
   const initialText = {
@@ -46,7 +46,13 @@ function harness(raw, failWrites = false, customStorage = storageEngine, referen
     return nodes.get(id);
   }
   const storage = { get length() { return stored.size; }, key: index => [...stored.keys()][index], getItem: key => stored.get(key) ?? null, setItem(key, value) { if (failWrites) throw new Error('Quota'); stored.set(key, value); } };
-  const context = { document: { querySelector: id => id === '[data-directory]' || id === '#toast button' || (referencePage && ['#spell-dc', '#dc-note', '#attack-note', '#move-status'].includes(id)) ? null : node(id), querySelectorAll: () => [], addEventListener() {}, createElement: () => node('created') }, window: { KiefState: model, KiefStorage: customStorage }, Blob, URL: { createObjectURL: () => 'blob:test', revokeObjectURL() {} }, localStorage: storage, structuredClone, clearTimeout() {}, setTimeout() {}, addEventListener: (type, fn) => events.set(type, fn), console };
+  const slotCopies = withSlotCopies ? ['#test-dock-slot', '#test-panel-slot'].map(id => {
+    const slot = node(id);
+    slot.dataset = { slot: '1', index: '0' };
+    slot.querySelector = () => node(`${id}-glyph`);
+    return slot;
+  }) : [];
+  const context = { document: { querySelector: id => id === '[data-directory]' || id === '#toast button' || (referencePage && ['#spell-dc', '#dc-note', '#attack-note', '#move-status'].includes(id)) ? null : node(id), querySelectorAll: selector => selector === '[data-slot]' ? slotCopies : [], addEventListener() {}, createElement: () => node('created') }, window: { KiefState: model, KiefStorage: customStorage }, Blob, URL: { createObjectURL: () => 'blob:test', revokeObjectURL() {} }, localStorage: storage, structuredClone, clearTimeout() {}, setTimeout() {}, addEventListener: (type, fn) => events.set(type, fn), console };
   vm.runInNewContext(fs.readFileSync(require.resolve('../assets/app.js'), 'utf8'), context);
   const fire = (id, type, value) => {
     const element = node(id); if (value !== undefined) element.value = value;
@@ -54,6 +60,48 @@ function harness(raw, failWrites = false, customStorage = storageEngine, referen
   };
   return { node, stored, fire, events, context };
 }
+test('dock slot spending/restoring and Undo keep the panel copy and accessible labels synchronized', () => {
+  const h = harness(JSON.stringify(model.fresh()), false, storageEngine, true, true);
+  h.fire('#test-dock-slot', 'click');
+  assert.equal(JSON.parse(h.stored.get(model.key)).slots[1][0], false);
+  for (const id of ['#test-dock-slot', '#test-panel-slot']) {
+    assert.equal(h.node(id).getAttribute('aria-pressed'), 'false');
+    assert.match(h.node(id).getAttribute('aria-label'), /Restore level 1 spell slot 1 \(spent\)/);
+    assert.equal(h.node(`${id}-glyph`).textContent, '○');
+  }
+  h.fire('#test-dock-slot', 'click');
+  assert.equal(JSON.parse(h.stored.get(model.key)).slots[1][0], true);
+  h.fire('#dock-undo', 'click');
+  assert.equal(h.node('#test-dock-slot').getAttribute('aria-pressed'), 'false');
+  h.events.get('storage')({ key: model.key, newValue: JSON.stringify(model.fresh()) });
+  assert.equal(h.node('#test-panel-slot').getAttribute('aria-pressed'), 'true');
+  assert.equal(h.node('#test-dock-slot-glyph').textContent, '●');
+});
+test('dock rest shortcuts open the intended dialogs; short-rest recovery respects its limit', () => {
+  const h = harness(JSON.stringify({ ...model.fresh(), sp: 1, hp: 12, gold: 9, cowHp: 0 }));
+  h.fire('#dock-short-rest', 'click');
+  assert.equal(h.node('#short-rest-dialog').open, true);
+  assert.equal(JSON.parse(h.stored.get(model.key)).sp, 1);
+  h.fire('#short-rest-recover', 'click');
+  let saved = JSON.parse(h.stored.get(model.key));
+  assert.equal(saved.sp, 3);
+  assert.equal(saved.hp, 12);
+  assert.equal(saved.restored, true);
+  assert.equal(h.node('#short-rest-recover').disabled, true);
+  h.fire('#short-rest-recover', 'click');
+  assert.equal(JSON.parse(h.stored.get(model.key)).sp, 3);
+  h.fire('#dock-long-rest', 'click');
+  assert.equal(h.node('#rest-dialog').open, true);
+  assert.equal(JSON.parse(h.stored.get(model.key)).hp, 12);
+  h.node('#rest-dialog').returnValue = 'cancel'; h.fire('#rest-dialog', 'close');
+  assert.equal(JSON.parse(h.stored.get(model.key)).hp, 12);
+  h.node('#rest-dialog').returnValue = 'confirm'; h.fire('#rest-dialog', 'close');
+  saved = JSON.parse(h.stored.get(model.key));
+  assert.equal(saved.hp, 47);
+  assert.equal(saved.restored, false);
+  assert.equal(saved.gold, 9);
+  assert.equal(saved.cowHp, 0);
+});
 test('table dock works on reference pages, uses saved counters, and shares Undo and turn markers', () => {
   const h = harness(JSON.stringify({ ...model.fresh(), hp: 19 }), false, storageEngine, true);
   assert.equal(h.node('#combat-hp').textContent, '19/47 HP');

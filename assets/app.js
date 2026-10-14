@@ -353,6 +353,13 @@
     $$('[data-slot]').forEach(button => {
       const available = state.slots[button.dataset.slot][button.dataset.index];
       button.classList.toggle('available', available); button.setAttribute('aria-pressed', String(available));
+      button.setAttribute('aria-label', `${available ? 'Spend' : 'Restore'} level ${button.dataset.slot} spell slot ${Number(button.dataset.index) + 1} (${available ? 'available' : 'spent'})`);
+      const glyph = button.querySelector('span[aria-hidden]');
+      if (glyph) glyph.textContent = available ? '●' : '○';
+    });
+    $$('[data-slot-count]').forEach(label => {
+      const slots = state.slots[label.dataset.slotCount];
+      label.textContent = `${slots.filter(Boolean).length}/${slots.length}`;
     });
     $('#concentration').value = state.concentration;
     $('#innate-active').checked = state.innateActive;
@@ -363,6 +370,8 @@
     if ($('#attack-note')) $('#attack-note').textContent = state.innateActive ? 'Sorcerer adv.' : 'to hit';
     $('#restore-sp').disabled = state.restored || state.sp === model.limits.sp;
     $('#restore-sp').textContent = state.restored ? 'SP restoration used' : 'Short rest: recover SP';
+    if ($('#short-rest-recover')) $('#short-rest-recover').disabled = state.restored || state.sp === model.limits.sp;
+    if ($('#short-rest-status')) $('#short-rest-status').textContent = state.restored ? 'Sorcerous Restoration already used. It becomes available after a Long Rest.' : state.sp === model.limits.sp ? 'Sorcery Points are full. Sorcerous Restoration remains available.' : `Sorcerous Restoration can recover ${Math.min(2, model.limits.sp - state.sp)} SP (${state.sp}/5 now). Once per Long Rest.`;
     $('#save-state').textContent = saveNotice;
     $('#save-state').classList.toggle('warning', saveWarning);
     $('#recover-save').hidden = !invalidStored;
@@ -549,14 +558,18 @@
     const nextSpent = !state.slotSpentThisTurn;
     change({ ...state, slotSpentThisTurn: nextSpent, kiefSlotSpent: state.turnActive ? nextSpent : state.kiefSlotSpent });
   });
-  $('#restore-sp').addEventListener('click', () => {
+  const recoverSorcery = () => {
     const next = model.restore(state);
     if (next === state) return;
     const recovered = next.sp - state.sp;
     change(next); notify(`Recovered ${recovered} SP. Sorcerous Restoration is used until your next Long Rest.`);
-  });
+  };
+  $('#restore-sp').addEventListener('click', recoverSorcery);
+  $('#short-rest-recover')?.addEventListener('click', recoverSorcery);
+  $('#dock-short-rest')?.addEventListener('click', () => $('#short-rest-dialog').showModal());
   const dialog = $('#rest-dialog');
   $('#long-rest').addEventListener('click', () => { dialog.returnValue = ''; dialog.showModal(); });
+  $('#dock-long-rest')?.addEventListener('click', () => { dialog.returnValue = ''; dialog.showModal(); });
   dialog.addEventListener('close', () => {
     if (dialog.returnValue !== 'confirm') return;
     if (invalidStored) {
