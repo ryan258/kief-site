@@ -81,10 +81,58 @@ input:hover, select:hover { border-color: #9c7596; }
 }
 body[class] .workspace {
   background-image:
-    linear-gradient(90deg, rgba(16, 13, 23, .88) 0%, rgba(16, 13, 23, .68) 31%, rgba(16, 13, 23, .22) 78%, rgba(16, 13, 23, .32) 100%),
+    linear-gradient(90deg, rgba(16, 13, 23, .94) 0%, rgba(16, 13, 23, .86) 31%, rgba(16, 13, 23, .7) 64%, rgba(16, 13, 23, .42) 100%),
     linear-gradient(180deg, rgba(16, 13, 23, .08) 0%, rgba(16, 13, 23, .5) 53%, var(--bg) 96%),
-    url("pages/candyland-night.webp");
+    var(--page-art, url("pages/candyland-night.webp"));
 }
+
+/* Section scenes share the campaign palette; text sits on its own solid surface. */
+.page-heading:has(.theme-scene) {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  column-gap: 28px;
+  align-items: start;
+}
+.page-heading:has(.theme-scene) > :not(.theme-scene) { grid-column: 1; }
+.theme-scene {
+  grid-column: 2;
+  grid-row: 1 / span 4;
+  align-self: center;
+  overflow: hidden;
+  border: 1px solid rgba(183, 164, 217, .35);
+  border-radius: 18px 5px 18px 5px;
+  background: #17121e;
+  box-shadow: 0 12px 30px rgba(5, 3, 9, .35);
+}
+.theme-scene img {
+  display: block;
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  object-position: 68% 50%;
+}
+.hero-art .tea-art {
+  width: 260px;
+  height: 240px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 1px solid rgba(183, 164, 217, .4);
+  box-shadow: 0 0 32px rgba(228, 147, 182, .12);
+  transform: translateY(-13px);
+}
+.familiar-portrait {
+  display: block;
+  width: calc(100% + 46px);
+  max-width: none;
+  height: 140px;
+  margin: -23px -23px 20px;
+  object-fit: cover;
+  object-position: 70% 52%;
+  border-radius: 12px 12px 0 0;
+  border-bottom: 1px solid var(--border);
+}
+.playbook-hero-quote .theme-scene { margin-bottom: 18px; text-align: left; }
+.playbook-hero-quote .theme-scene img { height: 160px; }
 
 .hero .eyebrow, .text-link, .filter-bar>span { color: var(--mint); }
 .hero-art:before { background: radial-gradient(ellipse, rgba(216, 128, 171, .2), rgba(110, 83, 147, .12) 40%, transparent 72%); }
@@ -151,6 +199,12 @@ blockquote { color: #efd0df; }
   transform: translateY(-2px);
 }
 .directory-card:target { border-color: var(--orange); }
+.card-grid .spell-card {
+  background-image: radial-gradient(ellipse at 88% 12%, rgba(27, 22, 33, .3) 0%, rgba(27, 22, 33, .88) 55%, rgba(16, 13, 23, .97) 100%), var(--spell-bg);
+}
+.card-grid .spell-card:hover, .directory-card:has(.card-link:hover).spell-card {
+  background-image: radial-gradient(ellipse at 88% 12%, rgba(27, 22, 33, .18) 0%, rgba(27, 22, 33, .78) 55%, rgba(16, 13, 23, .93) 100%), var(--spell-bg);
+}
 .source-label { border-color: var(--border); color: var(--mint); }
 
 .playbook-pill {
@@ -212,10 +266,28 @@ footer>a { color: var(--mint); }
 
 @media (max-width: 900px) {
   .sidebar { background: linear-gradient(180deg, #17111e, #120f19); }
+  .page-heading:has(.theme-scene) { grid-template-columns: minmax(0, 1fr) 220px; gap: 0 20px; }
+  .theme-scene img { height: 150px; }
 }
 @media (max-width: 640px) {
   .workspace { background-size: auto 72vw; }
   body[class] .workspace { background-size: auto 72vw, auto 72vw, auto 72vw; }
+  .page-heading:has(.theme-scene) { grid-template-columns: minmax(0, 1fr) 100px; gap: 0 12px; }
+  .page-heading:has(.theme-scene) > .intro,
+  .page-heading:has(.theme-scene) > .button { grid-column: 1 / -1; }
+  .theme-scene { grid-row: 1 / span 2; border-radius: 12px 4px; }
+  .theme-scene img { height: 94px; object-position: 70% 50%; }
+  .page-heading:has(.theme-scene) h1 { font-size: clamp(26px, 7vw, 36px); }
+  .familiar-portrait { width: calc(100% + 36px); margin: -18px -18px 18px; height: 120px; }
+  .playbook-hero-quote .theme-scene { display: none; }
+}
+@media (prefers-reduced-data: reduce) {
+  body[class] .workspace { background-image: none; }
+}
+@media print {
+  body[class] .workspace { background-image: none; }
+  .theme-scene, .tea-art, .familiar-portrait { display: none; }
+  .page-heading:has(.theme-scene) { display: block; }
 }
 @media (prefers-reduced-motion: no-preference) {
   .directory-card:hover, .directory-card:has(.card-link:hover) { transform: translateY(-2px); }

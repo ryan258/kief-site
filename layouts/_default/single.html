@@ -1,5 +1,5 @@
 {{ define "main" }}
-<div class="page-heading"><p class="eyebrow">THE LEAF & LEDGER / REFERENCE</p><h1>{{ .Title }}</h1></div>
+<div class="page-heading"><p class="eyebrow">THE LEAF & LEDGER / REFERENCE</p><h1>{{ .Title }}</h1>{{ partial "theme-scene.html" . }}</div>
 {{ $body := partial "autolink.html" .Content | string }}
 {{ $parts := split $body "<h2" }}
 {{ if ge (len $parts) 4 }}

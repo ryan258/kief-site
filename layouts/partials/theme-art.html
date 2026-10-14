@@ -1,0 +1,9 @@
+{{- $key := "default" -}}
+{{- if .IsHome -}}
+  {{- $key = "dashboard" -}}
+{{- else if .Section -}}
+  {{- $key = .Section -}}
+{{- else if .File -}}
+  {{- $key = .File.BaseFileName -}}
+{{- end -}}
+{{- return (index hugo.Data.theme_art $key | default "candyland-night") -}}

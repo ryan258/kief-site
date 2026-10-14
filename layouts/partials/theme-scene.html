@@ -1,0 +1,9 @@
+{{- $art := partial "theme-art.html" . -}}
+{{- if ne $art "candyland-night" -}}
+<div class="theme-scene" aria-hidden="true">
+  <img src="{{ printf "pages/%s-480.webp" $art | relURL }}"
+       srcset="{{ printf "pages/%s-480.webp" $art | relURL }} 480w, {{ printf "pages/%s.webp" $art | relURL }} 1440w"
+       sizes="(max-width: 640px) 100px, (max-width: 900px) 220px, 320px"
+       alt="" width="1440" height="960" decoding="async">
+</div>
+{{- end -}}

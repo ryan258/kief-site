@@ -1,5 +1,5 @@
 {{ define "main" }}
-<div class="page-heading"><p class="eyebrow">THE LEAF &amp; LEDGER / LEARN &amp; PLAY</p><h1>{{ .Title }}</h1><p class="intro">Start with the conversation, dice, and one combat turn. Open any lesson when you need it; practice aloud at your own pace.</p><a class="button primary" href="{{ "#learn-at-table" | relURL }}">Back to the table dashboard →</a></div>
+<div class="page-heading"><p class="eyebrow">THE LEAF &amp; LEDGER / LEARN &amp; PLAY</p><h1>{{ .Title }}</h1><p class="intro">Start with the conversation, dice, and one combat turn. Open any lesson when you need it; practice aloud at your own pace.</p><a class="button primary" href="{{ "#learn-at-table" | relURL }}">Back to the table dashboard →</a>{{ partial "theme-scene.html" . }}</div>
 {{ $parts := split (partial "autolink.html" .Content | string) "<h2" }}
 <div class="prose learning-lead">{{ index $parts 0 | safeHTML }}</div>
 <nav class="toc learning-toc" aria-label="Lesson navigation"><span class="eyebrow">FIND A LESSON</span>{{ .TableOfContents }}</nav>

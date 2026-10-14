@@ -1,6 +1,6 @@
 {{ define "main" }}
 {{ $plays := .RegularPages.ByWeight }}
-<div class="page-heading"><p class="eyebrow">THE LEAF & LEDGER / TACTICS</p><h1>{{ .Title }}</h1><div class="intro">{{ .Content }}</div></div>
+<div class="page-heading"><p class="eyebrow">THE LEAF & LEDGER / TACTICS</p><h1>{{ .Title }}</h1><div class="intro">{{ .Content }}</div>{{ partial "theme-scene.html" . }}</div>
 <section data-directory>
 <div class="filter-bar"><label>Find a play<input type="search" data-search placeholder="Try control, Fly, or Help…"></label><label>Who’s up?<select data-filter><option value="">Everyone</option><option>Kief</option><option>Mr. Big</option></select></label><span data-count role="status">{{ len $plays }} plays</span></div>
 <div class="card-grid">

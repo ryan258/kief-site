@@ -61,7 +61,8 @@
 <div class="gold-diamond" aria-hidden="true">&mdash; &#x25C7; &mdash;</div>
 </div>
 </aside>
-<div class="workspace">
+{{ $pageArt := partial "theme-art.html" . }}
+<div class="workspace" style="{{ printf "--page-art: url('%s')" (printf "pages/%s.webp" $pageArt | relURL) | safeCSS }}">
 <header class="topbar"><span><a class="topbar-home" href="{{ "" | relURL }}" aria-label="Dashboard">⌂</a> <span class="slash">/</span> SUGAR &amp; SHADOW <span class="slash">/</span> {{ if .IsHome }}DASHBOARD{{ else }}{{ .Title | upper }}{{ end }}</span><span class="local-indicator"><i></i> Personal tabletop companion</span></header>
 <main id="main" tabindex="-1">{{ block "main" . }}{{ end }}</main>
 <footer><div class="footer-wrap"><span>Built for a good turn, and getting everyone home. <a href="{{ "checks/" | relURL }}">Campaign checks</a> <a href="{{ "rulings/" | relURL }}">Table rulings</a> <a href="{{ "character/" | relURL }}">Character record</a></span><small class="footer-meta">Current local build. D&D Beyond sync pending. DM rulings govern play.</small></div></footer>
@@ -69,8 +70,15 @@
 </div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 {{ $assets := slice ("" | relURL) $css.RelPermalink $theme.RelPermalink ("pages/candyland-night.webp" | relURL) $storage.RelPermalink $state.RelPermalink $js.RelPermalink $learning.RelPermalink ("learn/" | relURL) ("manifest.webmanifest" | relURL) ("icon.svg" | relURL) ("icon-192.png" | relURL) }}
+{{ $artVersions := slice }}
+{{ range slice "candyland-spellbook" "candyland-crossroads" "candyland-mr-big" "candyland-lessons" "candyland-ledger" "candyland-tea" }}
+  {{ range slice (printf "pages/%s.webp" .) (printf "pages/%s-480.webp" .) }}
+    {{ $assets = $assets | append (. | relURL) }}
+    {{ $artVersions = $artVersions | append (readFile (printf "static/%s" .) | md5) }}
+  {{ end }}
+{{ end }}
 {{ $learningVersion := printf "%s,%s" (site.GetPage "learn").RawContent (hugo.Data.learning_hints | jsonify) | md5 }}
-{{ $sw := resources.Get "sw.js" | resources.ExecuteAsTemplate "sw.js" (dict "assets" $assets "version" (printf "%s,%s" (delimit $assets ",") $learningVersion | md5)) }}
+{{ $sw := resources.Get "sw.js" | resources.ExecuteAsTemplate "sw.js" (dict "assets" $assets "version" (printf "%s,%s,%s" (delimit $assets ",") $learningVersion (delimit $artVersions ",") | md5)) }}
 <script>
 if ('serviceWorker' in navigator) addEventListener('load', () => navigator.serviceWorker.register('{{ $sw.RelPermalink }}').catch(() => {}));
 </script>

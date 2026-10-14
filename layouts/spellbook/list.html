@@ -1,6 +1,6 @@
 {{ define "main" }}
 {{ $plays := (where site.RegularPages "Section" "plays").ByWeight }}
-<div class="page-heading"><p class="eyebrow">THE LEAF & LEDGER / SPELLS</p><h1>{{ .Title }}</h1><div class="intro">{{ .Content }}</div></div>
+<div class="page-heading"><p class="eyebrow">THE LEAF & LEDGER / SPELLS</p><h1>{{ .Title }}</h1><div class="intro">{{ .Content }}</div>{{ partial "theme-scene.html" . }}</div>
 <section data-directory>
 <div class="filter-bar"><label>Find a spell<input type="search" data-search placeholder="Try rescue, control, or a spell name…"></label><label>Spell level<select data-filter><option value="">All levels</option><option value="0">Cantrips</option><option value="1">1st level</option><option value="2">2nd level</option><option value="3">3rd level</option></select></label><span data-count role="status">25 spells</span></div>
 <div class="card-grid">
