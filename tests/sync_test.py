@@ -25,6 +25,7 @@ class ImportContract(unittest.TestCase):
             (self.site / folder).mkdir(parents=True)
         for filename, (route, _) in sync.SOURCES.items():
             text = (ROOT / 'content' / f'{route}.md').read_text().split('+++', 2)[2].lstrip()
+            (self.source / filename).parent.mkdir(parents=True, exist_ok=True)
             (self.source / filename).write_text(text)
         (self.source / 'spell-reference.json').write_text((ROOT / 'data/spells.json').read_text())
 
@@ -55,6 +56,20 @@ class ImportContract(unittest.TestCase):
         with self.assertRaisesRegex(SystemExit, 'Build changed'):
             self.run_import()
         self.assertEqual(list((self.site / 'content').iterdir()), [])
+
+    def test_nested_lesson_links_decode_paths_and_keep_anchors(self):
+        source = self.source / 'docs/learning-dnd-5-5-ed-for-beginners-with-kief.md'
+        source.write_text('# Lessons\n[Card](../D%26D%205.5e%20Rules%20Cheat%20Sheet.md#choose-one-useful-move)\n'
+                          '[Build](../kief-firelight-character.md#build-and-numbers)\n'
+                          '[Official](https://www.dndbeyond.com/sources/dnd/br-2024/spells#Concentration)\n')
+        self.run_import()
+        output = (self.site / 'content/learn.md').read_text()
+        self.assertIn('](/rules/#choose-one-useful-move)', output)
+        self.assertIn('](/character/#build-and-numbers)', output)
+        self.assertIn('https://www.dndbeyond.com/sources/dnd/br-2024/spells#Concentration', output)
+        source.write_text(source.read_text() + '\nChanged lesson\n')
+        with self.assertRaisesRegex(SystemExit, 'Source drift: content/learn.md'):
+            self.run_import('--check')
 
     def test_incomplete_or_duplicate_spell_reference_fails_before_writing(self):
         path = self.source / 'spell-reference.json'

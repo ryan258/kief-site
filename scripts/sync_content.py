@@ -3,8 +3,10 @@
 import argparse
 import hashlib
 import json
+import posixpath
 import re
 from pathlib import Path
+from urllib.parse import unquote, urlsplit
 
 SITE = Path(__file__).resolve().parents[1]
 SOURCES = {
@@ -17,6 +19,7 @@ SOURCES = {
     'findings.md': ('checks', 'Campaign checks'),
     'update-plan.md': ('growth', 'The road to level six'),
     'rules-arbitration.md': ('rulings', 'Table rulings and open decisions'),
+    'docs/learning-dnd-5-5-ed-for-beginners-with-kief.md': ('learn', 'Learn & play with Kief'),
 }
 
 def table(text, heading):
@@ -41,13 +44,24 @@ def main():
     for filename, (route, title) in SOURCES.items():
         text = records[filename]
         text = re.sub(r'^# .+\n', '', text, count=1).lstrip()
-        for source, (target, _) in SOURCES.items():
-            text = text.replace(f']({source})', f'](/{target}/)')
-            text = text.replace(f']({source}#', f'](/{target}/#')
-            text = text.replace(f']({source.replace(" ", "%20")})', f'](/{target}/)')
-            text = text.replace(f']({source.replace(" ", "%20")}#', f'](/{target}/#')
-        text = re.sub(r'\]\(archive/[^)]+\)', '](/history/)', text)
-        generated[SITE / 'content' / f'{route}.md'] = ('+++\ntitle = ' + json.dumps(title) + '\n+++\n\n' + text)
+        def source_link(match):
+            url = urlsplit(match[1])
+            if url.scheme or url.netloc or not url.path or url.path.startswith('/'):
+                return match[0]
+            resolved = posixpath.normpath(posixpath.join(posixpath.dirname(filename), unquote(url.path)))
+            if resolved in SOURCES:
+                target = '/' + SOURCES[resolved][0] + '/'
+                if url.query:
+                    target += '?' + url.query
+                if url.fragment:
+                    target += '#' + url.fragment
+                return '](' + target + ')'
+            if resolved.startswith('archive/'):
+                return '](/history/)'
+            return match[0]
+        text = re.sub(r'\]\(([^)]+)\)', source_link, text)
+        template = '\ntype = "learn"' if route == 'learn' else ''
+        generated[SITE / 'content' / f'{route}.md'] = ('+++\ntitle = ' + json.dumps(title) + template + '\n+++\n\n' + text)
     spells = []
     for name, source, job in table(char, '## Cantrips — 8 total'):
         spells.append(dict(name=name, source=source, level=0, concentration=False, job=job))
