@@ -1,5 +1,15 @@
 # Verification history
 
+## 2026-10-14 — Sugar & Shadow artwork expansion
+
+- Generated six coordinated illustrations with the built-in image generator: spellbook, crossroads, Mr. Big's garden, beginner practice table, reference ledger, and tea kettle. Saved twelve WebP exports (1440×960 and 480×320), totaling 1,047,386 bytes. Exact prompts and export settings are in `docs/theme-art-prompts.json`.
+- Added route-specific backgrounds through `data/theme_art.json`, decorative heading scenes, dashboard kettle artwork, and a lazy-loaded Mr. Big image. Strengthened the dark overlay behind text and applied plum overlays to existing spell-card art. Existing source images remain intact.
+- Precached all twelve new exports and included their content hashes in service-worker versioning. Decorative imagery has empty alt text, mobile sizing, and print suppression; no tracking/controller logic or canonical character/rules content changed.
+- Targeted local checks passed: Hugo build, internal links/assets across 287 HTML pages, RIFF/WebP signatures and exact dimensions for all twelve exports, and `git diff --check`.
+- Browser checks: inspected desktop dashboard/spellbook and mobile lesson layouts. Confirmed correct section artwork, loaded heading images, and no horizontal page overflow at 320px for spellbook, plays, familiar, character, playbook, and dashboard; also checked lessons at 390px. Confirmed the dashboard familiar image loads when scrolled into view. Dashboard console had no errors/warnings.
+- Offline check in an isolated local browser context: all twelve new WebP URLs returned successfully with network emulation set to Offline after service-worker installation.
+- Scope: local artwork/layout checks only; full runtime tests, actual mobile devices, assistive technology, and publication were not tested. Hugo reports the existing `site.Data` deprecation in `layouts/partials/session-picks.html`.
+
 ## 2026-10-13 — Table enjoyment pass, session selections & template quote hygiene
 
 - **Feature & Architecture:**

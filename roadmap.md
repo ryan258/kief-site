@@ -1,6 +1,15 @@
 # Kief companion roadmap
 
-## Current milestone: Beginner lessons & contextual learning at the table
+## Current milestone: Sugar & Shadow section artwork
+
+Implemented locally on 2026-10-14; see `VERIFICATION.md` for targeted checks. Publication is separate.
+
+- Six generated illustrations, twelve optimized WebP exports, with exact prompts in `docs/theme-art-prompts.json`.
+- Distinct spellbook, crossroads, familiar, lessons, and reference scenes, plus dashboard kettle and Mr. Big artwork.
+- Compact mobile heading images, dark text overlays, plum spell-card backgrounds, and decorative-image print suppression.
+- All new artwork precached for offline use; image-content changes invalidate the service-worker cache.
+
+## Preceding milestone: Beginner lessons & contextual learning at the table
 
 Implemented locally on 2026-10-14; see `VERIFICATION.md` for the checks actually performed. Publication is separate.
 

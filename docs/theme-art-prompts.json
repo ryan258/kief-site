@@ -1,0 +1,43 @@
+{
+  "created": "2026-10-14",
+  "generator": "Built-in image_gen",
+  "exports": {
+    "full": {
+      "width": 1440,
+      "format": "WebP",
+      "quality": 79
+    },
+    "small": {
+      "width": 480,
+      "format": "WebP",
+      "quality": 77
+    }
+  },
+  "prompts": [
+    {
+      "slug": "candyland-spellbook",
+      "prompt": "Use case: stylized-concept\nAsset type: wide website section artwork for the Sugar & Shadow tabletop companion.\nPrimary request: a worn open sorcerer's spellbook on a dark carved wooden desk inside an abandoned confectioner's tower in a cursed Candy Land kingdom.\nStyle/medium: richly textured painterly fantasy illustration, mature storybook atmosphere, cinematic detail matching the supplied visual direction of plum-black night, caramel lantern light, desaturated rose sugar crystals, frosted mint glow.\nSubject: the book on the right half, curling mint luminous wisps and subtle rose prismatic motes over its pages, a tiny copper incense dish, cracked sugar-glass window and licorice-black thorn vines behind.\nComposition: landscape 1536x1024, a single complete image. Book occupies right-center with useful dark quiet negative space on the left. All important subjects within central 60% vertically for wide banner crop.\nLighting: warm restrained gold lantern light and cool mint magic; beautiful but slightly uneasy, handcrafted surfaces.\nConstraints: no people, no readable letters, no words, no typography, no logo, no watermark, no collage. Avoid bright cartoon candy, neon, horror gore."
+    },
+    {
+      "slug": "candyland-crossroads",
+      "prompt": "Use case: stylized-concept. Asset type: landscape section artwork for Sugar & Shadow, a cursed Candy Land tabletop companion. Style: richly textured painterly fantasy illustration, mature dark storybook, same coherent palette of plum-black shadows, muted rose sugar crystals, frosted mint foliage, warm caramel and brass lantern light. Landscape 1536x1024 single complete image; principal subject at right-center within middle 60% vertically, dark quiet negative space on left; works cropped to wide website header. Handcrafted organic detail, cinematic depth, restrained luminous accents. No readable writing, no letters, no typography, no watermarks, no logos, no collage, no bright cartoon style, no gore. A winding rose sugar-stone path divides at an ancient licorice-black tree in a misty candy forest. One branch crosses a narrow caramel stream, the other leads toward a distant shadowed confection castle. Small brass lanterns mark the paths; crystallized mint leaves, dark gumdrop rocks, twisted striped candy arches. No people, no map, no arrows or signs. Sense of useful choice and a route home."
+    },
+    {
+      "slug": "candyland-mr-big",
+      "prompt": "Use case: stylized-concept. Asset type: landscape section artwork for Sugar & Shadow, a cursed Candy Land tabletop companion. Style: richly textured painterly fantasy illustration, mature dark storybook, same coherent palette of plum-black shadows, muted rose sugar crystals, frosted mint foliage, warm caramel and brass lantern light. Landscape 1536x1024 single complete image; principal subject at right-center within middle 60% vertically, dark quiet negative space on left; works cropped to wide website header. Handcrafted organic detail, cinematic depth, restrained luminous accents. No readable writing, no letters, no typography, no watermarks, no logos, no collage, no bright cartoon style, no gore. An extremely small real cow with black-and-white markings stands safely on mint-moss beside a warm brass lantern on a low garden wall, surrounded by plum-colored sugar flowers, curled licorice vines and pale mint leaves in a dark confection garden. The cow is anatomically a tiny cow, four hooves, two small horns, solemn closed mouth, quiet intelligent expression; no clothing, no human hands, no wings, no spirit translucence, no magic powers. Intimate gentle three-quarter view, believable miniature scale beside lantern."
+    },
+    {
+      "slug": "candyland-lessons",
+      "prompt": "Use case: stylized-concept. Asset type: landscape section artwork for Sugar & Shadow, a cursed Candy Land tabletop companion. Style: richly textured painterly fantasy illustration, mature dark storybook, same coherent palette of plum-black shadows, muted rose sugar crystals, frosted mint foliage, warm caramel and brass lantern light. Landscape 1536x1024 single complete image; principal subject at right-center within middle 60% vertically, dark quiet negative space on left; works cropped to wide website header. Handcrafted organic detail, cinematic depth, restrained luminous accents. No readable writing, no letters, no typography, no watermarks, no logos, no collage, no bright cartoon style, no gore. An inviting beginner's tabletop practice place inside a quiet confectioner's cottage: one clearly shaped twenty-sided faceted die, a few other simple polyhedral dice, blank parchment, a simple wooden game token, ceramic tea cup, warm brass lantern. Beyond an arched window are moonlit peppermint trees. Close eye-level desk view, tactile carved wood and sugar-glass, welcoming calm mood, no people or hands. Dice have subtle abstract engraved pips rather than readable numerals; avoid complicated impossible dice shapes."
+    },
+    {
+      "slug": "candyland-ledger",
+      "prompt": "Use case: stylized-concept. Asset type: landscape section artwork for Sugar & Shadow, a cursed Candy Land tabletop companion. Style: richly textured painterly fantasy illustration, mature dark storybook, same coherent palette of plum-black shadows, muted rose sugar crystals, frosted mint foliage, warm caramel and brass lantern light. Landscape 1536x1024 single complete image; principal subject at right-center within middle 60% vertically, dark quiet negative space on left; works cropped to wide website header. Handcrafted organic detail, cinematic depth, restrained luminous accents. No readable writing, no letters, no typography, no watermarks, no logos, no collage, no bright cartoon style, no gore. A well-organized traveling reference desk in an old confectioner's library: closed worn leather ledger with leaf-shaped brass clasp, blank parchment tabs, rolled map with abstract pathways but no text, calligrapher's quill and ink pot, a small copper tea cup. Behind it, shelves curve like dark licorice wood with sugar-glass bottles and crystallized mint sprigs. Warm lantern glows against deep plum shadows. No people, no readable writing."
+    },
+    {
+      "slug": "candyland-tea",
+      "prompt": "Use case: stylized-concept. Asset type: landscape section artwork for Sugar & Shadow, a cursed Candy Land tabletop companion. Style: richly textured painterly fantasy illustration, mature dark storybook, same coherent palette of plum-black shadows, muted rose sugar crystals, frosted mint foliage, warm caramel and brass lantern light. Landscape 1536x1024 single complete image; principal subject at right-center within middle 60% vertically, dark quiet negative space on left; works cropped to wide website header. Handcrafted organic detail, cinematic depth, restrained luminous accents. No readable writing, no letters, no typography, no watermarks, no logos, no collage, no bright cartoon style, no gore. A close intimate still life of Kief's battered round copper tea kettle with a modest leaf motif engraved into its side, stout spout and a proper arched handle, resting beside a small tea cup on a dark wooden stump. Gentle pale mint steam curls upward, warm ember reflections, bergamot peel and mint leaves. Moonlit rose sugar stones and licorice vines soften into darkness behind it. Centered kettle and cup fill most of the composition, the whole kettle and handle visible. No people, no faces, no symbols resembling letters."
+    }
+  ],
+  "total_webp_bytes": 1047386
+}
