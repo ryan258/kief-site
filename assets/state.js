@@ -5,7 +5,7 @@
   const limits = { hp: 47, sp: 5, innate: 2, animals: 3, familiar: 1, hitDice: 5 };
   const concentrations = ['', 'Web', 'Hypnotic Pattern', 'Fly', 'Invisibility', 'Fear', 'Alter Self', 'Dragon’s Breath', 'Detect Magic'];
   function fresh() {
-    return { version: 1, ...limits, slots: { 1: [true, true, true, true], 2: [true, true, true], 3: [true, true] }, concentration: '', innateActive: false, reactionReady: true, restored: false, turnActive: true, actionReady: true, bonusActionReady: true, slotSpentThisTurn: false, kiefSlotSpent: false, savedAt: null };
+    return { version: 1, ...limits, slots: { 1: [true, true, true, true], 2: [true, true, true], 3: [true, true] }, concentration: '', innateActive: false, reactionReady: true, restored: false, turnActive: true, actionReady: true, bonusActionReady: true, slotSpentThisTurn: false, kiefSlotSpent: false, gold: null, cowHp: null, cowStatus: 'unknown', savedAt: null };
   }
   function normalize(raw) {
     if (!raw || typeof raw !== 'object' || Array.isArray(raw) || raw.version !== 1) throw new Error('Unrecognized session data');
@@ -32,7 +32,22 @@
     state.concentration = raw.concentration;
     if (raw.savedAt !== null && (typeof raw.savedAt !== 'string' || !Number.isFinite(Date.parse(raw.savedAt)))) throw new Error('Invalid timestamp');
     state.savedAt = raw.savedAt;
+    if (raw.gold !== undefined) {
+      if (raw.gold !== null && (typeof raw.gold !== 'number' || !Number.isFinite(raw.gold) || raw.gold < 0 || raw.gold > 1000000000 || Number(raw.gold.toFixed(2)) !== raw.gold)) throw new Error('Invalid gold');
+      state.gold = raw.gold;
+    }
+    if (raw.cowHp !== undefined) {
+      if (raw.cowHp !== null && (!Number.isInteger(raw.cowHp) || raw.cowHp < 0 || raw.cowHp > 1000)) throw new Error('Invalid Mr. Big HP');
+      state.cowHp = raw.cowHp;
+    }
+    if (raw.cowStatus !== undefined) {
+      if (!['unknown', 'beside', 'away', 'scouting'].includes(raw.cowStatus)) throw new Error('Invalid Mr. Big status');
+      state.cowStatus = raw.cowStatus;
+    }
     return state;
+  }
+  function longRest(state) {
+    return { ...fresh(), gold: state.gold ?? null, cowHp: state.cowHp ?? null, cowStatus: state.cowStatus ?? 'unknown' };
   }
   function startTurn(state) {
     return { ...state, turnActive: true, actionReady: true, bonusActionReady: true, slotSpentThisTurn: false, kiefSlotSpent: false, reactionReady: true };
@@ -302,7 +317,7 @@
     }
     return normalize(parsed);
   }
-  const api = { key, limits, concentrations, spells, fresh, normalize, adjust, restore, damage, guidance, backupUnreadable, validateBackup, previewCast, cast, startTurn, endTurn };
+  const api = { key, limits, concentrations, spells, fresh, normalize, adjust, restore, longRest, damage, guidance, backupUnreadable, validateBackup, previewCast, cast, startTurn, endTurn };
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
   else root.KiefState = api;
 })(globalThis);

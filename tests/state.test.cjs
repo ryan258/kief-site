@@ -30,6 +30,31 @@ test('valid session survives roundtrip without sharing slot arrays', () => {
   restored.slots[3][0] = true;
   assert.equal(state.slots[3][0], false);
 });
+test('old saves keep their counters while new table notes default to unset', () => {
+  const old = { ...model.fresh(), hp: 19, sp: 2 };
+  delete old.gold; delete old.cowHp; delete old.cowStatus;
+  const restored = model.normalize(old);
+  assert.equal(restored.hp, 19);
+  assert.equal(restored.sp, 2);
+  assert.equal(restored.gold, null);
+  assert.equal(restored.cowHp, null);
+  assert.equal(restored.cowStatus, 'unknown');
+});
+test('table notes are validated, roundtrip through backups, and survive Long Rest', () => {
+  const state = { ...model.fresh(), hp: 8, sp: 0, gold: 23.75, cowHp: 0, cowStatus: 'away' };
+  state.slots[2][0] = false;
+  assert.deepEqual(model.validateBackup(JSON.stringify({ state })), state);
+  const rested = model.longRest(state);
+  assert.equal(rested.hp, 47);
+  assert.equal(rested.sp, 5);
+  assert.ok(rested.slots[2].every(Boolean));
+  assert.equal(rested.gold, 23.75);
+  assert.equal(rested.cowHp, 0);
+  assert.equal(rested.cowStatus, 'away');
+  for (const fields of [{ gold: '20' }, { gold: -1 }, { gold: NaN }, { gold: 1.001 }, { cowHp: -1 }, { cowHp: 1.5 }, { cowStatus: 'resurrected' }]) {
+    assert.throws(() => model.normalize({ ...state, ...fields }));
+  }
+});
 test('malformed and out-of-build saved state fails closed', () => {
   const invalid = [null, [], {}, { ...model.fresh(), version: 2 }, { ...model.fresh(), hp: 48 }, { ...model.fresh(), sp: '5' }, { ...model.fresh(), innateActive: 'false' }, { ...model.fresh(), concentration: 'Polymorph' }, { ...model.fresh(), savedAt: 'yesterday' }, { ...model.fresh(), slots: { 1: [true], 2: [], 3: [] } }];
   invalid.forEach(raw => assert.throws(() => model.normalize(raw)));
