@@ -103,3 +103,11 @@ Focused Node tests exercise the state model and tracker event wiring using a sma
 Hugo is pinned to 0.166.0 in GitHub Actions. CI builds the site, runs the focused tests, and checks links/assets. The sibling-aware `sync_content.py --check` is a local gate because CI checks out only this repository. See `../VERIFICATION.md` for evidence and limits.
 
 A push to `main` triggers the existing deployment workflow. Local build success is not a deployment, a live-sheet update, a DM ruling, or proof of all-device accessibility.
+
+## Beginner learning support
+
+`scripts/sync_content.py` imports the nested beginner guide into `content/learn.md`, including its fingerprint in `data/sources.json`. Relative Markdown links are resolved from each source document’s directory, URL-decoded, mapped to site routes, and retain query strings and fragments. The learning page uses `layouts/learn/single.html`: one native disclosure per level-two heading, with the first four sections open initially and stable original heading anchors. Practice prompts and answers remain source-owned.
+
+`layouts/partials/learning-at-table.html` and `data/learning_hints.json` provide curated excerpts near table decisions. `learning-tip.html` renders a labeled native disclosure with a 44px summary and a lesson link. The independent `assets/learning.js` never reads or writes tracker state. It adds delegated hover/focus behavior, pointer travel into the explanation, viewport positioning, outside-click/Escape dismissal, anchor expansion, and before/after-print handling. Escape dismisses an open hint before a surrounding dialog. The native disclosure remains usable when JavaScript is unavailable.
+
+The base layout includes the fingerprinted learning script and `/learn/` in the service worker’s precache list. The guide content and curated hints also contribute to its cache version, invalidating offline learning content when either changes. The first online cache installation is required; this does not make unvisited linked reference pages available offline.

@@ -19,6 +19,7 @@ The production site is deployed to GitHub Pages via GitHub Actions: <https://rya
 
 - Three session selections (combat, exploration, whimsy) with native selectors, direct play links, and separate browser storage; defaults remain readable without JavaScript.
 - Dashboard with situation-based turn guidance, core combat stats, and reaction reminders.
+- **Learn & play:** the imported beginner guide, foldable lessons and practice scenes, a four-step turn-resumption card, and 44px question-mark hints beside stats, resources, turn economy, and casting controls. Hover, keyboard focus, or tap opens a hint; Escape dismisses it. The learning page is precached for offline use after the first successful online load.
 - **Ability Scores & Saving Throws Strip:** Persistent 6-card display directly on the dashboard for STR 8 (-1), DEX 14 (+2), CON 18 (+4 / Save +7), INT 9 (-1 / Adv), WIS 10 (+0 / Adv), and CHA 16 (+3 / Save +6 / Adv), highlighting proficient saves and Gnomish Cunning advantage.
 - **Skills, Passives & Proficiencies Quick Reference Card:** Expandable reference card on the front page detailing passive senses (Perception 10, Insight 13, Investigation 9), tool and weapon proficiencies, languages, and a complete 18-skill alphabetical grid with proficient skills (Arcana +2, History +2, Insight +3, Persuasion +6) tagged and highlighted. Includes a dedicated sticky combat-bar shortcut (`Stats & Skills ◈`) for instant jumping and auto-expansion.
 - HP, SP, 4/3/2 spell-slot, Hit Dice, Innate Sorcery, and origin-spell counters.
@@ -43,7 +44,7 @@ The production site is deployed to GitHub Pages via GitHub Actions: <https://rya
 
 ## Source and authority
 
-The intended build lives in `../kief`. Nine current root Markdown records and `spell-reference.json` are imported. `rules-arbitration.md` is canonical for rulings and is also mirrored into `docs/rules-arbitration.md`. The July exports are excluded.
+The intended build lives in `../kief`. Nine current root Markdown records, `docs/learning-dnd-5-5-ed-for-beginners-with-kief.md`, and `spell-reference.json` are imported. `rules-arbitration.md` is canonical for rulings and is also mirrored into `docs/rules-arbitration.md`. The July exports are excluded.
 
 The play pages in `content/plays/kief/` and `content/plays/mr-big/` are **site-authored**, not imported. They adapt the archived level 7 guides (`../kief/archive/level-7-2026-09-16/`) to the current level 5 record and the 2024 Cat stat block, keeping the archive's numbering. Level 7 features, the wand, old gear, and Keen Smell were removed; plays that depended on them were replaced (for example Feather Fall, Detect Magic, Invisibility, and Mind Sliver plays). Rulings the plays flag as the DM's call remain open. The short Greatest Hits and Mr. Big summaries are still imported from the current records. D&D Beyond synchronization, starting gear, the cow appearance, and initial summoning remain pending. DM rulings govern play.
 
@@ -58,7 +59,7 @@ python3 scripts/sync_content.py
 python3 scripts/sync_content.py --check
 ```
 
-`data/sources.json` records exact SHA-256 fingerprints of all ten imported inputs. Edit the shared spell details in `../kief/spell-reference.json`, then regenerate. The check command rejects any generated-output drift without modifying files. The dashboard, resource limits, concentration options, and eight always-prepared spell memberships are curated for this build. Review them, and the play pages, whenever the source changes; imports are not a full character-sheet parser. The importer checks the dashboard’s expected build numbers and rejects incomplete or mismatched spell references. A level change requires reviewing `assets/state.js`, `assets/app.js`, `layouts/index.html`, and curated entries in the importer, then changing the storage version/key if necessary.
+`data/sources.json` records exact SHA-256 fingerprints of all eleven imported inputs. Edit the shared spell details in `../kief/spell-reference.json`, then regenerate. The check command rejects any generated-output drift without modifying files. The dashboard, resource limits, concentration options, and eight always-prepared spell memberships are curated for this build. Review them, and the play pages, whenever the source changes; imports are not a full character-sheet parser. The importer checks the dashboard’s expected build numbers and rejects incomplete or mismatched spell references. A level change requires reviewing `assets/state.js`, `assets/app.js`, `layouts/index.html`, and curated entries in the importer, then changing the storage version/key if necessary.
 
 ## Session data
 
@@ -114,3 +115,11 @@ These pages stay in `content/plays/kief/`; the importer does not overwrite them.
 The source table card now leads with six familiar choices and a turn-resumption sequence. Six existing companion plays (K-2, K-25, K-51, K-20, K-24, K-73) include opening, follow-through, fallback, and teammate handoff. The familiar guide starts with jobs beside Kief before bounded tasks and deliberate exposure. No character build or spell changes.
 
 The dashboard surfaces three session selections, defaulting to Pattern, the invisible scout, and the Syrup Witness. Each native selector offers a small curated set from `data/session_picks.json`; the links open existing play cards and do not cast or spend resources. Choices save separately under `kief-firelight.level5.session-picks.v1`, survive rest and reload, and follow other-tab selection changes. Invalid entries fall back to that category’s default; unavailable storage leaves the controls usable for the visit. Combat reset, Undo, and tracking import/export do not change or include these preferences.
+
+## Learning at the table — 2026-10-14
+
+Open **Learn & play** in the main navigation for the complete beginner guide, or use the combat-bar shortcut for the dashboard’s Situation → Concentration → Choice → Update reminder. Core lessons start expanded; other sections can be opened individually. Lesson links also expand their containing section, including practice and resumption references. Opening help is independent of resource tracking and never confirms a cast.
+
+The full guide is generated as `content/learn.md` by the source importer. Nested source links, URL-encoded filenames, and fragments are mapped to current site references. The short dashboard reminders and `data/learning_hints.json` are curated summaries of that guide; review them when its rules or build change. Native `<details>` keep lessons and hints usable without JavaScript. `assets/learning.js` adds hover/focus, viewport positioning, Escape/outside-click dismissal, lesson-anchor expansion, and full-lesson printing. When a hint is open in the cast dialog, Escape dismisses the hint first and leaves the cast open.
+
+The service worker precaches `/learn/` and the learning script with the existing shell. Offline access requires an initial successful online cache installation in that browser. The new section retains pending gear and familiar rulings from the source. It adds learning support without changing character numbers or resource rules.

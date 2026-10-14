@@ -1,6 +1,17 @@
 # Kief companion roadmap
 
-## Current milestone: Table enjoyment pass & session selections
+## Current milestone: Beginner lessons & contextual learning at the table
+
+Implemented locally on 2026-10-14; see `VERIFICATION.md` for the checks actually performed. Publication is separate.
+
+- **Imported Beginner Guide (`/learn/`):** Imported canonical beginner guide (`docs/learning-dnd-5-5-ed-for-beginners-with-kief.md` from `../kief`) into `content/learn.md` using `layouts/learn/single.html`, structured as native collapsible disclosures for all level-two lesson sections with initial expansion of foundational lessons, source-linked practice prompts, and stable heading anchors.
+- **Nested Source Link Resolution in Importer:** Enhanced `scripts/sync_content.py` to resolve relative Markdown link paths from nested subdirectories, URL-decode encoded filenames/spaces/ampersands, map targets to valid site routes, preserve query parameters and anchor fragments, and track SHA-256 source fingerprints in `data/sources.json`.
+- **Table Turn-Resumption Sequence:** Embedded four-step turn-resumption card (*Situation → Concentration → Choice → Update*) on the dashboard (`layouts/partials/learning-at-table.html`) with a sticky combat-bar shortcut for immediate orientation during live play.
+- **Contextual Learning Hints & Micro-Interactions:** Added accessible 44px question-mark disclosures across core stats, resources, turn economy, and spellcast dialog fields (`layouts/partials/learning-tip.html`), powered by curated guidance in `data/learning_hints.json`.
+- **Decoupled Learning Controller (`assets/learning.js`):** Lightweight client-side helper supporting hover/focus expansion, pointer-safe explanation travel, viewport bounding, outside-click and Escape dismissal (prioritizing hint dismissal before parent dialogs), hash-based lesson disclosure opening, and print stylesheet preparation without mutating game/tracker state.
+- **Service Worker Precaching & Offline Reliability:** Precached `/learn/` and `assets/learning.js` in `sw.js` alongside app shell assets, with cache invalidation triggered on guide or hint content modifications.
+
+## Preceding milestone: Table enjoyment pass & session selections
 
 Implemented locally on 2026-10-13; see `VERIFICATION.md` for the checks actually performed. Publication is separate.
 

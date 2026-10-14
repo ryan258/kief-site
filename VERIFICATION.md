@@ -255,3 +255,16 @@ These checks do not establish full screen-reader compatibility, all-device cover
 - **Production Build:** Ran `hugo --minify --cleanDestinationDir --noBuildLock` producing 186 pages in 275ms with zero warnings.
 - **Link & Anchor Audit:** Checked internal routes, assets, and page anchors across 185 HTML pages via `scripts/check_links.py`: 0 errors found.
 - **Visual Design & Assets:** Verified `candyland.css` theme and `candyland-night.webp` background asset loading, service worker precaching list updates, SVG icon, and WebManifest branding.
+
+## Beginner lessons and contextual help — 2026-10-14
+
+Scope: source-imported `/learn/`, dashboard turn-resumption card, question-mark explanations, and offline learning shell. Character state and casting rules were not edited.
+
+- Five targeted importer contract tests passed, including nested lesson paths, URL-encoded ampersands/spaces, fragment preservation, source drift, build rejection, and invalid spell references. `sync_content.py --check` reports ten current Markdown records and 25 spell references in sync.
+- `node --check assets/learning.js`, a production Hugo build into `/tmp/kief-learning-final`, and `git diff --check` passed. Generated internal routes, assets, and anchors passed across 287 HTML pages. Hugo emits an existing `site.Data` deprecation warning from the session-picks partial.
+- Chromium checks: 14 native lesson disclosures render; direct concentration, practice, and resume anchors open their containing lesson. Hover and keyboard focus open hints; Tab reaches their named summaries; Escape dismisses them. Escape inside the cast dialog closes the hint and leaves the cast dialog open. Reading a hint leaves session storage and HP unchanged.
+- A 390×844 touch viewport showed no page-wide horizontal overflow on the dashboard or lesson page. Hint summaries measure 44×44 pixels; the visible explanation stayed inside the viewport. Desktop and touch screenshots were visually inspected in the tool output.
+- A fresh isolated browser context loaded only the dashboard online, then reached the previously unvisited learning page with network emulation set to Offline. The guide, styles, and learning script loaded and the practice anchor expanded. After restarting Hugo to pick up its refreshed generated service worker, the final worker cache (`43b36b28f673e9a7ff22d97e82695f7d`) and final learning script were checked, followed by another offline practice-page load.
+- Simulated before/after-print events open all lesson disclosures and restore their prior fold state. Actual print output, screen-reader use, real-device behavior, and table play have not been assessed. Native disclosure fallback is present; no separate JavaScript-disabled browser trial was run. No full test suite was run.
+
+The guide and curated hint content contribute to the service-worker cache version, so their changes invalidate the precached learning content. Offline use still requires a successful first online cache installation. Linked reference pages are only available offline when separately cached.
