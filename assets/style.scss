@@ -971,3 +971,55 @@ body.page-playbook .workspace{background-image:radial-gradient(ellipse at 88% 8%
   .session-picks-grid { grid-template-columns: 1fr; }
   #session-picks-title { scroll-margin-top: 180px; }
 }
+
+/* Lesson help is separate from tracker actions; opening it never spends resources. */
+.help-label { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.help-label > label { margin: 0; }
+.learning-tip { display: inline-block; vertical-align: middle; flex: 0 0 auto; }
+.learning-tip > summary { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; min-height: 44px; padding: 0; border: 1px solid var(--border); border-radius: 50%; color: var(--mint, var(--sage)); font: 600 16px var(--sans); cursor: pointer; list-style: none; }
+.learning-tip > summary::-webkit-details-marker { display: none; }
+.learning-tip > summary:hover, .learning-tip[open] > summary { border-color: var(--mint, var(--sage)); background: var(--panel2); }
+.learning-tip-body { position: fixed; inset: auto 16px 24px auto; z-index: 100; width: 330px; max-width: calc(100vw - 32px); max-height: calc(100vh - 32px); overflow: auto; padding: 18px; background: var(--panel); color: var(--text); border: 1px solid var(--mint, var(--sage)); border-radius: 12px; box-shadow: 0 12px 36px #0009; text-align: left; font: 15px/1.6 var(--sans); letter-spacing: normal; text-transform: none; }
+.learning-tip-body strong { display: block; color: var(--text); font: 600 16px/1.5 var(--sans); }
+.learning-tip-body p { font-size: 15px; margin: 8px 0; color: var(--text); }
+.learning-tip-body a { display: flex; align-items: center; min-height: 44px; text-decoration: underline; color: var(--mint, var(--sage)); }
+.stat-strip .help-label { justify-content: space-between; }
+.learning-at-table { margin: 0 0 24px; scroll-margin-top: 150px; }
+.learning-at-table .section-heading { flex-wrap: wrap; }
+.learning-recap { font: italic 22px/1.5 var(--serif); color: var(--mint, var(--sage)); }
+.learning-steps { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; padding: 0; list-style: none; counter-reset: return-step; }
+.learning-steps li { border-left: 2px solid var(--border); padding: 0 12px; counter-increment: return-step; }
+.learning-steps strong { display: block; margin-bottom: 8px; }
+.learning-steps strong::before { content: counter(return-step) '. '; color: var(--mint, var(--sage)); }
+.learning-steps span { color: var(--muted); font-size: 15px; line-height: 1.6; }
+.learning-quick > summary { min-height: 48px; padding: 14px 0; cursor: pointer; color: var(--text); }
+.learning-quick-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
+.learning-quick-grid h3 { font-size: 22px; margin-bottom: 8px; }
+.learning-quick-grid p { font-size: 15px; color: var(--muted); }
+.learning-help-note { margin: 12px 0 0; font-size: 14px; }
+.learning-help-note a { color: var(--mint, var(--sage)); text-decoration: underline; }
+.turn-help { display: flex; gap: 8px; flex-wrap: wrap; margin: 8px 0 16px; }
+.turn-help .help-label { font-size: 13px; }
+.learning-lead { max-width: 80ch; }
+.learning-toc { margin: 24px 0; }
+.learning-lessons { display: grid; gap: 16px; max-width: 1000px; }
+.learning-lesson { padding: 0; }
+.learning-lesson > summary { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 22px; min-height: 60px; cursor: pointer; list-style: none; }
+.learning-lesson > summary::-webkit-details-marker { display: none; }
+.learning-lesson > summary h2 { margin: 0; font-size: 25px; scroll-margin-top: 30px; }
+.learning-toggle { color: var(--mint, var(--sage)); font-size: 22px; flex-shrink: 0; }
+.learning-lesson[open] .learning-toggle { transform: rotate(45deg); }
+.learning-lesson > .prose { padding: 0 22px 22px; }
+.learning-lesson .prose { max-width: none; }
+@media (max-width: 760px) {
+  .learning-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .learning-quick-grid { grid-template-columns: 1fr; gap: 8px; }
+  .learning-at-table .section-heading .button { width: 100%; justify-content: center; }
+  .learning-lesson > summary h2 { font-size: 22px; }
+}
+@media (max-width: 420px) { .learning-steps { grid-template-columns: 1fr; } }
+@media print {
+  .learning-tip, .learning-toggle, .learning-toc { display: none; }
+  .learning-lesson { break-inside: auto; }
+  .learning-lesson > .prose { display: block; }
+}

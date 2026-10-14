@@ -1,0 +1,9 @@
+{{ with index hugo.Data.learning_hints . }}
+<details class="learning-tip">
+  <summary aria-label="Explain {{ .title }}"><span aria-hidden="true">?</span></summary>
+  <div class="learning-tip-body" role="note">
+    <strong>{{ .title }}</strong><p>{{ .text }}</p>
+    <a href="{{ printf "learn/#%s" .lesson | relURL }}">Read this lesson →</a>
+  </div>
+</details>
+{{ end }}

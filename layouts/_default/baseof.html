@@ -21,6 +21,8 @@
 <script src="{{ $state.RelPermalink }}" defer></script>
 {{ $js := resources.Get "app.js" | minify | fingerprint }}
 <script src="{{ $js.RelPermalink }}" defer></script>
+{{ $learning := resources.Get "learning.js" | minify | fingerprint }}
+<script src="{{ $learning.RelPermalink }}" defer></script>
 {{ $pageKey := "default" }}
 {{ if .IsHome }}
   {{ $pageKey = "dashboard" }}
@@ -37,7 +39,7 @@
 <p class="eyebrow rail-label">CANDYLAND FIELD GUIDE</p>
 <nav aria-label="Main navigation">
 {{ $current := .RelPermalink }}
-{{ range slice (dict "url" "" "name" "Dashboard" "icon" "◈") (dict "url" "spellbook/" "name" "Spellbook" "icon" "✧") (dict "url" "plays/" "name" "Tactical plays" "icon" "⌘") (dict "url" "familiar/" "name" "Mr. Big" "icon" "♧") (dict "url" "rules/" "name" "Table rules" "icon" "☷") (dict "url" "character/" "name" "Character" "icon" "◇") }}
+{{ range slice (dict "url" "" "name" "Dashboard" "icon" "◈") (dict "url" "learn/" "name" "Learn & play" "icon" "?") (dict "url" "spellbook/" "name" "Spellbook" "icon" "✧") (dict "url" "plays/" "name" "Tactical plays" "icon" "⌘") (dict "url" "familiar/" "name" "Mr. Big" "icon" "♧") (dict "url" "rules/" "name" "Table rules" "icon" "☷") (dict "url" "character/" "name" "Character" "icon" "◇") }}
 <a href="{{ .url | relURL }}" {{ if eq $current (.url | relURL) }}aria-current="page"{{ end }}><span aria-hidden="true">{{ .icon }}</span>{{ .name }}</a>
 {{ end }}
 </nav>
@@ -66,8 +68,9 @@
 </div>
 </div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-{{ $assets := slice ("" | relURL) $css.RelPermalink $theme.RelPermalink ("pages/candyland-night.webp" | relURL) $storage.RelPermalink $state.RelPermalink $js.RelPermalink ("manifest.webmanifest" | relURL) ("icon.svg" | relURL) ("icon-192.png" | relURL) }}
-{{ $sw := resources.Get "sw.js" | resources.ExecuteAsTemplate "sw.js" (dict "assets" $assets "version" (delimit $assets "," | md5)) }}
+{{ $assets := slice ("" | relURL) $css.RelPermalink $theme.RelPermalink ("pages/candyland-night.webp" | relURL) $storage.RelPermalink $state.RelPermalink $js.RelPermalink $learning.RelPermalink ("learn/" | relURL) ("manifest.webmanifest" | relURL) ("icon.svg" | relURL) ("icon-192.png" | relURL) }}
+{{ $learningVersion := printf "%s,%s" (site.GetPage "learn").RawContent (hugo.Data.learning_hints | jsonify) | md5 }}
+{{ $sw := resources.Get "sw.js" | resources.ExecuteAsTemplate "sw.js" (dict "assets" $assets "version" (printf "%s,%s" (delimit $assets ",") $learningVersion | md5)) }}
 <script>
 if ('serviceWorker' in navigator) addEventListener('load', () => navigator.serviceWorker.register('{{ $sw.RelPermalink }}').catch(() => {}));
 </script>
