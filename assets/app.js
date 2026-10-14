@@ -358,9 +358,9 @@
     $('#innate-active').checked = state.innateActive;
     $('#reaction-ready').checked = state.reactionReady;
     $('#reaction-dot').style.background = state.reactionReady ? 'var(--sage)' : 'var(--orange)';
-    $('#spell-dc').textContent = state.innateActive ? '15' : '14';
-    $('#dc-note').textContent = state.innateActive ? 'Sorcerer' : 'base';
-    $('#attack-note').textContent = state.innateActive ? 'Sorcerer adv.' : 'to hit';
+    if ($('#spell-dc')) $('#spell-dc').textContent = state.innateActive ? '15' : '14';
+    if ($('#dc-note')) $('#dc-note').textContent = state.innateActive ? 'Sorcerer' : 'base';
+    if ($('#attack-note')) $('#attack-note').textContent = state.innateActive ? 'Sorcerer adv.' : 'to hit';
     $('#restore-sp').disabled = state.restored || state.sp === model.limits.sp;
     $('#restore-sp').textContent = state.restored ? 'SP restoration used' : 'Short rest: recover SP';
     $('#save-state').textContent = saveNotice;
@@ -370,7 +370,7 @@
     $('#combat-hp').textContent = `${state.hp}/47 HP`;
     $('#combat-focus').textContent = state.concentration || 'No concentration';
     $('#combat-reaction').textContent = state.reactionReady ? 'Reaction ready' : 'Reaction spent';
-    $('#move-status').textContent = model.guidance(state, selectedSituation);
+    if ($('#move-status')) $('#move-status').textContent = model.guidance(state, selectedSituation);
 
     const isKief = state.turnActive;
     $('#combat-turn-label').textContent = isKief ? 'Kief’s turn' : 'Off-turn';
@@ -389,6 +389,24 @@
     setPill('#turn-bonus', state.bonusActionReady);
     setPill('#turn-reaction', state.reactionReady);
     setPill('#turn-slot', !state.slotSpentThisTurn);
+    setPill('#dock-action', state.actionReady);
+    setPill('#dock-bonus', state.bonusActionReady);
+    setPill('#combat-reaction', state.reactionReady);
+    if ($('#dock-slots')) $('#dock-slots').textContent = [1, 2, 3].map(level => state.slots[level].filter(Boolean).length).join(' / ');
+    if ($('#dock-sp')) $('#dock-sp').textContent = `${state.sp}/5 SP`;
+    if ($('#dock-undo')) $('#dock-undo').disabled = !undoState;
+    if ($('#controller-spell-dc')) $('#controller-spell-dc').textContent = `Spell DC ${state.innateActive ? '15 (Sorcerer)' : '14'}`;
+    if ($('#dock-gold')) $('#dock-gold').textContent = state.gold === null ? 'Gold unset' : `${state.gold} GP`;
+    const cowNames = { unknown: 'unset', beside: 'beside Kief', away: 'put away', scouting: 'on a task' };
+    if ($('#dock-cow')) $('#dock-cow').textContent = `Mr. Big ${state.cowHp === null ? cowNames[state.cowStatus] : `${state.cowHp} HP · ${cowNames[state.cowStatus]}`}`;
+    for (const [id, value] of [['#controller-gold', state.gold ?? ''], ['#controller-cow-hp', state.cowHp ?? ''], ['#controller-cow-status', state.cowStatus]]) {
+      const input = $(id);
+      if (input && document.activeElement !== input) input.value = value;
+    }
+    if ($('#dock-save')) {
+      $('#dock-save').textContent = saveWarning ? 'Tracking temporarily · open Resources & saves' : state.savedAt ? `Saved ${time(state.savedAt)}` : 'New session';
+      $('#dock-save').classList.toggle('warning', saveWarning);
+    }
   }
   function save(summary) {
     stateRevision++;
@@ -437,6 +455,7 @@
     save('Undone change'); notify('Last tracker change undone.');
   }
   $('#undo-change').addEventListener('click', undo);
+  $('#dock-undo')?.addEventListener('click', undo);
   $('#apply-damage').addEventListener('click', () => {
     const amount = Number($('#hp-amount').value);
     try {
@@ -521,6 +540,10 @@
 
   $('#turn-action')?.addEventListener('click', () => change({ ...state, actionReady: !state.actionReady }));
   $('#turn-bonus')?.addEventListener('click', () => change({ ...state, bonusActionReady: !state.bonusActionReady }));
+  $('#dock-action')?.addEventListener('click', () => change({ ...state, actionReady: !state.actionReady }, 'Action marker changed'));
+  $('#dock-bonus')?.addEventListener('click', () => change({ ...state, bonusActionReady: !state.bonusActionReady }, 'Bonus Action marker changed'));
+  $('#combat-reaction')?.addEventListener('click', () => change({ ...state, reactionReady: !state.reactionReady }, 'Reaction marker changed'));
+  $('#dock-next-turn')?.addEventListener('click', advanceTurn);
   $('#turn-reaction')?.addEventListener('click', () => change({ ...state, reactionReady: !state.reactionReady }));
   $('#turn-slot')?.addEventListener('click', () => {
     const nextSpent = !state.slotSpentThisTurn;
@@ -541,7 +564,7 @@
       catch { notify('Old save could not be preserved. Export your tracking before resetting.'); return; }
     }
     undoState = structuredClone(state);
-    invalidStored = false; state = model.fresh(); $('#damage-result').textContent = ''; save();
+    invalidStored = false; state = model.longRest(state); $('#damage-result').textContent = ''; save();
     notify('New day · tracked resources restored.', () => {
       if (!undoState) return;
       undo();
@@ -808,6 +831,8 @@
 
   // iPad lifecycle: every change already saves synchronously, so only commit an HP edit still sitting in the input.
   function flushPending() {
+    if (document.activeElement === $('#controller-gold')) { saveTableNumber('#controller-gold', 'gold'); return; }
+    if (document.activeElement === $('#controller-cow-hp')) { saveTableNumber('#controller-cow-hp', 'cowHp'); return; }
     const hpInput = $('#hp-input');
     if (document.activeElement !== hpInput) return;
     const val = Number(hpInput.value);
@@ -838,6 +863,71 @@
     }
   });
   addEventListener('pagehide', flushPending);
+
+  // Optional table notes share tracking, backups, Undo, and cross-page synchronization.
+  function saveTableNumber(id, field) {
+    const input = $(id);
+    const value = String(input.value).trim() === '' ? null : Number(input.value);
+    try {
+      const next = model.normalize({ ...state, [field]: value });
+      if (next[field] !== state[field]) change(next, field === 'gold' ? 'Gold updated' : 'Mr. Big HP updated');
+      return true;
+    } catch {
+      notify(field === 'gold' ? 'Enter nonnegative GP with at most two decimal places, or clear it to leave unset.' : 'Enter whole-number HP from 0 to 1000, or clear it to leave unset.');
+      return false;
+    }
+  }
+  $('#controller-gold-save')?.addEventListener('click', () => saveTableNumber('#controller-gold', 'gold'));
+  $('#controller-gold')?.addEventListener('change', () => saveTableNumber('#controller-gold', 'gold'));
+  $('#controller-cow-save')?.addEventListener('click', () => saveTableNumber('#controller-cow-hp', 'cowHp'));
+  $('#controller-cow-hp')?.addEventListener('change', () => saveTableNumber('#controller-cow-hp', 'cowHp'));
+  $('#controller-cow-status')?.addEventListener('change', event => {
+    try { change(model.normalize({ ...state, cowStatus: event.target.value }), 'Mr. Big location updated'); }
+    catch { notify('Choose a listed location for Mr. Big.'); render(); }
+  });
+  $$('[data-gold-delta]').forEach(button => button.addEventListener('click', () => {
+    if (!saveTableNumber('#controller-gold', 'gold')) return;
+    if (state.gold === null) { notify('Set your current gold first.'); return; }
+    change({ ...state, gold: Math.max(0, Math.min(1000000000, Number((state.gold + Number(button.dataset.goldDelta)).toFixed(2)))) }, 'Gold adjusted');
+  }));
+
+  const tableDock = $('#table-dock');
+  const tableSheet = $('#table-sheet');
+  let controllerOpener = null;
+  function selectControllerPanel(name) {
+    $$('[data-controller-panel]').forEach(panel => { panel.hidden = panel.dataset.controllerPanel !== name; });
+    $$('[data-controller-tab]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.controllerTab === name)));
+  }
+  function closeController() {
+    if (!tableSheet) return;
+    flushPending();
+    tableSheet.hidden = true;
+    $$('[data-controller-open]').forEach(button => button.setAttribute('aria-expanded', 'false'));
+    controllerOpener?.focus();
+  }
+  $$('[data-controller-open]').forEach(button => button.addEventListener('click', () => {
+    controllerOpener = button;
+    selectControllerPanel(button.dataset.controllerOpen);
+    tableSheet.hidden = false;
+    $$('[data-controller-open]').forEach(other => other.setAttribute('aria-expanded', 'true'));
+    $('#table-sheet-title')?.focus();
+  }));
+  $$('[data-controller-tab]').forEach(button => button.addEventListener('click', () => selectControllerPanel(button.dataset.controllerTab)));
+  $('#table-sheet-close')?.addEventListener('click', closeController);
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && !event.defaultPrevented && tableSheet && !tableSheet.hidden && !$('dialog[open]')) {
+      closeController();
+      event.preventDefault();
+    }
+  });
+  if (tableDock && document.documentElement && document.body) {
+    tableDock.hidden = false;
+    document.body.classList.add('controller-ready');
+    const measureDock = () => document.documentElement.style.setProperty('--table-dock-height', `${tableDock.getBoundingClientRect().height}px`);
+    measureDock();
+    if (typeof ResizeObserver === 'function') new ResizeObserver(measureDock).observe(tableDock);
+    else addEventListener('resize', measureDock);
+  }
 
   // Import / restore backup
   const importDialog = $('#import-dialog');

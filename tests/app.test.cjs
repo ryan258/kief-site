@@ -5,7 +5,7 @@ const fs = require('node:fs');
 const model = require('../assets/state.js');
 const storageEngine = require('../assets/storage.js');
 // Small DOM adapter for tracker event paths, not a browser/layout substitute.
-function harness(raw, failWrites = false, customStorage = storageEngine) {
+function harness(raw, failWrites = false, customStorage = storageEngine, referencePage = false) {
   const nodes = new Map(), events = new Map(), stored = new Map();
   if (raw !== undefined) stored.set(model.key, raw);
   const initialText = {
@@ -46,7 +46,7 @@ function harness(raw, failWrites = false, customStorage = storageEngine) {
     return nodes.get(id);
   }
   const storage = { get length() { return stored.size; }, key: index => [...stored.keys()][index], getItem: key => stored.get(key) ?? null, setItem(key, value) { if (failWrites) throw new Error('Quota'); stored.set(key, value); } };
-  const context = { document: { querySelector: id => id === '[data-directory]' || id === '#toast button' ? null : node(id), querySelectorAll: () => [], addEventListener() {}, createElement: () => node('created') }, window: { KiefState: model, KiefStorage: customStorage }, Blob, URL: { createObjectURL: () => 'blob:test', revokeObjectURL() {} }, localStorage: storage, structuredClone, clearTimeout() {}, setTimeout() {}, addEventListener: (type, fn) => events.set(type, fn), console };
+  const context = { document: { querySelector: id => id === '[data-directory]' || id === '#toast button' || (referencePage && ['#spell-dc', '#dc-note', '#attack-note', '#move-status'].includes(id)) ? null : node(id), querySelectorAll: () => [], addEventListener() {}, createElement: () => node('created') }, window: { KiefState: model, KiefStorage: customStorage }, Blob, URL: { createObjectURL: () => 'blob:test', revokeObjectURL() {} }, localStorage: storage, structuredClone, clearTimeout() {}, setTimeout() {}, addEventListener: (type, fn) => events.set(type, fn), console };
   vm.runInNewContext(fs.readFileSync(require.resolve('../assets/app.js'), 'utf8'), context);
   const fire = (id, type, value) => {
     const element = node(id); if (value !== undefined) element.value = value;
@@ -54,6 +54,48 @@ function harness(raw, failWrites = false, customStorage = storageEngine) {
   };
   return { node, stored, fire, events, context };
 }
+test('table dock works on reference pages, uses saved counters, and shares Undo and turn markers', () => {
+  const h = harness(JSON.stringify({ ...model.fresh(), hp: 19 }), false, storageEngine, true);
+  assert.equal(h.node('#combat-hp').textContent, '19/47 HP');
+  h.fire('#dock-action', 'click');
+  assert.equal(JSON.parse(h.stored.get(model.key)).actionReady, false);
+  assert.equal(h.node('#dock-action').getAttribute('aria-pressed'), 'false');
+  h.fire('#dock-next-turn', 'click');
+  assert.equal(JSON.parse(h.stored.get(model.key)).actionReady, true);
+  h.fire('#dock-undo', 'click');
+  assert.equal(JSON.parse(h.stored.get(model.key)).actionReady, false);
+  h.events.get('storage')({ key: model.key, newValue: JSON.stringify({ ...model.fresh(), hp: 31, gold: 10, cowHp: 2, cowStatus: 'beside' }) });
+  assert.equal(h.node('#combat-hp').textContent, '31/47 HP');
+  assert.equal(h.node('#dock-gold').textContent, '10 GP');
+  assert.equal(h.node('#dock-cow').textContent, 'Mr. Big 2 HP · beside Kief');
+  assert.equal(h.node('#dock-undo').disabled, true);
+});
+test('gold and companion controls save, reject invalid entries, preserve notes at rest, and undo', () => {
+  const h = harness(JSON.stringify(model.fresh()));
+  h.fire('#controller-gold', 'change', '23.75');
+  h.fire('#controller-cow-hp', 'change', '0');
+  h.fire('#controller-cow-status', 'change', 'away');
+  h.fire('#controller-gold', 'change', '-1');
+  assert.equal(JSON.parse(h.stored.get(model.key)).gold, 23.75);
+  h.fire('#controller-cow-hp', 'change', '1.5');
+  assert.equal(JSON.parse(h.stored.get(model.key)).cowHp, 0);
+  h.fire('#hp-input', 'change', '12');
+  h.node('#rest-dialog').returnValue = 'confirm'; h.fire('#rest-dialog', 'close');
+  const rested = JSON.parse(h.stored.get(model.key));
+  assert.equal(rested.hp, 47);
+  assert.equal(rested.gold, 23.75);
+  assert.equal(rested.cowHp, 0);
+  assert.equal(rested.cowStatus, 'away');
+  h.fire('#dock-undo', 'click');
+  assert.equal(JSON.parse(h.stored.get(model.key)).hp, 12);
+});
+test('pagehide flushes a pending gold edit through the same validated save path', () => {
+  const h = harness(JSON.stringify(model.fresh()));
+  h.context.document.activeElement = h.node('#controller-gold');
+  h.node('#controller-gold').value = '9.5';
+  h.events.get('pagehide')();
+  assert.equal(JSON.parse(h.stored.get(model.key)).gold, 9.5);
+});
 test('unreadable save: temporary edits, confirmed reset, and undo persist the visible pre-rest counters', () => {
   const h = harness('{broken');
   h.fire('#hp-input', 'change', '19');

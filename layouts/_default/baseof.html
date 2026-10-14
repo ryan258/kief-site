@@ -15,6 +15,8 @@
 <link rel="stylesheet" href="{{ $css.RelPermalink }}">
 {{ $theme := resources.Get "candyland.css" | minify | fingerprint }}
 <link rel="stylesheet" href="{{ $theme.RelPermalink }}">
+{{ $controllerStyle := resources.Get "table-controller.css" | minify | fingerprint }}
+<link rel="stylesheet" href="{{ $controllerStyle.RelPermalink }}">
 {{ $storage := resources.Get "storage.js" | fingerprint }}
 <script src="{{ $storage.RelPermalink }}" defer></script>
 {{ $state := resources.Get "state.js" | fingerprint }}
@@ -62,14 +64,15 @@
 </div>
 </aside>
 {{ $pageArt := partial "theme-art.html" . }}
-<div class="workspace" style="{{ printf "--page-art: url('%s')" (printf "pages/%s.webp" $pageArt | relURL) | safeCSS }}">
+<div class="workspace" style="--page-art: url('{{ printf "pages/%s.webp" $pageArt | relURL }}');">
 <header class="topbar"><span><a class="topbar-home" href="{{ "" | relURL }}" aria-label="Dashboard">⌂</a> <span class="slash">/</span> SUGAR &amp; SHADOW <span class="slash">/</span> {{ if .IsHome }}DASHBOARD{{ else }}{{ .Title | upper }}{{ end }}</span><span class="local-indicator"><i></i> Personal tabletop companion</span></header>
 <main id="main" tabindex="-1">{{ block "main" . }}{{ end }}</main>
 <footer><div class="footer-wrap"><span>Built for a good turn, and getting everyone home. <a href="{{ "checks/" | relURL }}">Campaign checks</a> <a href="{{ "rulings/" | relURL }}">Table rulings</a> <a href="{{ "character/" | relURL }}">Character record</a></span><small class="footer-meta">Current local build. D&D Beyond sync pending. DM rulings govern play.</small></div></footer>
 </div>
 </div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-{{ $assets := slice ("" | relURL) $css.RelPermalink $theme.RelPermalink ("pages/candyland-night.webp" | relURL) $storage.RelPermalink $state.RelPermalink $js.RelPermalink $learning.RelPermalink ("learn/" | relURL) ("manifest.webmanifest" | relURL) ("icon.svg" | relURL) ("icon-192.png" | relURL) }}
+{{ partial "table-controller.html" . }}
+{{ $assets := slice ("" | relURL) $css.RelPermalink $theme.RelPermalink $controllerStyle.RelPermalink ("pages/candyland-night.webp" | relURL) $storage.RelPermalink $state.RelPermalink $js.RelPermalink $learning.RelPermalink ("learn/" | relURL) ("manifest.webmanifest" | relURL) ("icon.svg" | relURL) ("icon-192.png" | relURL) }}
 {{ $artVersions := slice }}
 {{ range slice "candyland-spellbook" "candyland-crossroads" "candyland-mr-big" "candyland-lessons" "candyland-ledger" "candyland-tea" }}
   {{ range slice (printf "pages/%s.webp" .) (printf "pages/%s-480.webp" .) }}

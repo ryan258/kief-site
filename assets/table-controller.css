@@ -1,0 +1,65 @@
+/* Shared table controls: a fixed dock and a nonmodal sheet, on every route. */
+:root { --table-dock-height: 0px; }
+html { scroll-padding-bottom: calc(var(--table-dock-height) + 20px); }
+body.controller-ready { padding-bottom: var(--table-dock-height); }
+.dashboard-grid { grid-template-columns: minmax(0, 1.4fr) minmax(260px, .8fr); }
+.table-dock {
+  position: fixed; bottom: 0; left: 210px; right: 0; z-index: 25;
+  padding: 8px 16px calc(8px + env(safe-area-inset-bottom));
+  background: rgba(24, 17, 31, .98); border-top: 1px solid #9b6f95;
+  box-shadow: 0 -8px 30px #0005; backdrop-filter: blur(12px);
+}
+.table-dock-row { display: flex; align-items: center; gap: 6px; overflow-x: auto; padding: 2px 0; }
+.table-dock button { min-height: 44px; white-space: nowrap; padding: 8px 11px; font-size: 12px; flex-shrink: 0; }
+.dock-label { display: block; color: var(--muted); font-size: 9px; }
+.dock-counter { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
+.dock-counter button { min-width: 44px; padding: 0; font-size: 20px; }
+.dock-counter span { min-width: 49px; text-align: center; font-size: 12px; }
+.table-dock-secondary button { font-size: 11px; }
+.table-dock button.spent { color: #d8c5d7; border-style: dashed; background: #18111e; }
+.table-dock button.ready { background: #2b3b30; border-color: #8bab94; color: #d5f1df; }
+#dock-save { font-size: 10px; color: var(--mint); white-space: nowrap; padding: 0 6px; }
+#dock-save.warning { color: var(--orange); }
+.table-sheet {
+  position: fixed; bottom: var(--table-dock-height); right: 12px; left: max(222px, calc(100% - 900px));
+  max-height: calc(100dvh - var(--table-dock-height) - 20px); z-index: 24;
+  display: flex; flex-direction: column; border: 1px solid #9b6f95; border-radius: 16px 16px 0 0;
+  background: #17111e; box-shadow: 0 -10px 40px #0008;
+}
+.table-sheet-header { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 16px 20px 10px; }
+.table-sheet-header, .table-sheet-tabs { flex-shrink: 0; }
+.table-sheet-header .eyebrow { margin: 0 0 4px; }
+.table-sheet-header h2 { font-size: 24px; }
+.table-sheet-header button { min-height: 44px; flex-shrink: 0; }
+.table-sheet-tabs { display: flex; gap: 6px; overflow-x: auto; padding: 0 20px 12px; border-bottom: 1px solid var(--border); }
+.table-sheet-tabs button { min-height: 44px; white-space: nowrap; font-size: 12px; }
+.table-sheet-tabs [aria-pressed="true"] { color: #fff2e9; border-color: var(--rose); background: #49304a; }
+.table-sheet-body { min-height: 0; overflow-y: auto; overscroll-behavior: contain; padding: 16px 20px; }
+.table-sheet .panel { margin-bottom: 14px; }
+.table-sheet .turn-help { margin-bottom: 16px; }
+.table-sheet .resources-panel { max-width: none; }
+.table-sheet .section-heading { margin-bottom: 18px; }
+.table-sheet .resource-row { padding: 10px 0; }
+.table-sheet .counter button, .table-sheet .slot, .table-sheet .hp-controls button { min-width: 44px; min-height: 44px; }
+.controller-abilities { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 18px; }
+.controller-abilities > div { padding: 12px; background: #211928; border: 1px solid var(--border); border-radius: 8px; }
+.controller-abilities span { display: block; font-size: 12px; margin-top: 7px; color: var(--muted); }
+.controller-field { margin: 20px 0 12px; }
+.controller-field > label { display: block; margin-bottom: 8px; }
+.controller-input-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.controller-input-row input { width: 140px; }
+.controller-input-row button { min-height: 44px; }
+.toast { z-index: 28; bottom: calc(var(--table-dock-height) + 12px); }
+@media (max-width: 1250px) { .table-dock { left: 180px; } .table-sheet { left: 192px; } .right-stack { grid-column: auto; grid-template-columns: 1fr; } }
+@media (max-width: 900px) { .table-dock { left: 0; padding-left: 12px; padding-right: 12px; } .table-sheet { left: 12px; } }
+@media (max-width: 640px) {
+  .table-dock { padding-left: 8px; padding-right: 8px; }
+  .table-dock button { font-size: 11px; padding: 7px 9px; }
+  .table-sheet { left: 0; right: 0; max-height: calc(100dvh - var(--table-dock-height) - 8px); }
+  .table-sheet-header { padding: 12px; }
+  .table-sheet-header h2 { font-size: 20px; }
+  .table-sheet-tabs { padding: 0 12px 10px; }
+  .table-sheet-body { padding: 12px; }
+  .controller-abilities { grid-template-columns: repeat(2, 1fr); }
+}
+@media print { .table-dock, .table-sheet { display: none !important; } body.controller-ready { padding-bottom: 0; } }
