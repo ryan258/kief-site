@@ -1,0 +1,16 @@
+{
+  "dashboard": "candyland-night",
+  "spellbook": "candyland-spellbook",
+  "plays": "candyland-crossroads",
+  "playbook": "candyland-crossroads",
+  "greatest-hits": "candyland-crossroads",
+  "familiar": "candyland-mr-big",
+  "learn": "candyland-lessons",
+  "rules": "candyland-ledger",
+  "rulings": "candyland-ledger",
+  "character": "candyland-ledger",
+  "checks": "candyland-ledger",
+  "growth": "candyland-ledger",
+  "setup": "candyland-ledger",
+  "history": "candyland-ledger"
+}
