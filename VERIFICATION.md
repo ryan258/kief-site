@@ -1,5 +1,14 @@
 # Verification history
 
+## 2026-10-14 — Direct slot buttons and rest shortcuts
+
+- Replaced the bottom bar's slot-summary opener with nine 44×44 buttons, grouped by level with available/total counts. Filled/solid slots are available; hollow/dashed slots are spent. Dock and panel copies share the existing saved slot state and Undo. Accessible labels name the next action and the current state.
+- Added Short rest and Long rest buttons to the bar. Short rest opens an explanation and the shared Sorcerous Restoration action (up to 2 SP, once per Long Rest; disabled when full/used). Long rest uses the existing reset confirmation. Hit Dice and resulting healing remain manually recorded; no new rest rules were introduced.
+- Targeted tests: 12 matching app tests passed (`slot|rest|recovery|table dock`), including synchronized duplicate slot controls, spend/restore/Undo, cross-tab updates, rest-dialog routing, canceled reset, recovery limits, and gold/companion preservation.
+- Hugo build, local links/assets across 287 HTML pages, and `git diff --check` passed.
+- Separate browser test context: clicked slots without opening the sheet, verified panel synchronization and saved level counts, navigated to Rules and verified the spent slot remained; opened Short rest and recovered 2 SP; opened/canceled Long rest confirmation. Desktop and 390px mobile views retained the fixed bar, nine slot buttons, 44px slot targets, and no horizontal page overflow. The dock rows themselves scroll horizontally on narrow screens.
+- Scope: focused local implementation checks. Full suites and actual-device/assistive-technology acceptance were not run.
+
 ## 2026-10-14 — Shared bottom table controller
 
 - Moved existing resource, focus, turn, reaction, and recovery/casting dialogs into shared partials rendered by the base layout. Added a fixed bottom controller, an expandable nonmodal sheet, ability/save reference, and optional gold/Mr. Big notes on every route. Old saves retain their original counters; absent optional notes default to unset. Long Rest preserves gold and Mr. Big's recorded HP/location.

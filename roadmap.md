@@ -5,6 +5,7 @@
 Implemented locally on 2026-10-14; see `VERIFICATION.md` for targeted checks. Publication is separate.
 
 - Fixed bottom resource bar and expandable controller on every route, using one shared saved session.
+- Nine directly clickable slot buttons with synchronized panel controls and Undo; Short rest/SP recovery and Long rest confirmation shortcuts on the bar.
 - HP/damage/healing, slots, SP/daily uses, turn markers, focus, casting, abilities/saves, and recovery tools within reach.
 - Optional gold and Mr. Big HP/location notes, compatible with older saves and preserved through Long Rest.
 - Responsive 44px controls, sideways scrolling for compact mobile rows, safe-area/content padding, Escape focus restoration, and offline shell support.
